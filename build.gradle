@@ -1,0 +1,31 @@
+plugins {
+    id 'jacoco'
+    id 'com.github.kt3k.coveralls' version '2.6.3'
+}
+
+apply plugin: 'java'
+apply plugin: 'application'
+
+version '1.0-SNAPSHOT'
+
+mainClassName = 'com.pelensky.hangman.Hangman'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+run{
+    standardInput = System.in
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled = true // coveralls plugin depends on xml format report
+        html.enabled = true
+    }
+}

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.pelensky.contactmanager.iml" filepath="$PROJECT_DIR$/.idea/modules/com.pelensky.contactmanager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.pelensky.contactmanager_main.iml" filepath="$PROJECT_DIR$/.idea/modules/com.pelensky.contactmanager_main.iml" group="com.pelensky.contactmanager" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.pelensky.contactmanager_test.iml" filepath="$PROJECT_DIR$/.idea/modules/com.pelensky.contactmanager_test.iml" group="com.pelensky.contactmanager" />
+    </modules>
+  </component>
+</project>
