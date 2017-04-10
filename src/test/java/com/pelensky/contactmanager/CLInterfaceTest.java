@@ -55,7 +55,7 @@ public class CLInterfaceTest {
 
   @Test
   public void askUserAgainIfInvalidSelection(){
-    Scanner invalidInput = new Scanner("asdfg\n quit");
+    Scanner invalidInput = new Scanner("asdfg\nquit\n");
     clInterface = new CLInterface(invalidInput, output, contactList);
     clInterface.runApp();
     assertThat(out.toString(), containsString("I didn't quite get that\n"));
@@ -63,7 +63,7 @@ public class CLInterfaceTest {
 
   @Test
   public void userAddsANewContact(){
-    Scanner newContact = new Scanner("new\n Dan\n Pelensky\n 1 Commercial Street\n London\n E16LT\n 07000 000 000\n quit\n");
+    Scanner newContact = new Scanner("new\nDan\nPelensky\n1 Commercial Street\nLondon\nE16LT\n07000 000 000\nquit\n");
     clInterface = new CLInterface(newContact, output, contactList);
     clInterface.runApp();
     assertThat(out.toString(), containsString("Dan Pelensky has been added as a contact."));

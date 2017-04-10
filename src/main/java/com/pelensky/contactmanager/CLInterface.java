@@ -41,7 +41,7 @@ class CLInterface {
     }
 
     private void makeSelection() {
-        String selection = input.next().toLowerCase();
+        String selection = input.nextLine().toLowerCase();
         switch (selection) {
             case "quit": selectedOption = "See you next time!";
                 appRunning = false;
@@ -59,19 +59,20 @@ class CLInterface {
 
     private void addNewContact() {
         output.println("First Name: ");
-        String firstName = input.next();
+        String firstName = input.nextLine();
         output.println("Last Name: ");
-        String lastName = input.next();
+        String lastName = input.nextLine();
         output.println("Address (One Line):");
-        String address = input.next();
+        String address = input.nextLine();
         output.println("City: ");
-        String city = input.next();
+        String city = input.nextLine();
         output.println("Postcode:");
-        String postCode = input.next();
+        String postCode = input.nextLine();
         output.println("Phone number:");
-        String phoneNumber = input.next();
+        String phoneNumber = input.nextLine();
         Contact newContact = new Contact(firstName, lastName, address, city, postCode, phoneNumber);
         output.println(newContact.getFirstName() + " " + newContact.getLastName() + " has been added as a contact.");
+        contactList.addContact(newContact);
     }
 
 
