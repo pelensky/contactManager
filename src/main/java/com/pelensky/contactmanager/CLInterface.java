@@ -1,21 +1,28 @@
 package com.pelensky.contactmanager;
 
-import java.io.ByteArrayInputStream;
-import java.io.PrintStream;
+import java.io.*;
 
 
 class CLInterface {
 
-    ByteArrayInputStream input;
+    BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
     PrintStream output;
 
 
-    CLInterface(ByteArrayInputStream input, PrintStream output) {
+    CLInterface(BufferedReader input, PrintStream output) {
         this.input = input;
         this.output = output;
     }
 
-    void runApp(){
+    void runApp() {
         output.println("Contact Manager");
+        while (true) {
+           getUserInput();
+        }
     }
+
+
 }
+
+
+

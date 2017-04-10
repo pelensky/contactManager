@@ -12,13 +12,14 @@ import static org.junit.Assert.assertThat;
 public class CLInterfaceTest {
 
   private CLInterface clInterface;
-  private ByteArrayInputStream inputQuit;
+  private BufferedReader inputQuit;
   private PrintStream output;
   private ByteArrayOutputStream out;
 
+
   @Before
   public void setup() {
-    inputQuit = new ByteArrayInputStream("quit".getBytes());
+    inputQuit = new BufferedReader(new InputStreamReader(new ByteArrayInputStream("quit".getBytes())));
     out = new ByteArrayOutputStream();
     output = new PrintStream(out);
   }
@@ -40,5 +41,12 @@ public class CLInterfaceTest {
     clInterface = new CLInterface(inputQuit, output);
     clInterface.runApp();
     assertThat(out.toString(), containsString("Contact Manager\n"));
+  }
+
+  @Test
+  public void quitsAppWhenUserTypesQuit(){
+    clInterface = new CLInterface(inputQuit, output);
+    clInterface.runApp();
+    assertThat(out.toString(), containsString("See you next time!\n"));
   }
 }
