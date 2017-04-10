@@ -5,31 +5,40 @@ import org.junit.Test;
 
 import java.io.*;
 
+import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 
 public class CLInterfaceTest {
 
   private CLInterface clInterface;
-  private BufferedReader input;
+  private ByteArrayInputStream inputQuit;
   private PrintStream output;
   private ByteArrayOutputStream out;
 
   @Before
   public void setup() {
-    input = new BufferedReader(new InputStreamReader(System.in));
+    inputQuit = new ByteArrayInputStream("quit".getBytes());
     out = new ByteArrayOutputStream();
     output = new PrintStream(out);
   }
 
   @Test
   public void interfaceTakesABufferedReader() {
-    clInterface = new CLInterface(input, output);
-    assertEquals(input, clInterface.input);
+    clInterface = new CLInterface(inputQuit, output);
+    assertEquals(inputQuit, clInterface.input);
   }
 
   @Test
   public void interfacesTakesAPrintStream() {
-      clInterface = new CLInterface(input, output);
-      assertEquals(output, clInterface.output);
+    clInterface = new CLInterface(inputQuit, output);
+    assertEquals(output, clInterface.output);
+  }
+
+  @Test
+  public void welcomesUser() {
+    clInterface = new CLInterface(inputQuit, output);
+    clInterface.runApp();
+    assertThat(out.toString(), containsString("Contact Manager\n"));
   }
 }
