@@ -62,10 +62,10 @@ public class CLInterfaceTest {
 
   @Test
   public void userAddsANewContact(){
-    Scanner newContact = new Scanner("new\n quit");
+    Scanner newContact = new Scanner("new\n Dan\n Pelensky\n 1 Commercial Street\n London\n E16LT\n 07000 000 000\n quit\n");
     clInterface = new CLInterface(newContact, output);
     clInterface.runApp();
-    assertThat(out.toString(), containsString("Add a new contact\n"));
+    assertThat(out.toString(), containsString("Dan Pelensky has been added as a contact."));
   }
 
 }

@@ -46,6 +46,7 @@ class CLInterface {
                 printUsersSelection();
                 break;
             case "new": selectedOption = "Add a new contact";
+                printUsersSelection();
                 addNewContact();
                 break;
             default: selectedOption = "I didn't quite get that";
@@ -55,7 +56,20 @@ class CLInterface {
     }
 
     private void addNewContact() {
-        printUsersSelection();
+        output.println("First Name: ");
+        String firstName = input.next();
+        output.println("Last Name: ");
+        String lastName = input.next();
+        output.println("Address (One Line):");
+        String address = input.next();
+        output.println("City: ");
+        String city = input.next();
+        output.println("Postcode:");
+        String postCode = input.next();
+        output.println("Phone number:");
+        String phoneNumber = input.next();
+        Contact newContact = new Contact(firstName, lastName, address, city, postCode, phoneNumber);
+        output.println(newContact.getFirstName() + " " + newContact.getLastName() + " has been added as a contact.");
     }
 
 
