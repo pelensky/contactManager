@@ -11,7 +11,8 @@ public class ContactManager {
         Scanner input = new Scanner(System.in);
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         PrintStream output = new PrintStream(System.out);
-        CLInterface clInterface = new CLInterface(input, output);
+        ContactList contactList = new ContactList();
+        CLInterface clInterface = new CLInterface(input, output, contactList);
         clInterface.runApp();
     }
 

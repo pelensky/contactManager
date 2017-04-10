@@ -10,12 +10,14 @@ class CLInterface {
     PrintStream output;
     private String selectedOption;
     private Boolean appRunning = true;
+    private ContactList contactList;
 
 
 
-    CLInterface(Scanner input, PrintStream output) {
+    CLInterface(Scanner input, PrintStream output, ContactList contactList) {
         this.input = input;
         this.output = output;
+        this.contactList = contactList;
     }
 
     void runApp() {
