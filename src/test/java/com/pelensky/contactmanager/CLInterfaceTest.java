@@ -20,7 +20,7 @@ public class CLInterfaceTest {
 
   @Before
   public void setup() {
-    input= new Scanner("quit");
+    input = new Scanner("quit");
     out = new ByteArrayOutputStream();
     output = new PrintStream(out);
   }
@@ -42,6 +42,7 @@ public class CLInterfaceTest {
     clInterface = new CLInterface(input, output);
     clInterface.runApp();
     assertThat(out.toString(), containsString("Contact Manager\n"));
+    assertThat(out.toString(), containsString("Type `quit` to quit.\n"));
   }
 
   @Test
@@ -50,4 +51,21 @@ public class CLInterfaceTest {
     clInterface.runApp();
     assertThat(out.toString(), containsString("See you next time!\n"));
   }
+
+  @Test
+  public void askUserAgainIfInvalidSelection(){
+    Scanner invalidInput = new Scanner("asdfg\n quit");
+    clInterface = new CLInterface(invalidInput, output);
+    clInterface.runApp();
+    assertThat(out.toString(), containsString("I didn't quite get that\n"));
+  }
+
+  @Test
+  public void userAddsANewContact(){
+    Scanner newContact = new Scanner("new\n quit");
+    clInterface = new CLInterface(newContact, output);
+    clInterface.runApp();
+    assertThat(out.toString(), containsString("Add a new contact\n"));
+  }
+
 }
