@@ -6,9 +6,9 @@ class ContactList {
 
   private ArrayList<Contact> contacts = new ArrayList<>();
 
-    ArrayList<Contact> getContacts() {
-        return contacts;
-    }
+  ArrayList<Contact> getContacts() {
+    return contacts;
+  }
 
   void addContact(Contact contact) {
     contacts.add(contact);
@@ -24,7 +24,9 @@ class ContactList {
 
   private String formatContact(int number) {
     Contact contact = getContacts().get(number);
-    return (contact.getFirstName()
+    return (Integer.toString(number + 1)
+        + ") "
+        + contact.getFirstName()
         + " "
         + contact.getLastName()
         + "\n"

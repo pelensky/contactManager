@@ -6,13 +6,11 @@ import java.util.Scanner;
 
 class CLInterface {
 
-    Scanner input;
-    PrintStream output;
+    private Scanner input;
+    private PrintStream output;
     private String selectedOption;
     private Boolean appRunning = true;
     private ContactList contactList;
-
-
 
     CLInterface(Scanner input, PrintStream output, ContactList contactList) {
         this.input = input;
@@ -26,15 +24,6 @@ class CLInterface {
             printToConsole("Type `new` to add a new contact\nType `show` to display all contacts\nType `quit` to quit.");
             makeSelection();
         }
-    }
-
-
-    private void printUsersSelection() {
-        printToConsole(selectedOption);
-    }
-
-    private void printToConsole(String text) {
-        output.println(text);
     }
 
     private void makeSelection() {
@@ -51,6 +40,10 @@ class CLInterface {
             case "show": selectedOption = "Show all contacts";
                 printUsersSelection();
                 showAllContacts();
+                break;
+            case "edit": selectedOption = "Edit a contact";
+                printUsersSelection();
+                editContact();
                 break;
             default: selectedOption = "I didn't quite get that";
                 printUsersSelection();
@@ -76,11 +69,21 @@ class CLInterface {
         contactList.addContact(newContact);
     }
 
+    private void editContact() {
+        printToConsole("Which contact would you like to edit?");
+    }
+
     private void showAllContacts() {
         printToConsole(contactList.listContacts());
     }
 
+    private void printUsersSelection() {
+        printToConsole(selectedOption);
+    }
 
+    private void printToConsole(String text) {
+        output.println(text);
+    }
 
 }
 
