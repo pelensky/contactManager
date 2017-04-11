@@ -14,8 +14,16 @@ class ContactList {
     contacts.add(contact);
   }
 
-  String formatContact() {
-      Contact contact = getContacts().get(0);
-      return (contact.getFirstName() + " " + contact.getLastName() + "\n" + contact.getAddress() + "\n" + contact.getCity() + " " + contact.getPostCode() + "\n" + contact.getPhoneNumber());
+  private String formatContact(int number) {
+      Contact contact = getContacts().get(number);
+      return (contact.getFirstName() + " " + contact.getLastName() + "\n" + contact.getAddress() + "\n" + contact.getCity() + " " + contact.getPostCode() + "\n" + contact.getPhoneNumber() + "\n\n");
+     }
+
+     String listContacts() {
+      StringBuilder formattedContact = new StringBuilder();
+      for (int i = 0; i < contacts.size(); i++) {
+            formattedContact.append(formatContact(i));
+         }
+         return formattedContact.toString();
      }
 }

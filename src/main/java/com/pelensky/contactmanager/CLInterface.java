@@ -23,7 +23,7 @@ class CLInterface {
     void runApp() {
         printToConsole("Contact Manager");
         while (appRunning) {
-            printToConsole("Type `new` to add a new contact\nType `quit` to quit.");
+            printToConsole("Type `new` to add a new contact\nType `show` to display all contacts\nType `quit` to quit.");
             makeSelection();
         }
     }
@@ -77,7 +77,7 @@ class CLInterface {
     }
 
     private void showAllContacts() {
-        printToConsole(contactList.formatContact());
+        printToConsole(contactList.listContacts());
     }
 
 
