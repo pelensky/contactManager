@@ -21,23 +21,16 @@ class CLInterface {
     }
 
     void runApp() {
-        printWelcome();
+        printToConsole("Contact Manager");
         while (appRunning) {
-            printSelections();
+            printToConsole("Type `new` to add a new contact\nType `quit` to quit.");
             makeSelection();
         }
     }
 
-    private void printWelcome() {
-        output.println("Contact Manager");
-    }
-
-    private void printSelections() {
-        output.println("Type `new` to add a new contact\nType `quit` to quit.");
-    }
 
     private void printUsersSelection() {
-        output.println(selectedOption);
+        printToConsole(selectedOption);
     }
 
     private void makeSelection() {
@@ -58,23 +51,26 @@ class CLInterface {
     }
 
     private void addNewContact() {
-        output.println("First Name: ");
+        printToConsole("First Name: ");
         String firstName = input.nextLine();
-        output.println("Last Name: ");
+        printToConsole("Last Name: ");
         String lastName = input.nextLine();
-        output.println("Address (One Line):");
+        printToConsole("Address (One Line):");
         String address = input.nextLine();
-        output.println("City: ");
+        printToConsole("City: ");
         String city = input.nextLine();
-        output.println("Postcode:");
+        printToConsole("Postcode:");
         String postCode = input.nextLine();
-        output.println("Phone number:");
+        printToConsole("Phone number:");
         String phoneNumber = input.nextLine();
         Contact newContact = new Contact(firstName, lastName, address, city, postCode, phoneNumber);
-        output.println(newContact.getFirstName() + " " + newContact.getLastName() + " has been added as a contact.");
+        printToConsole(newContact.getFirstName() + " " + newContact.getLastName() + " has been added as a contact.");
         contactList.addContact(newContact);
     }
 
+    private void printToConsole(String text) {
+        output.println(text);
+    }
 
 }
 
