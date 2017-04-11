@@ -27,18 +27,6 @@ public class CLInterfaceTest {
   }
 
   @Test
-  public void interfaceTakesABufferedReader() {
-    clInterface = new CLInterface(input, output, contactList);
-    assertEquals(input, clInterface.input);
-  }
-
-  @Test
-  public void interfacesTakesAPrintStream() {
-    clInterface = new CLInterface(input, output, contactList);
-    assertEquals(output, clInterface.output);
-  }
-
-  @Test
   public void welcomesUser() {
     clInterface = new CLInterface(input, output, contactList);
     clInterface.runApp();
