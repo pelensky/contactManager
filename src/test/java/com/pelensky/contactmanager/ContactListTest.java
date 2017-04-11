@@ -15,11 +15,16 @@ public class ContactListTest {
     contactList = new ContactList();
     danPelensky =
         new Contact("Dan", "Pelensky", "1 Commercial Street", "London", "E16LT", "07000 000 000");
+    contactList.addContact(danPelensky);
   }
 
   @Test
   public void addContact() {
-    contactList.addContact(danPelensky);
     assertEquals(contactList.getContacts().get(0), danPelensky);
+  }
+
+  @Test
+  public void showFormattedContact() {
+    assertEquals("Dan Pelensky\n1 Commercial Street\nLondon E16LT\n07000 000 000", contactList.formatContact());
   }
 }

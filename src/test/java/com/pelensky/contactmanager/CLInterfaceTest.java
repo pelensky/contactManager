@@ -69,4 +69,12 @@ public class CLInterfaceTest {
     assertThat(out.toString(), containsString("Dan Pelensky has been added as a contact."));
   }
 
+  @Test
+  public void userListsContacts(){
+    Scanner createAndListContact = new Scanner("new\nDan\nPelensky\n1 Commercial Street\nLondon\nE16LT\n07000 000 000\nshow\nquit");
+    clInterface = new CLInterface(createAndListContact, output, contactList);
+    clInterface.runApp();
+    assertThat(out.toString(), containsString("Dan Pelensky\n1 Commercial Street\nLondon E16LT\n07000 000 000"));
+  }
+
 }

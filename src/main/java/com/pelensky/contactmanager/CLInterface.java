@@ -33,6 +33,10 @@ class CLInterface {
         printToConsole(selectedOption);
     }
 
+    private void printToConsole(String text) {
+        output.println(text);
+    }
+
     private void makeSelection() {
         String selection = input.nextLine().toLowerCase();
         switch (selection) {
@@ -43,6 +47,10 @@ class CLInterface {
             case "new": selectedOption = "Add a new contact";
                 printUsersSelection();
                 addNewContact();
+                break;
+            case "show": selectedOption = "Show all contacts";
+                printUsersSelection();
+                showAllContacts();
                 break;
             default: selectedOption = "I didn't quite get that";
                 printUsersSelection();
@@ -68,9 +76,11 @@ class CLInterface {
         contactList.addContact(newContact);
     }
 
-    private void printToConsole(String text) {
-        output.println(text);
+    private void showAllContacts() {
+        printToConsole(contactList.formatContact());
     }
+
+
 
 }
 
