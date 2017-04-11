@@ -37,6 +37,6 @@ class ContactList {
         + contact.getPostCode()
         + "\n"
         + contact.getPhoneNumber()
-        + "\n\n");
+        + "\n");
   }
 }
