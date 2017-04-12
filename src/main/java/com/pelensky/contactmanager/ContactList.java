@@ -17,9 +17,9 @@ class ContactList {
   String listContacts() {
     StringBuilder formattedContact = new StringBuilder();
     for (int i = 0; i < contacts.size(); i++) {
-      formattedContact.append(formatContact(i));
+      formattedContact.append(formatContact(i)).append("\n");
     }
-    return formattedContact.toString();
+    return formattedContact.toString().trim();
   }
 
   private String formatContact(int number) {
@@ -36,7 +36,6 @@ class ContactList {
         + " "
         + contact.getPostCode()
         + "\n"
-        + contact.getPhoneNumber()
-        + "\n");
+        + contact.getPhoneNumber());
   }
 }
