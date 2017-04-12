@@ -73,4 +73,6 @@ public class CLInterfaceTest {
     assertThat(out.toString(), containsString("1) Dan TheMan\n1 Commercial Street\nLondon E16LT\n07000 000 000"));
   }
 
+
+
 }
