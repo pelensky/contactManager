@@ -35,6 +35,7 @@ public class EditContactTest {
     assertEquals("London", editContact.selectField(4));
     assertEquals("E16LT", editContact.selectField(5));
     assertEquals("07000 000 000", editContact.selectField(6));
+    assertEquals("I didn't get that", editContact.selectField(45));
   }
 
   @Test
