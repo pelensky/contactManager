@@ -144,13 +144,18 @@ class CLInterface {
     } else {
       printToConsole("Delete a contact");
       DeleteContact deleteContact = new DeleteContact(contactList);
-      deleteContact.delete(selectContactTo("delete"));
+      int selectedContact = selectContactTo("delete");
+      deleteContact.delete(selectedContact);
       printToConsole("Deleted");
     }
   }
 
   private boolean isContactListEmpty() {
     return contactList.getContacts().isEmpty();
+  }
+
+  private int numberOfContacts() {
+      return contactList.countContacts();
   }
 
   private void showAllContacts() {

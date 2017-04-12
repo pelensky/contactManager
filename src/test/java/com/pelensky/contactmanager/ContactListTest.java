@@ -36,4 +36,9 @@ public class ContactListTest {
     contactList.addContact(timmyPelensky);
     assertThat(contactList.listContacts(), containsString("1) Dan Pelensky\n1 Commercial Street\nLondon E16LT\n07000 000 000\n2) Timmy Pelensky\n2 Commercial Street\nLondon E11AG\n07111 111 111"));
   }
+
+  @Test
+  public void countNumberOfContacts() {
+    assertEquals(1, contactList.countContacts());
+  }
 }

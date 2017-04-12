@@ -38,4 +38,8 @@ class ContactList {
         + "\n"
         + contact.getPhoneNumber());
   }
+
+  int countContacts() {
+    return contacts.size();
+  }
 }
