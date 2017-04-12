@@ -7,7 +7,6 @@ class CLInterface {
 
   private Scanner input;
   private PrintStream output;
-  private String selectedOption;
   private Boolean appRunning = true;
   private ContactList contactList;
 
@@ -112,14 +111,19 @@ class CLInterface {
     } else {
       printToConsole("Edit a contact");
       EditContact editContact = new EditContact(contactList);
-      int selectField = selectFieldToUpdate(selectContactTo("edit"), editContact);
-      updateField(editContact, selectField);
+      int selectedContact = selectContactTo("edit");
+      if (isNotAValidNumber(selectedContact)) {
+        printToConsole("Contact does not exist\nTry again");
+      } else {
+        int selectField = selectFieldToUpdate(selectedContact, editContact);
+        updateField(editContact, selectField);
+      }
     }
   }
 
   private int selectContactTo(String action) {
     printToConsole("Which contact would you like to " + action + "?\nPlease select number.");
-    showContacts();
+    printContacts();
     return Integer.parseInt(input.nextLine().trim());
   }
 
@@ -145,9 +149,17 @@ class CLInterface {
       printToConsole("Delete a contact");
       DeleteContact deleteContact = new DeleteContact(contactList);
       int selectedContact = selectContactTo("delete");
-      deleteContact.delete(selectedContact);
-      printToConsole("Deleted");
+      if (isNotAValidNumber(selectedContact)) {
+        printToConsole("Contact does not exist\nTry again");
+      } else {
+        deleteContact.delete(selectedContact);
+        printToConsole("Deleted");
+      }
     }
+  }
+
+  private boolean isNotAValidNumber(int selectedContact) {
+    return (selectedContact > numberOfContacts()) || (selectedContact < 1);
   }
 
   private boolean isContactListEmpty() {
@@ -163,11 +175,11 @@ class CLInterface {
       printToConsole("No contacts to show");
     } else {
       printToConsole("Show all contacts");
-      showContacts();
+      printContacts();
     }
   }
 
-  private void showContacts() {
+  private void printContacts() {
     printToConsole(contactList.listContacts());
   }
 
