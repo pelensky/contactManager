@@ -52,54 +52,66 @@ class CLInterface {
     }
 
     private void addNewContact() {
-        Contact newContact = new Contact(getFirstName(), getLastName(), getAddress(), getCity(), getPostCode(), getPhoneNumber());
-        printToConsole(newContact.getFirstName() + " " + newContact.getLastName() + " has been added as a contact.");
+        Contact newContact = new Contact(addFirstName(), addLastName(), addAddress(), addCity(), addPostCode(), addPhoneNumber());
         contactList.addContact(newContact);
+        printToConsole(newContact.getFirstName() + " " + newContact.getLastName() + " has been added as a contact.");
     }
 
-    private String getFirstName() {
+    private String addFirstName() {
         printToConsole("First Name: ");
         return input.nextLine().trim();
     }
 
-    private String getLastName() {
+    private String addLastName() {
         printToConsole("Last Name: ");
         return input.nextLine().trim();
     }
 
-    private String getAddress() {
+    private String addAddress() {
         printToConsole("Address (One Line):");
         return input.nextLine().trim();
     }
 
-    private String getCity() {
+    private String addCity() {
         printToConsole("City: ");
         return input.nextLine().trim();
     }
 
-    private String getPostCode() {
+    private String addPostCode() {
         printToConsole("Postcode:");
         return input.nextLine().trim();
     }
 
-    private String getPhoneNumber() {
+    private String addPhoneNumber() {
         printToConsole("Phone number:");
         return input.nextLine().trim();
     }
 
     private void editContact() {
-        printToConsole("Which contact would you like to edit?\nPlease select number.");
-        showAllContacts();
         EditContact editContact = new EditContact(contactList);
-        int selection = Integer.parseInt(input.nextLine().trim());
-        printToConsole("Which field would you like to edit?\n Please select number.");
-        printToConsole(editContact.showSelectionNumbers(selection));
-        int selectField = Integer.parseInt(input.nextLine().trim());
-        printToConsole("You have selected " + editContact.selectField(selectField));
+        int selectField = selectFieldToUpdate(selectContactToEdit(), editContact);
+        updateField(editContact, selectField);
+    }
+
+    private void updateField(EditContact editContact, int selectField) {
         printToConsole("What would you like to change it to?");
         String contactUpdate = input.nextLine().trim();
         editContact.updateContact(selectField, contactUpdate);
         printToConsole("Updated");
+    }
+
+    private int selectFieldToUpdate(int selection, EditContact editContact) {
+        printToConsole("Which field would you like to edit?\n Please select number.");
+        printToConsole(editContact.showSelectionNumbers(selection));
+        int selectField = Integer.parseInt(input.nextLine().trim());
+        printToConsole("You have selected " + editContact.selectField(selectField));
+        return selectField;
+    }
+
+    private int selectContactToEdit() {
+        printToConsole("Which contact would you like to edit?\nPlease select number.");
+        showAllContacts();
+        return Integer.parseInt(input.nextLine().trim());
     }
 
     private void showAllContacts() {
