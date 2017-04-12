@@ -84,6 +84,18 @@ public class CLInterfaceTest {
   }
 
   @Test
+  public void userTriesToEditContact() {
+    Scanner editContactAttempt =
+            new Scanner(
+                    "new\nDan\nPelensky\n1 Commercial Street\nLondon\nE16LT\n07000 000 000\nedit\n2\nquit\n");
+    clInterface = new CLInterface(editContactAttempt, output, contactList);
+    clInterface.runApp();
+    assertThat(
+            out.toString(),
+            containsString("Contact does not exist\nTry again"));
+  }
+
+  @Test
   public void userDeletesContact() {
     Scanner deleteContact =
         new Scanner(
@@ -91,5 +103,17 @@ public class CLInterfaceTest {
     clInterface = new CLInterface(deleteContact, output, contactList);
     clInterface.runApp();
     assertThat(out.toString(), containsString("Deleted"));
+  }
+
+  @Test
+  public void userTriesToDeleteContact() {
+    Scanner deleteContactAttempt =
+            new Scanner(
+                    "new\nDan\nPelensky\n1 Commercial Street\nLondon\nE16LT\n07000 000 000\ndelete\n2\nquit\n");
+    clInterface = new CLInterface(deleteContactAttempt, output, contactList);
+    clInterface.runApp();
+    assertThat(
+            out.toString(),
+            containsString("Contact does not exist\nTry again"));
   }
 }
