@@ -52,21 +52,39 @@ class CLInterface {
     }
 
     private void addNewContact() {
-        printToConsole("First Name: ");
-        String firstName = input.nextLine().trim();
-        printToConsole("Last Name: ");
-        String lastName = input.nextLine().trim();
-        printToConsole("Address (One Line):");
-        String address = input.nextLine().trim();
-        printToConsole("City: ");
-        String city = input.nextLine().trim();
-        printToConsole("Postcode:");
-        String postCode = input.nextLine().trim();
-        printToConsole("Phone number:");
-        String phoneNumber = input.nextLine().trim();
-        Contact newContact = new Contact(firstName, lastName, address, city, postCode, phoneNumber);
+        Contact newContact = new Contact(getFirstName(), getLastName(), getAddress(), getCity(), getPostCode(), getPhoneNumber());
         printToConsole(newContact.getFirstName() + " " + newContact.getLastName() + " has been added as a contact.");
         contactList.addContact(newContact);
+    }
+
+    private String getFirstName() {
+        printToConsole("First Name: ");
+        return input.nextLine().trim();
+    }
+
+    private String getLastName() {
+        printToConsole("Last Name: ");
+        return input.nextLine().trim();
+    }
+
+    private String getAddress() {
+        printToConsole("Address (One Line):");
+        return input.nextLine().trim();
+    }
+
+    private String getCity() {
+        printToConsole("City: ");
+        return input.nextLine().trim();
+    }
+
+    private String getPostCode() {
+        printToConsole("Postcode:");
+        return input.nextLine().trim();
+    }
+
+    private String getPhoneNumber() {
+        printToConsole("Phone number:");
+        return input.nextLine().trim();
     }
 
     private void editContact() {
