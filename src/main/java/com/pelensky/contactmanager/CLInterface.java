@@ -20,8 +20,7 @@ class CLInterface {
   void runApp() {
     printToConsole("Contact Manager");
     while (appRunning) {
-      printToConsole(
-          "Type `new` to add a new contact\nType `show` to display all contacts\nType `edit` to edit a contact\nType `delete` to delete a contact\nType `quit` to quit");
+      printInstructions();
       makeSelection();
     }
   }
@@ -108,7 +107,7 @@ class CLInterface {
   }
 
   private void editContact() {
-    if (contactList.getContacts().isEmpty()) {
+    if (isContactListEmpty()) {
       printToConsole("No contacts to edit");
     } else {
       printToConsole("Edit a contact");
@@ -140,7 +139,7 @@ class CLInterface {
   }
 
   private void deleteContact() {
-    if (contactList.getContacts().isEmpty()) {
+    if (isContactListEmpty()) {
       printToConsole("No contacts to delete");
     } else {
       printToConsole("Delete a contact");
@@ -150,8 +149,12 @@ class CLInterface {
     }
   }
 
+  private boolean isContactListEmpty() {
+    return contactList.getContacts().isEmpty();
+  }
+
   private void showAllContacts() {
-    if (contactList.getContacts().isEmpty()) {
+    if (isContactListEmpty()) {
       printToConsole("No contacts to show");
     } else {
       printToConsole("Show all contacts");
@@ -161,6 +164,13 @@ class CLInterface {
 
   private void showContacts() {
     printToConsole(contactList.listContacts());
+  }
+
+  private void printInstructions() {
+    printToConsole("----------------------------------------");
+    printToConsole(
+            "Type `new` to add a new contact\nType `show` to display all contacts\nType `edit` to edit a contact\nType `delete` to delete a contact\nType `quit` to quit");
+    printToConsole("----------------------------------------");
   }
 
   private void printToConsole(String text) {
