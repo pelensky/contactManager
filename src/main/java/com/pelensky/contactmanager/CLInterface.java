@@ -72,8 +72,15 @@ class CLInterface {
     private void editContact() {
         printToConsole("Which contact would you like to edit?\nPlease select number.");
         showAllContacts();
+        EditContact editContact = new EditContact(contactList);
         int selection = Integer.parseInt(input.nextLine().trim());
-
+        printToConsole("Which field would you like to edit?\n Please select number.");
+        printToConsole(editContact.showSelectionNumbers(selection));
+        int selectField = Integer.parseInt(input.nextLine().trim());
+        printToConsole("You have selected " + editContact.selectField(selectField));
+        printToConsole("What would you like to change it to?");
+        String contactUpdate = input.nextLine().trim();
+        printToConsole("Updated to: " + editContact.updateContact(selectField, contactUpdate));
     }
 
     private void showAllContacts() {
@@ -89,8 +96,4 @@ class CLInterface {
     }
 
 }
-
-
-
-
 
