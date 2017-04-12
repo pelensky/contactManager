@@ -30,35 +30,52 @@ class CLInterface {
     String selection = input.nextLine().toLowerCase().trim();
     switch (selection) {
       case "quit":
-        selectedOption = "See you next time!";
-        appRunning = false;
-        printUsersSelection();
+        selectQuit();
         break;
       case "new":
-        selectedOption = "Add a new contact";
-        printUsersSelection();
-        addNewContact();
+        selectNew();
         break;
       case "show":
-        selectedOption = "Show all contacts";
-        printUsersSelection();
-        showAllContacts();
+        selectShow();
         break;
       case "edit":
-        selectedOption = "Edit a contact";
-        printUsersSelection();
-        editContact();
+        selectEdit();
         break;
       case "delete":
-        selectedOption = "Delete a contact";
-        printUsersSelection();
-        deleteContact();
+        selectDelete();
         break;
       default:
-        selectedOption = "I didn't quite get that";
-        printUsersSelection();
+        selectDefault();
         break;
     }
+  }
+
+  private void selectQuit() {
+    printToConsole("See you next time!");
+    appRunning = false;
+  }
+
+  private void selectNew() {
+    printToConsole("Add a new contact");
+    addNewContact();
+  }
+
+  private void selectShow() {
+    showAllContacts();
+  }
+
+  private void selectEdit() {
+    printToConsole("Edit a contact");
+    editContact();
+  }
+
+  private void selectDelete() {
+    printToConsole("Delete a contact");
+    deleteContact();
+  }
+
+  private void selectDefault() {
+    printToConsole("I didn't quite get that");
   }
 
   private void addNewContact() {
@@ -142,11 +159,12 @@ class CLInterface {
   }
 
   private void showAllContacts() {
-    printToConsole(contactList.listContacts());
-  }
-
-  private void printUsersSelection() {
-    printToConsole(selectedOption);
+    if (contactList.getContacts().isEmpty()) {
+      printToConsole("No contacts to show");
+    } else {
+      printToConsole("Show all contacts");
+      printToConsole(contactList.listContacts());
+    }
   }
 
   private void printToConsole(String text) {

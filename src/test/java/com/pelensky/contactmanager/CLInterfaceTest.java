@@ -31,7 +31,7 @@ public class CLInterfaceTest {
     clInterface = new CLInterface(input, output, contactList);
     clInterface.runApp();
     assertThat(out.toString(), containsString("Contact Manager\n"));
-    assertThat(out.toString(), containsString("Type `quit` to quit.\n"));
+    assertThat(out.toString(), containsString("Type `quit` to quit\n"));
   }
 
   @Test
