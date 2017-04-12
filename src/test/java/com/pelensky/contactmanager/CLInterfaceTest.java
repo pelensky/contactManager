@@ -70,7 +70,7 @@ public class CLInterfaceTest {
     Scanner editContact = new Scanner("new\nDan\nPelensky\n1 Commercial Street\nLondon\nE16LT\n07000 000 000\nedit\n1\n2\nTheMan\nshow\nquit\n");
     clInterface = new CLInterface(editContact, output, contactList);
     clInterface.runApp();
-    assertThat(out.toString(), containsString("Dan TheMan\n"));
+    assertThat(out.toString(), containsString("1) Dan TheMan\n1 Commercial Street\nLondon E16LT\n07000 000 000"));
   }
 
 }

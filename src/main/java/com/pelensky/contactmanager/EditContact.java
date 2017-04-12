@@ -35,16 +35,21 @@ class EditContact {
         }
     }
 
-    String updateContact(int number, String updatedField) {
+    void updateContact(int number, String updatedField) {
         switch (number) {
             case 1: contact.setFirstName(updatedField);
+            break;
             case 2: contact.setLastName(updatedField);
+            break;
             case 3: contact.setAddress(updatedField);
+            break;
             case 4: contact.setCity(updatedField);
+            break;
             case 5: contact.setPostCode(updatedField);
+            break;
             case 6: contact.setPhoneNumber(updatedField);
+            break;
         }
-        return selectField(number);
     }
 
 

@@ -80,7 +80,8 @@ class CLInterface {
         printToConsole("You have selected " + editContact.selectField(selectField));
         printToConsole("What would you like to change it to?");
         String contactUpdate = input.nextLine().trim();
-        printToConsole("Updated to: " + editContact.updateContact(selectField, contactUpdate));
+        editContact.updateContact(selectField, contactUpdate);
+        printToConsole("Updated");
     }
 
     private void showAllContacts() {
