@@ -29,13 +29,53 @@ public class EditContactTest {
   @Test
   public void selectFieldToEdit() {
     editContact.showSelectionNumbers(1);
+    assertEquals("Dan", editContact.selectField(1));
     assertEquals("Pelensky", editContact.selectField(2));
+    assertEquals("1 Commercial Street", editContact.selectField(3));
+    assertEquals("London", editContact.selectField(4));
+    assertEquals("E16LT", editContact.selectField(5));
+    assertEquals("07000 000 000", editContact.selectField(6));
   }
 
   @Test
-  public void changeSelectedField() {
+  public void changeSelectedFieldFirstName() {
+    editContact.showSelectionNumbers(1);
+    editContact.updateContact(1, "Daniel");
+    assertEquals("Daniel", danPelensky.getFirstName());
+  }
+
+  @Test
+  public void changeSelectedFieldLastName() {
     editContact.showSelectionNumbers(1);
     editContact.updateContact(2, "TheMan");
     assertEquals("TheMan", danPelensky.getLastName());
+  }
+
+  @Test
+  public void changeSelectedFieldAddress() {
+    editContact.showSelectionNumbers(1);
+    editContact.updateContact(3, "2 Commercial Street");
+    assertEquals("2 Commercial Street", danPelensky.getAddress());
+  }
+
+  @Test
+  public void changeSelectedFieldCity() {
+    editContact.showSelectionNumbers(1);
+    editContact.updateContact(4, "Melbourne");
+    assertEquals("Melbourne", danPelensky.getCity());
+  }
+
+  @Test
+  public void changeSelectedFieldPostCode() {
+    editContact.showSelectionNumbers(1);
+    editContact.updateContact(5, "E1100");
+    assertEquals("E1100", danPelensky.getPostCode());
+  }
+
+  @Test
+  public void changeSelectedFieldPhone() {
+    editContact.showSelectionNumbers(1);
+    editContact.updateContact(6, "07111 111 111");
+    assertEquals("07111 111 111", danPelensky.getPhoneNumber());
   }
 }
