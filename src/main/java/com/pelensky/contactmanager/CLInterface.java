@@ -21,7 +21,7 @@ class CLInterface {
     printToConsole("Contact Manager");
     while (appRunning) {
       printToConsole(
-          "Type `new` to add a new contact\nType `show` to display all contacts\nType `edit` to edit a contact\nType `quit` to quit.");
+          "Type `new` to add a new contact\nType `show` to display all contacts\nType `edit` to edit a contact\nType `delete` to delete a contact\nType `quit` to quit");
       makeSelection();
     }
   }
@@ -48,6 +48,11 @@ class CLInterface {
         selectedOption = "Edit a contact";
         printUsersSelection();
         editContact();
+        break;
+      case "delete":
+        selectedOption = "Delete a contact";
+        printUsersSelection();
+        deleteContact();
         break;
       default:
         selectedOption = "I didn't quite get that";
@@ -105,12 +110,12 @@ class CLInterface {
 
   private void editContact() {
     EditContact editContact = new EditContact(contactList);
-    int selectField = selectFieldToUpdate(selectContactToEdit(), editContact);
+    int selectField = selectFieldToUpdate(selectContactTo("edit"), editContact);
     updateField(editContact, selectField);
   }
 
-  private int selectContactToEdit() {
-    printToConsole("Which contact would you like to edit?\nPlease select number.");
+  private int selectContactTo(String action) {
+    printToConsole("Which contact would you like to " + action + "?\nPlease select number.");
     showAllContacts();
     return Integer.parseInt(input.nextLine().trim());
   }
@@ -128,6 +133,12 @@ class CLInterface {
     String contactUpdate = input.nextLine().trim();
     editContact.updateContact(selectField, contactUpdate);
     printToConsole("Updated");
+  }
+
+  private void deleteContact() {
+    DeleteContact deleteContact = new DeleteContact(contactList);
+    deleteContact.delete(selectContactTo("delete"));
+    printToConsole("Deleted");
   }
 
   private void showAllContacts() {
