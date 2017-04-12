@@ -44,4 +44,40 @@ public class ContactTest {
   public void contactContainsPhoneNumber() {
     assertEquals("07000 000 000", danPelensky.getPhoneNumber());
   }
+
+  @Test
+  public void setterMethodFirstName() {
+    danPelensky.setFirstName("Daniel");
+    assertEquals("Daniel", danPelensky.getFirstName());
+  }
+
+  @Test
+  public void setterMethodLastName() {
+    danPelensky.setLastName("TheMan");
+    assertEquals("TheMan", danPelensky.getLastName());
+  }
+
+  @Test
+  public void setterMethodAddress() {
+    danPelensky.setAddress("2 Commercial Street");
+    assertEquals("2 Commercial Street", danPelensky.getAddress());
+  }
+
+  @Test
+  public void setterMethodCity() {
+    danPelensky.setCity("Melbourne");
+    assertEquals("Melbourne", danPelensky.getCity());
+  }
+
+  @Test
+  public void setterMethodPostCode() {
+    danPelensky.setPostCode("E1100");
+    assertEquals("E1100", danPelensky.getPostCode());
+  }
+
+  @Test
+  public void setterMethodPhoneNumber() {
+    danPelensky.setPhoneNumber("07111 111 111");
+    assertEquals("07111 111 111", danPelensky.getPhoneNumber());
+  }
 }
