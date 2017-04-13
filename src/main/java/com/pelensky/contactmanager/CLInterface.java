@@ -7,7 +7,6 @@ class CLInterface {
 
   private Scanner input;
   private PrintStream output;
-  private String selectedOption;
   private Boolean appRunning = true;
   private ContactList contactList;
 
@@ -20,8 +19,7 @@ class CLInterface {
   void runApp() {
     printToConsole("Contact Manager");
     while (appRunning) {
-      printToConsole(
-          "Type `new` to add a new contact\nType `show` to display all contacts\nType `edit` to edit a contact\nType `quit` to quit.");
+      printInstructions();
       makeSelection();
     }
   }
@@ -30,33 +28,37 @@ class CLInterface {
     String selection = input.nextLine().toLowerCase().trim();
     switch (selection) {
       case "quit":
-        selectedOption = "See you next time!";
-        appRunning = false;
-        printUsersSelection();
+        quitApp();
         break;
       case "new":
-        selectedOption = "Add a new contact";
-        printUsersSelection();
         addNewContact();
         break;
       case "show":
-        selectedOption = "Show all contacts";
-        printUsersSelection();
         showAllContacts();
         break;
       case "edit":
-        selectedOption = "Edit a contact";
-        printUsersSelection();
         editContact();
         break;
+      case "delete":
+        deleteContact();
+        break;
       default:
-        selectedOption = "I didn't quite get that";
-        printUsersSelection();
+        selectDefault();
         break;
     }
   }
 
+  private void quitApp() {
+    printToConsole("See you next time!");
+    appRunning = false;
+  }
+
+  private void selectDefault() {
+    printToConsole("I didn't quite get that");
+  }
+
   private void addNewContact() {
+    printToConsole("Add a new contact");
     Contact newContact =
         new Contact(
             addFirstName(),
@@ -104,14 +106,24 @@ class CLInterface {
   }
 
   private void editContact() {
-    EditContact editContact = new EditContact(contactList);
-    int selectField = selectFieldToUpdate(selectContactToEdit(), editContact);
-    updateField(editContact, selectField);
+    if (isContactListEmpty()) {
+      printToConsole("No contacts to edit");
+    } else {
+      printToConsole("Edit a contact");
+      EditContact editContact = new EditContact(contactList);
+      int selectedContact = selectContactTo("edit");
+      if (isNotAValidNumber(selectedContact)) {
+        printToConsole("Contact does not exist\nTry again");
+      } else {
+        int selectField = selectFieldToUpdate(selectedContact, editContact);
+        updateField(editContact, selectField);
+      }
+    }
   }
 
-  private int selectContactToEdit() {
-    printToConsole("Which contact would you like to edit?\nPlease select number.");
-    showAllContacts();
+  private int selectContactTo(String action) {
+    printToConsole("Which contact would you like to " + action + "?\nPlease select number.");
+    printContacts();
     return Integer.parseInt(input.nextLine().trim());
   }
 
@@ -130,12 +142,52 @@ class CLInterface {
     printToConsole("Updated");
   }
 
+  private void deleteContact() {
+    if (isContactListEmpty()) {
+      printToConsole("No contacts to delete");
+    } else {
+      printToConsole("Delete a contact");
+      DeleteContact deleteContact = new DeleteContact(contactList);
+      int selectedContact = selectContactTo("delete");
+      if (isNotAValidNumber(selectedContact)) {
+        printToConsole("Contact does not exist\nTry again");
+      } else {
+        deleteContact.delete(selectedContact);
+        printToConsole("Deleted");
+      }
+    }
+  }
+
+  private boolean isNotAValidNumber(int selectedContact) {
+    return (selectedContact > numberOfContacts()) || (selectedContact < 1);
+  }
+
+  private boolean isContactListEmpty() {
+    return contactList.getContacts().isEmpty();
+  }
+
+  private int numberOfContacts() {
+      return contactList.countContacts();
+  }
+
   private void showAllContacts() {
+    if (isContactListEmpty()) {
+      printToConsole("No contacts to show");
+    } else {
+      printToConsole("Show all contacts");
+      printContacts();
+    }
+  }
+
+  private void printContacts() {
     printToConsole(contactList.listContacts());
   }
 
-  private void printUsersSelection() {
-    printToConsole(selectedOption);
+  private void printInstructions() {
+    printToConsole("----------------------------------------");
+    printToConsole(
+            "Type `new` to add a new contact\nType `show` to display all contacts\nType `edit` to edit a contact\nType `delete` to delete a contact\nType `quit` to quit");
+    printToConsole("----------------------------------------");
   }
 
   private void printToConsole(String text) {
