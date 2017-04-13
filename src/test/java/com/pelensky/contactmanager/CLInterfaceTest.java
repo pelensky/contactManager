@@ -3,11 +3,11 @@ package com.pelensky.contactmanager;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.*;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.Scanner;
 
 import static org.hamcrest.CoreMatchers.containsString;
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
 public class CLInterfaceTest {
@@ -59,10 +59,18 @@ public class CLInterfaceTest {
 
   @Test
   public void userListsContacts(){
-    Scanner createAndListContact = new Scanner("new\nDan\nPelensky\n1 Commercial Street\nLondon\nE16LT\n07000 000 000\nshow\nquit");
+    Scanner createAndListContact = new Scanner("new\nDan\nPelensky\n1 Commercial Street\nLondon\nE16LT\n07000 000 000\nshow\nquit\n");
     clInterface = new CLInterface(createAndListContact, output, contactList);
     clInterface.runApp();
-    assertThat(out.toString(), containsString("Dan Pelensky\n1 Commercial Street\nLondon E16LT\n07000 000 000"));
+    assertThat(out.toString(), containsString("1) Dan Pelensky\n1 Commercial Street\nLondon E16LT\n07000 000 000"));
+  }
+
+  @Test
+  public void userEditsContact(){
+    Scanner editContact = new Scanner("new\nDan\nPelensky\n1 Commercial Street\nLondon\nE16LT\n07000 000 000\nedit\n1\n2\nTheMan\nshow\nquit\n");
+    clInterface = new CLInterface(editContact, output, contactList);
+    clInterface.runApp();
+    assertThat(out.toString(), containsString("1) Dan TheMan\n1 Commercial Street\nLondon E16LT\n07000 000 000"));
   }
 
 }

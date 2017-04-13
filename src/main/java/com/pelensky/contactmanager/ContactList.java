@@ -6,9 +6,9 @@ class ContactList {
 
   private ArrayList<Contact> contacts = new ArrayList<>();
 
-    ArrayList<Contact> getContacts() {
-        return contacts;
-    }
+  ArrayList<Contact> getContacts() {
+    return contacts;
+  }
 
   void addContact(Contact contact) {
     contacts.add(contact);
@@ -17,14 +17,16 @@ class ContactList {
   String listContacts() {
     StringBuilder formattedContact = new StringBuilder();
     for (int i = 0; i < contacts.size(); i++) {
-      formattedContact.append(formatContact(i));
+      formattedContact.append(formatContact(i)).append("\n");
     }
-    return formattedContact.toString();
+    return formattedContact.toString().trim();
   }
 
   private String formatContact(int number) {
     Contact contact = getContacts().get(number);
-    return (contact.getFirstName()
+    return (Integer.toString(number + 1)
+        + ") "
+        + contact.getFirstName()
         + " "
         + contact.getLastName()
         + "\n"
@@ -34,7 +36,6 @@ class ContactList {
         + " "
         + contact.getPostCode()
         + "\n"
-        + contact.getPhoneNumber()
-        + "\n\n");
+        + contact.getPhoneNumber());
   }
 }
