@@ -23,7 +23,7 @@ class CLInterface {
     void runApp() {
         printToConsole("Contact Manager");
         while (appRunning) {
-            printToConsole("Type `new` to add a new contact\nType `quit` to quit.");
+            printToConsole("Type `new` to add a new contact\nType `show` to display all contacts\nType `quit` to quit.");
             makeSelection();
         }
     }
@@ -31,6 +31,10 @@ class CLInterface {
 
     private void printUsersSelection() {
         printToConsole(selectedOption);
+    }
+
+    private void printToConsole(String text) {
+        output.println(text);
     }
 
     private void makeSelection() {
@@ -43,6 +47,10 @@ class CLInterface {
             case "new": selectedOption = "Add a new contact";
                 printUsersSelection();
                 addNewContact();
+                break;
+            case "show": selectedOption = "Show all contacts";
+                printUsersSelection();
+                showAllContacts();
                 break;
             default: selectedOption = "I didn't quite get that";
                 printUsersSelection();
@@ -68,9 +76,11 @@ class CLInterface {
         contactList.addContact(newContact);
     }
 
-    private void printToConsole(String text) {
-        output.println(text);
+    private void showAllContacts() {
+        printToConsole(contactList.listContacts());
     }
+
+
 
 }
 

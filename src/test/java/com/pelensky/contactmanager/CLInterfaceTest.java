@@ -27,18 +27,6 @@ public class CLInterfaceTest {
   }
 
   @Test
-  public void interfaceTakesABufferedReader() {
-    clInterface = new CLInterface(input, output, contactList);
-    assertEquals(input, clInterface.input);
-  }
-
-  @Test
-  public void interfacesTakesAPrintStream() {
-    clInterface = new CLInterface(input, output, contactList);
-    assertEquals(output, clInterface.output);
-  }
-
-  @Test
   public void welcomesUser() {
     clInterface = new CLInterface(input, output, contactList);
     clInterface.runApp();
@@ -67,6 +55,14 @@ public class CLInterfaceTest {
     clInterface = new CLInterface(newContact, output, contactList);
     clInterface.runApp();
     assertThat(out.toString(), containsString("Dan Pelensky has been added as a contact."));
+  }
+
+  @Test
+  public void userListsContacts(){
+    Scanner createAndListContact = new Scanner("new\nDan\nPelensky\n1 Commercial Street\nLondon\nE16LT\n07000 000 000\nshow\nquit");
+    clInterface = new CLInterface(createAndListContact, output, contactList);
+    clInterface.runApp();
+    assertThat(out.toString(), containsString("Dan Pelensky\n1 Commercial Street\nLondon E16LT\n07000 000 000"));
   }
 
 }
