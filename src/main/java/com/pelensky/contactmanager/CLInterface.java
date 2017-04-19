@@ -28,12 +28,15 @@ class CLInterface {
   }
 
     private void makeSelection() {
-        String selection = input.nextLine().toLowerCase().trim();
-        Option option = findOption(selection);
+        Option option = findOption(getUserInput().toLowerCase());
         option.execute();
     }
 
-  private List<Option> listOfOptions() {
+    String getUserInput() {
+        return input.nextLine().trim();
+    }
+
+    private List<Option> listOfOptions() {
     return Arrays.asList(
         new Add(this, contactList),
         new Delete(this, contactList),
@@ -59,7 +62,7 @@ class CLInterface {
     String line = "----------------------------------------";
     printToConsole(line);
     printToConsole(
-        "Type `add` to add a new contact\nType `show` to display all contacts\nType `edit` to edit a contact\nType `delete` to delete a contact\nType `quit` to quit");
+        "Type `add` to add a new contact" + System.lineSeparator() + "Type `show` to display all contacts" + System.lineSeparator() + "Type `edit` to edit a contact" + System.lineSeparator() + "Type `delete` to delete a contact" + System.lineSeparator() + "Type `quit` to quit");
     printToConsole(line);
   }
 

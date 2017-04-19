@@ -30,20 +30,20 @@ public class CLInterfaceTest {
   public void welcomesUser() {
     clInterface = new CLInterface(input, output, contactList);
     clInterface.runApp();
-    assertThat(out.toString(), containsString("Contact Manager\n"));
-    assertThat(out.toString(), containsString("Type `quit` to quit\n"));
+    assertThat(out.toString(), containsString("Contact Manager"));
+    assertThat(out.toString(), containsString("Type `quit` to quit"));
   }
 
   @Test
   public void quitsAppWhenUserTypesQuit() {
     clInterface = new CLInterface(input, output, contactList);
     clInterface.runApp();
-    assertThat(out.toString(), containsString("Contact Manager Quitting\n"));
+    assertThat(out.toString(), containsString("Contact Manager Quitting"));
   }
 
   @Test
   public void askUserAgainIfInvalidSelection() {
-    Scanner invalidInput = new Scanner("asdfg\nquit\n");
+    Scanner invalidInput = new Scanner("asdfg\nquit");
     clInterface = new CLInterface(invalidInput, output, contactList);
     clInterface.runApp();
     assertThat(out.toString(), containsString("Invalid selection\n"));

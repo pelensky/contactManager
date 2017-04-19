@@ -33,7 +33,7 @@ public class Delete implements Option {
     }
 
     private int selectContactTo(String action) {
-        clInterface.printToConsole("Which contact would you like to " + action + "?\nPlease select number.");
+        clInterface.printToConsole("Which contact would you like to " + action + "?" + System.lineSeparator() + "Please select number.");
         clInterface.printToConsole(contactList.listContacts());
         return Integer.parseInt(clInterface.input.nextLine().trim());
     }

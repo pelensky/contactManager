@@ -19,13 +19,12 @@ public class Edit implements Option {
             EditContact editContact = new EditContact(contactList);
             int selectedContact = selectContactTo("edit");
             if (contactList.isNotAValidNumber(selectedContact)) {
-                clInterface.printToConsole("Contact does not exist\nTry again");
+                clInterface.printToConsole("Contact does not exist" + System.lineSeparator() + "Try again");
             } else {
                 int selectField = selectFieldToUpdate(selectedContact, editContact);
                 updateField(editContact, selectField);
             }
         }
-
     }
 
     @Override
@@ -35,13 +34,13 @@ public class Edit implements Option {
 
 
     private int selectContactTo(String action) {
-        clInterface.printToConsole("Which contact would you like to " + action + "?\nPlease select number.");
+        clInterface.printToConsole("Which contact would you like to " + action + "?" + System.lineSeparator() + "Please select number.");
         clInterface.printToConsole(contactList.listContacts());
         return Integer.parseInt(clInterface.input.nextLine().trim());
     }
 
     private int selectFieldToUpdate(int selection, EditContact editContact) {
-        clInterface.printToConsole("Which field would you like to edit?\n Please select number.");
+        clInterface.printToConsole("Which field would you like to edit?" + System.lineSeparator() + "Please select number.");
         clInterface.printToConsole(editContact.showSelectionNumbers(selection));
         int selectField = Integer.parseInt(clInterface.input.nextLine().trim());
         clInterface.printToConsole("You have selected " + editContact.selectField(selectField));

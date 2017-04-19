@@ -15,12 +15,12 @@ public class Add implements Option {
         clinterface.printToConsole("Add a new contact");
         Contact newContact =
                 new Contact(
-                        addFirstName(),
-                        addLastName(),
-                        addAddress(),
-                        addCity(),
-                        addPostCode(),
-                        addPhoneNumber());
+                        addContactInfo("First Name: "),
+                        addContactInfo("Last Name: "),
+                        addContactInfo("Address (One Line): "),
+                        addContactInfo("City: "),
+                        addContactInfo("Postcode: "),
+                        addContactInfo("Phone number: "));
         contactList.addContact(newContact);
         clinterface.printToConsole(
                 newContact.getFirstName()
@@ -35,33 +35,8 @@ public class Add implements Option {
     }
 
 
-    private String addFirstName() {
-        clinterface.printToConsole("First Name: ");
-        return clinterface.input.nextLine().trim();
+    private String addContactInfo(String text) {
+        clinterface.printToConsole(text);
+        return clinterface.getUserInput();
     }
-
-    private String addLastName() {
-        clinterface.printToConsole("Last Name: ");
-        return clinterface.input.nextLine().trim();
-    }
-
-    private String addAddress() {
-        clinterface.printToConsole("Address (One Line):");
-        return clinterface.input.nextLine().trim();
-    }
-
-    private String addCity() {
-        clinterface.printToConsole("City: ");
-        return clinterface.input.nextLine().trim();
-    }
-
-    private String addPostCode() {
-        clinterface.printToConsole("Postcode:");
-        return clinterface.input.nextLine().trim();
-    }
-
-    private String addPhoneNumber() {
-        clinterface.printToConsole("Phone number:");
-        return clinterface.input.nextLine().trim();
-    }
-}
+ }
