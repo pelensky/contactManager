@@ -1,11 +1,12 @@
 package com.pelensky.contactmanager;
 
-public class Delete implements Option {
+public class Delete extends Commands implements Option {
 
   private IO io;
   private ContactList contactList;
 
   Delete(IO io, ContactList contactList) {
+    super(io, contactList);
     this.io = io;
     this.contactList = contactList;
   }
@@ -17,11 +18,11 @@ public class Delete implements Option {
     } else {
       io.printText("Delete a contact");
       DeleteContact deleteContact = new DeleteContact(contactList);
-      int selectedContact = selectContactTo();
+      int selectedContact = selectContactTo("delete");
       if (isNotAValidNumber(selectedContact)) {
         io.printText("Contact does not exist\nTry again");
       } else {
-        deleteContact.delete(selectedContact);
+        delete(deleteContact, selectedContact);
         io.printText("Deleted");
       }
     }
@@ -32,20 +33,7 @@ public class Delete implements Option {
     return text.equals("delete");
   }
 
-  private int selectContactTo() {
-    io.printText(
-        "Which contact would you like to delete?"
-            + System.lineSeparator()
-            + "Please select number.");
-    io.printText(contactList.listContacts());
-    return Integer.parseInt(io.getUserInput());
-  }
-
-  private boolean isContactListEmpty() {
-    return contactList.isContactListEmpty();
-  }
-
-  private boolean isNotAValidNumber(int selectedContact) {
-      return contactList.isNotAValidNumber(selectedContact);
+  private void delete(DeleteContact deleteContact, int selectedContact) {
+    deleteContact.delete(selectedContact);
   }
 }

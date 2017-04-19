@@ -46,7 +46,7 @@ class AppRunner {
     return new DefaultOption(io);
   }
 
-  void setAppRunning() {
+  void setAppNotRunning() {
     this.appRunning = false;
   }
 

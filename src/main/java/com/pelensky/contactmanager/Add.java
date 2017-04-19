@@ -21,7 +21,7 @@ public class Add implements Option {
                         addContactInfo("City: "),
                         addContactInfo("Postcode: "),
                         addContactInfo("Phone number: "));
-        contactList.addContact(newContact);
+        addContact(newContact);
         io.printText(
                 newContact.getFirstName()
                         + " "
@@ -38,5 +38,9 @@ public class Add implements Option {
     private String addContactInfo(String text) {
         io.printText(text);
         return io.getUserInput();
+    }
+
+    private void addContact(Contact newContact) {
+        contactList.addContact((newContact));
     }
  }

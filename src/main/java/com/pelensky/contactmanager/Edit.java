@@ -1,11 +1,12 @@
 package com.pelensky.contactmanager;
 
-public class Edit implements Option {
+public class Edit extends Commands implements Option {
 
   private IO io;
   private ContactList contactList;
 
   Edit(IO io, ContactList contactList) {
+    super(io, contactList);
     this.io = io;
     this.contactList = contactList;
   }
@@ -17,7 +18,7 @@ public class Edit implements Option {
     } else {
       io.printText("Edit a contact");
       EditContact editContact = new EditContact(contactList);
-      int selectedContact = selectContactTo();
+      int selectedContact = selectContactTo("edit");
       if (isNotAValidNumber(selectedContact)) {
         io.printText("Contact does not exist" + System.lineSeparator() + "Try again");
       } else {
@@ -30,15 +31,6 @@ public class Edit implements Option {
   @Override
   public boolean canRespondTo(String text) {
     return text.equals("edit");
-  }
-
-  private int selectContactTo() {
-    io.printText(
-        "Which contact would you like to edit?"
-            + System.lineSeparator()
-            + "Please select number.");
-    io.printText(contactList.listContacts());
-    return Integer.parseInt(io.getUserInput());
   }
 
   private int selectFieldToUpdate(int selection, EditContact editContact) {
@@ -55,13 +47,5 @@ public class Edit implements Option {
     String contactUpdate = io.getUserInput();
     editContact.updateContact(selectField, contactUpdate);
     io.printText("Updated");
-  }
-
-  private boolean isContactListEmpty() {
-    return contactList.isContactListEmpty();
-  }
-
-  private boolean isNotAValidNumber(int selectedContact) {
-    return contactList.isNotAValidNumber(selectedContact);
   }
 }
