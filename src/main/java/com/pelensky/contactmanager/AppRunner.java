@@ -24,7 +24,7 @@ class AppRunner {
   }
 
   private void makeSelection() {
-    Option option = findOption(io.getUserInput().toLowerCase());
+    Option option = findOption(io.getUserInput());
     option.execute();
   }
 
@@ -39,15 +39,15 @@ class AppRunner {
 
   private Option findOption(String selection) {
     for (int i = 0; i < listOfOptions().size(); i++) {
-      if (listOfOptions().get(i).canRespondTo(selection)) {
+      if (listOfOptions().get(i).canRespondTo(selection.toLowerCase())) {
         return listOfOptions().get(i);
       }
     }
     return new DefaultOption(io);
   }
 
-  void setAppRunning(Boolean isAppRunning) {
-    this.appRunning = isAppRunning;
+  void setAppRunning() {
+    this.appRunning = false;
   }
 
   private String appInstructions() {
