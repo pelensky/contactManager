@@ -38,7 +38,7 @@ public class CLInterfaceTest {
   public void quitsAppWhenUserTypesQuit() {
     clInterface = new CLInterface(input, output, contactList);
     clInterface.runApp();
-    assertThat(out.toString(), containsString("See you next time!\n"));
+    assertThat(out.toString(), containsString("Contact Manager Quitting\n"));
   }
 
   @Test
@@ -46,14 +46,14 @@ public class CLInterfaceTest {
     Scanner invalidInput = new Scanner("asdfg\nquit\n");
     clInterface = new CLInterface(invalidInput, output, contactList);
     clInterface.runApp();
-    assertThat(out.toString(), containsString("I didn't quite get that\n"));
+    assertThat(out.toString(), containsString("Invalid selection\n"));
   }
 
   @Test
   public void userAddsANewContact() {
     Scanner newContact =
         new Scanner(
-            "new\nDan\nPelensky\n1 Commercial Street\nLondon\nE16LT\n07000 000 000\nquit\n");
+            "add\nDan\nPelensky\n1 Commercial Street\nLondon\nE16LT\n07000 000 000\nquit\n");
     clInterface = new CLInterface(newContact, output, contactList);
     clInterface.runApp();
     assertThat(out.toString(), containsString("Dan Pelensky has been added as a contact."));
@@ -63,7 +63,7 @@ public class CLInterfaceTest {
   public void userListsContacts() {
     Scanner createAndListContact =
         new Scanner(
-            "new\nDan\nPelensky\n1 Commercial Street\nLondon\nE16LT\n07000 000 000\nshow\nquit\n");
+            "add\nDan\nPelensky\n1 Commercial Street\nLondon\nE16LT\n07000 000 000\nshow\nquit\n");
     clInterface = new CLInterface(createAndListContact, output, contactList);
     clInterface.runApp();
     assertThat(
@@ -87,7 +87,7 @@ public class CLInterfaceTest {
   public void userEditsContact() {
     Scanner editContact =
         new Scanner(
-            "new\nDan\nPelensky\n1 Commercial Street\nLondon\nE16LT\n07000 000 000\nedit\n1\n2\nTheMan\nshow\nquit\n");
+            "add\nDan\nPelensky\n1 Commercial Street\nLondon\nE16LT\n07000 000 000\nedit\n1\n2\nTheMan\nshow\nquit\n");
     clInterface = new CLInterface(editContact, output, contactList);
     clInterface.runApp();
     assertThat(
@@ -99,7 +99,7 @@ public class CLInterfaceTest {
   public void userTriesToEditContact() {
     Scanner editContactAttempt =
             new Scanner(
-                    "new\nDan\nPelensky\n1 Commercial Street\nLondon\nE16LT\n07000 000 000\nedit\n2\nquit\n");
+                    "add\nDan\nPelensky\n1 Commercial Street\nLondon\nE16LT\n07000 000 000\nedit\n2\nquit\n");
     clInterface = new CLInterface(editContactAttempt, output, contactList);
     clInterface.runApp();
     assertThat(
@@ -123,7 +123,7 @@ public class CLInterfaceTest {
   public void userDeletesContact() {
     Scanner deleteContact =
         new Scanner(
-            "new\nDan\nPelensky\n1 Commercial Street\nLondon\nE16LT\n07000 000 000\nnew\nTimmy\nPelensky\n2 Commercial Street\nLondon\nE11AG\n07111 111 111\ndelete\n2\nquit\n");
+            "add\nDan\nPelensky\n1 Commercial Street\nLondon\nE16LT\n07000 000 000\nadd\nTimmy\nPelensky\n2 Commercial Street\nLondon\nE11AG\n07111 111 111\ndelete\n2\nquit\n");
     clInterface = new CLInterface(deleteContact, output, contactList);
     clInterface.runApp();
     assertThat(out.toString(), containsString("Deleted"));
@@ -133,7 +133,7 @@ public class CLInterfaceTest {
   public void userTriesToDeleteContact() {
     Scanner deleteContactAttempt =
             new Scanner(
-                    "new\nDan\nPelensky\n1 Commercial Street\nLondon\nE16LT\n07000 000 000\ndelete\n2\nquit\n");
+                    "add\nDan\nPelensky\n1 Commercial Street\nLondon\nE16LT\n07000 000 000\ndelete\n2\nquit\n");
     clInterface = new CLInterface(deleteContactAttempt, output, contactList);
     clInterface.runApp();
     assertThat(

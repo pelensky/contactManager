@@ -25,21 +25,29 @@ class ContactList {
   private String formatContact(int number) {
     Contact contact = getContacts().get(number);
     return (Integer.toString(number + 1)
-        + ") "
-        + contact.getFirstName()
-        + " "
-        + contact.getLastName()
-        + "\n"
-        + contact.getAddress()
-        + "\n"
-        + contact.getCity()
-        + " "
-        + contact.getPostCode()
-        + "\n"
-        + contact.getPhoneNumber());
+            + ") "
+            + contact.getFirstName()
+            + " "
+            + contact.getLastName()
+            + "\n"
+            + contact.getAddress()
+            + "\n"
+            + contact.getCity()
+            + " "
+            + contact.getPostCode()
+            + "\n"
+            + contact.getPhoneNumber());
   }
 
   int countContacts() {
     return contacts.size();
+  }
+
+  boolean isContactListEmpty() {
+    return getContacts().isEmpty();
+  }
+
+  boolean isNotAValidNumber(int selectedContact) {
+    return (selectedContact > countContacts()) || (selectedContact < 1);
   }
 }
