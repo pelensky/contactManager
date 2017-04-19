@@ -10,7 +10,7 @@ public class Quit implements Option {
 
 
     public void execute() {
-        clInterface.appRunning = false;
+        clInterface.setAppRunning(false);
         clInterface.printToConsole("Contact Manager Quitting");
     }
 

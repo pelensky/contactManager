@@ -31,7 +31,7 @@ class EditContact {
             case 4: return contact.getCity();
             case 5: return contact.getPostCode();
             case 6: return contact.getPhoneNumber();
-            default: return "I didn't get that";
+            default: return "Invalid selection";
         }
     }
 

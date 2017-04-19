@@ -9,14 +9,8 @@ class CLInterface {
 
   Scanner input;
   private PrintStream output;
-  Boolean appRunning = true;
+  private Boolean appRunning = true;
   private ContactList contactList;
-  private Option add;
-  private Option delete;
-  private Option edit;
-  private Option quit;
-  private Option show;
-  private Option defaultOption;
 
   CLInterface(Scanner input, PrintStream output, ContactList contactList) {
     this.input = input;
@@ -33,40 +27,40 @@ class CLInterface {
     }
   }
 
+    private void makeSelection() {
+        String selection = input.nextLine().toLowerCase().trim();
+        Option option = findOption(selection);
+        option.execute();
+    }
+
   private List<Option> listOfOptions() {
     return Arrays.asList(
-        add = new Add(this, contactList),
-        delete = new Delete(this, contactList),
-        edit = new Edit(this, contactList),
-        quit = new Quit(this),
-        show = new Show(this, contactList),
-        defaultOption = new DefaultOption(this));
+        new Add(this, contactList),
+        new Delete(this, contactList),
+        new Edit(this, contactList),
+        new Show(this, contactList),
+        new Quit(this));
   }
 
   private Option findOption(String selection) {
-     for (int i = 0; i < listOfOptions().size(); i ++ ) {
-         if (listOfOptions().get(i).canRespondTo(selection)){
-             return listOfOptions().get(i);
-         }
-     }
-      return defaultOption;
+    for (int i = 0; i < listOfOptions().size(); i++) {
+      if (listOfOptions().get(i).canRespondTo(selection)) {
+        return listOfOptions().get(i);
+      }
+    }
+    return new DefaultOption(this);
   }
 
-  private void makeSelection() {
-    String selection = input.nextLine().toLowerCase().trim();
-    Option option = findOption(selection);
-    option.execute();
-  }
-
-  void printContacts() {
-    printToConsole(contactList.listContacts());
+  void setAppRunning(Boolean isAppRunning) {
+    this.appRunning = isAppRunning;
   }
 
   private void printInstructions() {
-    printToConsole("----------------------------------------");
+    String line = "----------------------------------------";
+    printToConsole(line);
     printToConsole(
         "Type `add` to add a new contact\nType `show` to display all contacts\nType `edit` to edit a contact\nType `delete` to delete a contact\nType `quit` to quit");
-    printToConsole("----------------------------------------");
+    printToConsole(line);
   }
 
   void printToConsole(String text) {

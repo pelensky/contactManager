@@ -3,7 +3,7 @@ package com.pelensky.contactmanager;
 public class Show implements Option {
 
     private CLInterface clInterface;
-    ContactList contactList;
+    private ContactList contactList;
 
     Show(CLInterface clInterface, ContactList contactList) {
         this.clInterface = clInterface;
@@ -16,7 +16,7 @@ public class Show implements Option {
             clInterface.printToConsole("No contacts to show");
         } else {
             clInterface.printToConsole("Show all contacts");
-            clInterface.printContacts();
+            clInterface.printToConsole(contactList.listContacts());
         }
     }
 
@@ -25,3 +25,4 @@ public class Show implements Option {
         return text.equals("show");
     }
 }
+

@@ -64,5 +64,4 @@ public class Add implements Option {
         clinterface.printToConsole("Phone number:");
         return clinterface.input.nextLine().trim();
     }
-
 }

@@ -34,7 +34,7 @@ public class Delete implements Option {
 
     private int selectContactTo(String action) {
         clInterface.printToConsole("Which contact would you like to " + action + "?\nPlease select number.");
-        clInterface.printContacts();
+        clInterface.printToConsole(contactList.listContacts());
         return Integer.parseInt(clInterface.input.nextLine().trim());
     }
 
