@@ -2,21 +2,21 @@ package com.pelensky.contactmanager;
 
 public class Show implements Option {
 
-    private CLInterface clInterface;
+    private IO io;
     private ContactList contactList;
 
-    Show(CLInterface clInterface, ContactList contactList) {
-        this.clInterface = clInterface;
+    Show(IO io, ContactList contactList) {
+        this.io = io;
         this.contactList = contactList;
     }
 
     @Override
     public void execute() {
         if (contactList.isContactListEmpty()) {
-            clInterface.printToConsole("No contacts to show");
+            io.printToConsole("No contacts to show");
         } else {
-            clInterface.printToConsole("Show all contacts");
-            clInterface.printToConsole(contactList.listContacts());
+            io.printToConsole("Show all contacts");
+            io.printToConsole(contactList.listContacts());
         }
     }
 

@@ -2,27 +2,27 @@ package com.pelensky.contactmanager;
 
 public class Delete implements Option {
 
-    private CLInterface clInterface;
+    private IO io;
     private ContactList contactList;
 
-    Delete(CLInterface clInterface, ContactList contactList) {
-        this.clInterface = clInterface;
+    Delete(IO io, ContactList contactList) {
+        this.io= io;
         this.contactList = contactList;
     }
 
     @Override
     public void execute() {
         if (contactList.isContactListEmpty()) {
-            clInterface.printToConsole("No contacts to delete");
+            io.printToConsole("No contacts to delete");
         } else {
-            clInterface.printToConsole("Delete a contact");
+            io.printToConsole("Delete a contact");
             DeleteContact deleteContact = new DeleteContact(contactList);
             int selectedContact = selectContactTo("delete");
             if (contactList.isNotAValidNumber(selectedContact)) {
-                clInterface.printToConsole("Contact does not exist\nTry again");
+                io.printToConsole("Contact does not exist\nTry again");
             } else {
                 deleteContact.delete(selectedContact);
-                clInterface.printToConsole("Deleted");
+                io.printToConsole("Deleted");
             }
         }
     }
@@ -33,9 +33,9 @@ public class Delete implements Option {
     }
 
     private int selectContactTo(String action) {
-        clInterface.printToConsole("Which contact would you like to " + action + "?" + System.lineSeparator() + "Please select number.");
-        clInterface.printToConsole(contactList.listContacts());
-        return Integer.parseInt(clInterface.input.nextLine().trim());
+        io.printToConsole("Which contact would you like to " + action + "?" + System.lineSeparator() + "Please select number.");
+        io.printToConsole(contactList.listContacts());
+        return Integer.parseInt(io.getUserInput());
     }
 
 }

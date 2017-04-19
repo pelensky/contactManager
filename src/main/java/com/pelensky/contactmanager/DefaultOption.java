@@ -2,15 +2,15 @@ package com.pelensky.contactmanager;
 
 public class DefaultOption implements Option {
 
-    private CLInterface clInterface;
+    private IO io;
 
-    DefaultOption(CLInterface clInterface){
-        this.clInterface = clInterface;
+    DefaultOption(IO io){
+        this.io = io;
     }
 
     @Override
     public void execute() {
-        clInterface.printToConsole("Invalid selection");
+        io.printToConsole("Invalid selection");
     }
 
     @Override

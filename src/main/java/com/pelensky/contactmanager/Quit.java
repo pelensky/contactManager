@@ -2,16 +2,18 @@ package com.pelensky.contactmanager;
 
 public class Quit implements Option {
 
+    private IO io;
     private CLInterface clInterface;
 
-    Quit(CLInterface clInterface) {
+    Quit(IO io, CLInterface clInterface) {
+        this.io = io;
         this.clInterface = clInterface;
     }
 
 
     public void execute() {
         clInterface.setAppRunning(false);
-        clInterface.printToConsole("Contact Manager Quitting");
+        io.printToConsole("Contact Manager Quitting");
     }
 
     @Override

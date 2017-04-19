@@ -7,42 +7,38 @@ import java.util.Scanner;
 
 class CLInterface {
 
-  Scanner input;
-  private PrintStream output;
-  private Boolean appRunning = true;
+    private Boolean appRunning = true;
   private ContactList contactList;
+  private IO io;
 
-  CLInterface(Scanner input, PrintStream output, ContactList contactList) {
-    this.input = input;
-    this.output = output;
+  CLInterface(ContactList contactList, IO io) {
     this.contactList = contactList;
     this.appRunning = true;
+    this.io = io;
   }
 
   void runApp() {
-    printToConsole("Contact Manager");
+    io.printToConsole("Contact Manager");
     while (appRunning) {
-      printInstructions();
+      io.printToConsole(appInstructions());
       makeSelection();
     }
   }
 
     private void makeSelection() {
-        Option option = findOption(getUserInput().toLowerCase());
+        Option option = findOption(io.getUserInput().toLowerCase());
         option.execute();
     }
 
-    String getUserInput() {
-        return input.nextLine().trim();
-    }
+
 
     private List<Option> listOfOptions() {
     return Arrays.asList(
-        new Add(this, contactList),
-        new Delete(this, contactList),
-        new Edit(this, contactList),
-        new Show(this, contactList),
-        new Quit(this));
+        new Add(io, contactList),
+        new Delete(io, contactList),
+        new Edit(io, contactList),
+        new Show(io, contactList),
+        new Quit(io, this));
   }
 
   private Option findOption(String selection) {
@@ -51,22 +47,19 @@ class CLInterface {
         return listOfOptions().get(i);
       }
     }
-    return new DefaultOption(this);
+    return new DefaultOption(io);
   }
 
   void setAppRunning(Boolean isAppRunning) {
     this.appRunning = isAppRunning;
   }
 
-  private void printInstructions() {
-    String line = "----------------------------------------";
-    printToConsole(line);
-    printToConsole(
-        "Type `add` to add a new contact" + System.lineSeparator() + "Type `show` to display all contacts" + System.lineSeparator() + "Type `edit` to edit a contact" + System.lineSeparator() + "Type `delete` to delete a contact" + System.lineSeparator() + "Type `quit` to quit");
-    printToConsole(line);
+  private String appInstructions() {
+      String line = "----------------------------------------";
+      return line + System.lineSeparator() + "Type `add` to add a new contact" + System.lineSeparator() + "Type `show` to display all contacts" + System.lineSeparator() + "Type `edit` to edit a contact" + System.lineSeparator() + "Type `delete` to delete a contact" + System.lineSeparator() + "Type `quit` to quit" + System.lineSeparator() + line;
   }
 
-  void printToConsole(String text) {
-    output.println(text);
-  }
+
+
+
 }

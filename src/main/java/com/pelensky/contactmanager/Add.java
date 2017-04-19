@@ -2,17 +2,17 @@ package com.pelensky.contactmanager;
 
 public class Add implements Option {
 
-    private CLInterface clinterface;
+    private IO io;
     ContactList contactList;
 
-    Add(CLInterface clInterface, ContactList contactList){
-        this.clinterface = clInterface;
+    Add(IO io, ContactList contactList){
+        this.io = io;
         this.contactList = contactList;
     }
 
     @Override
     public void execute() {
-        clinterface.printToConsole("Add a new contact");
+        io.printToConsole("Add a new contact");
         Contact newContact =
                 new Contact(
                         addContactInfo("First Name: "),
@@ -22,7 +22,7 @@ public class Add implements Option {
                         addContactInfo("Postcode: "),
                         addContactInfo("Phone number: "));
         contactList.addContact(newContact);
-        clinterface.printToConsole(
+        io.printToConsole(
                 newContact.getFirstName()
                         + " "
                         + newContact.getLastName()
@@ -36,7 +36,7 @@ public class Add implements Option {
 
 
     private String addContactInfo(String text) {
-        clinterface.printToConsole(text);
-        return clinterface.getUserInput();
+        io.printToConsole(text);
+        return io.getUserInput();
     }
  }

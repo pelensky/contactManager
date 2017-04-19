@@ -26,46 +26,40 @@ public class CLInterfaceTest {
     contactList = new ContactList();
   }
 
+  private void setUpForTest(String source, PrintStream output, ContactList contactList) {
+    Scanner scanner = new Scanner(source);
+    CLInterface clInterface = new CLInterface(contactList, new IO(scanner, output));
+    clInterface.runApp();
+  }
+
   @Test
   public void welcomesUser() {
-    clInterface = new CLInterface(input, output, contactList);
-    clInterface.runApp();
+    setUpForTest("quit", output, contactList);
     assertThat(out.toString(), containsString("Contact Manager"));
     assertThat(out.toString(), containsString("Type `quit` to quit"));
   }
 
   @Test
   public void quitsAppWhenUserTypesQuit() {
-    clInterface = new CLInterface(input, output, contactList);
-    clInterface.runApp();
+    setUpForTest("quit", output, contactList);
     assertThat(out.toString(), containsString("Contact Manager Quitting"));
   }
 
   @Test
   public void askUserAgainIfInvalidSelection() {
-    Scanner invalidInput = new Scanner("asdfg\nquit");
-    clInterface = new CLInterface(invalidInput, output, contactList);
-    clInterface.runApp();
+    setUpForTest("asdfg\nquit", output, contactList);
     assertThat(out.toString(), containsString("Invalid selection\n"));
   }
 
   @Test
   public void userAddsANewContact() {
-    Scanner newContact =
-        new Scanner(
-            "add\nDan\nPelensky\n1 Commercial Street\nLondon\nE16LT\n07000 000 000\nquit\n");
-    clInterface = new CLInterface(newContact, output, contactList);
-    clInterface.runApp();
+    setUpForTest("add\nDan\nPelensky\n1 Commercial Street\nLondon\nE16LT\n07000 000 000\nquit\n", output, contactList);
     assertThat(out.toString(), containsString("Dan Pelensky has been added as a contact."));
   }
 
   @Test
   public void userListsContacts() {
-    Scanner createAndListContact =
-        new Scanner(
-            "add\nDan\nPelensky\n1 Commercial Street\nLondon\nE16LT\n07000 000 000\nshow\nquit\n");
-    clInterface = new CLInterface(createAndListContact, output, contactList);
-    clInterface.runApp();
+    setUpForTest("add\nDan\nPelensky\n1 Commercial Street\nLondon\nE16LT\n07000 000 000\nshow\nquit\n", output, contactList);
     assertThat(
         out.toString(),
         containsString("1) Dan Pelensky\n1 Commercial Street\nLondon E16LT\n07000 000 000"));
@@ -73,11 +67,7 @@ public class CLInterfaceTest {
 
     @Test
     public void userTriesToListContacts() {
-        Scanner showContact =
-                new Scanner(
-                        "show\nquit\n");
-        clInterface = new CLInterface(showContact, output, contactList);
-        clInterface.runApp();
+      setUpForTest("show\nquit\n", output, contactList);
         assertThat(
                 out.toString(),
                 containsString("No contacts to show"));
@@ -85,11 +75,7 @@ public class CLInterfaceTest {
 
   @Test
   public void userEditsContact() {
-    Scanner editContact =
-        new Scanner(
-            "add\nDan\nPelensky\n1 Commercial Street\nLondon\nE16LT\n07000 000 000\nedit\n1\n2\nTheMan\nshow\nquit\n");
-    clInterface = new CLInterface(editContact, output, contactList);
-    clInterface.runApp();
+    setUpForTest("add\nDan\nPelensky\n1 Commercial Street\nLondon\nE16LT\n07000 000 000\nedit\n1\n2\nTheMan\nshow\nquit\n", output, contactList);
     assertThat(
         out.toString(),
         containsString("1) Dan TheMan\n1 Commercial Street\nLondon E16LT\n07000 000 000"));
@@ -97,11 +83,7 @@ public class CLInterfaceTest {
 
   @Test
   public void userTriesToEditContact() {
-    Scanner editContactAttempt =
-            new Scanner(
-                    "add\nDan\nPelensky\n1 Commercial Street\nLondon\nE16LT\n07000 000 000\nedit\n2\nquit\n");
-    clInterface = new CLInterface(editContactAttempt, output, contactList);
-    clInterface.runApp();
+    setUpForTest("add\nDan\nPelensky\n1 Commercial Street\nLondon\nE16LT\n07000 000 000\nedit\n2\nquit\n", output, contactList);
     assertThat(
             out.toString(),
             containsString("Contact does not exist\nTry again"));
@@ -109,11 +91,7 @@ public class CLInterfaceTest {
 
     @Test
     public void userTriesToEditContactsWhenThereAreNone() {
-        Scanner editContact =
-                new Scanner(
-                        "edit\nquit\n");
-        clInterface = new CLInterface(editContact, output, contactList);
-        clInterface.runApp();
+      setUpForTest("edit\nquit\n", output, contactList);
         assertThat(
                 out.toString(),
                 containsString("No contacts to edit"));
@@ -121,21 +99,13 @@ public class CLInterfaceTest {
 
   @Test
   public void userDeletesContact() {
-    Scanner deleteContact =
-        new Scanner(
-            "add\nDan\nPelensky\n1 Commercial Street\nLondon\nE16LT\n07000 000 000\nadd\nTimmy\nPelensky\n2 Commercial Street\nLondon\nE11AG\n07111 111 111\ndelete\n2\nquit\n");
-    clInterface = new CLInterface(deleteContact, output, contactList);
-    clInterface.runApp();
+    setUpForTest("add\nDan\nPelensky\n1 Commercial Street\nLondon\nE16LT\n07000 000 000\nadd\nTimmy\nPelensky\n2 Commercial Street\nLondon\nE11AG\n07111 111 111\ndelete\n2\nquit\n", output, contactList);
     assertThat(out.toString(), containsString("Deleted"));
   }
 
   @Test
   public void userTriesToDeleteContact() {
-    Scanner deleteContactAttempt =
-            new Scanner(
-                    "add\nDan\nPelensky\n1 Commercial Street\nLondon\nE16LT\n07000 000 000\ndelete\n2\nquit\n");
-    clInterface = new CLInterface(deleteContactAttempt, output, contactList);
-    clInterface.runApp();
+    setUpForTest("add\nDan\nPelensky\n1 Commercial Street\nLondon\nE16LT\n07000 000 000\ndelete\n2\nquit\n", output, contactList);
     assertThat(
             out.toString(),
             containsString("Contact does not exist\nTry again"));
@@ -143,11 +113,7 @@ public class CLInterfaceTest {
 
     @Test
     public void userTriesToDeleteContactWhenThereAreNone() {
-        Scanner deleteContact =
-                new Scanner(
-                        "delete\nquit\n");
-        clInterface = new CLInterface(deleteContact, output, contactList);
-        clInterface.runApp();
+      setUpForTest("delete\nquit\n", output, contactList);
         assertThat(
                 out.toString(),
                 containsString("No contacts to delete"));

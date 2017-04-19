@@ -2,24 +2,24 @@ package com.pelensky.contactmanager;
 
 public class Edit implements Option {
 
-    private CLInterface clInterface;
+    private IO io;
     private ContactList contactList;
 
-    Edit (CLInterface clInterface, ContactList contactList) {
-        this.clInterface = clInterface;
+    Edit (IO io, ContactList contactList) {
+        this.io = io;
         this.contactList = contactList;
     }
 
     @Override
     public void execute() {
         if (contactList.isContactListEmpty()) {
-            clInterface.printToConsole("No contacts to edit");
+            io.printToConsole("No contacts to edit");
         } else {
-            clInterface.printToConsole("Edit a contact");
+            io.printToConsole("Edit a contact");
             EditContact editContact = new EditContact(contactList);
             int selectedContact = selectContactTo("edit");
             if (contactList.isNotAValidNumber(selectedContact)) {
-                clInterface.printToConsole("Contact does not exist" + System.lineSeparator() + "Try again");
+                io.printToConsole("Contact does not exist" + System.lineSeparator() + "Try again");
             } else {
                 int selectField = selectFieldToUpdate(selectedContact, editContact);
                 updateField(editContact, selectField);
@@ -34,23 +34,23 @@ public class Edit implements Option {
 
 
     private int selectContactTo(String action) {
-        clInterface.printToConsole("Which contact would you like to " + action + "?" + System.lineSeparator() + "Please select number.");
-        clInterface.printToConsole(contactList.listContacts());
-        return Integer.parseInt(clInterface.input.nextLine().trim());
+        io.printToConsole("Which contact would you like to " + action + "?" + System.lineSeparator() + "Please select number.");
+        io.printToConsole(contactList.listContacts());
+        return Integer.parseInt(io.getUserInput());
     }
 
     private int selectFieldToUpdate(int selection, EditContact editContact) {
-        clInterface.printToConsole("Which field would you like to edit?" + System.lineSeparator() + "Please select number.");
-        clInterface.printToConsole(editContact.showSelectionNumbers(selection));
-        int selectField = Integer.parseInt(clInterface.input.nextLine().trim());
-        clInterface.printToConsole("You have selected " + editContact.selectField(selectField));
+        io.printToConsole("Which field would you like to edit?" + System.lineSeparator() + "Please select number.");
+        io.printToConsole(editContact.showSelectionNumbers(selection));
+        int selectField = Integer.parseInt(io.getUserInput());
+        io.printToConsole("You have selected " + editContact.selectField(selectField));
         return selectField;
     }
 
     private void updateField(EditContact editContact, int selectField) {
-        clInterface.printToConsole("What would you like to change it to?");
-        String contactUpdate = clInterface.input.nextLine().trim();
+        io.printToConsole("What would you like to change it to?");
+        String contactUpdate = io.input.nextLine().trim();
         editContact.updateContact(selectField, contactUpdate);
-        clInterface.printToConsole("Updated");
+        io.printToConsole("Updated");
     }
 }
