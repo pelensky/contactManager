@@ -3,13 +3,13 @@ package com.pelensky.contactmanager;
 import java.util.Arrays;
 import java.util.List;
 
-class CLInterface {
+class AppRunner {
 
   private Boolean appRunning = true;
   private ContactList contactList;
   private IO io;
 
-  CLInterface(ContactList contactList, IO io) {
+  AppRunner(ContactList contactList, IO io) {
     this.contactList = contactList;
     this.appRunning = true;
     this.io = io;

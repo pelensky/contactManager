@@ -3,16 +3,16 @@ package com.pelensky.contactmanager;
 public class Quit implements Option {
 
     private IO io;
-    private CLInterface clInterface;
+    private AppRunner appRunner;
 
-    Quit(IO io, CLInterface clInterface) {
+    Quit(IO io, AppRunner appRunner) {
         this.io = io;
-        this.clInterface = clInterface;
+        this.appRunner = appRunner;
     }
 
 
     public void execute() {
-        clInterface.setAppRunning(false);
+        appRunner.setAppRunning(false);
         io.printText("Contact Manager Quitting");
     }
 

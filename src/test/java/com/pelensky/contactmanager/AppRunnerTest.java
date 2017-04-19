@@ -10,9 +10,9 @@ import java.util.Scanner;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.Assert.assertThat;
 
-public class CLInterfaceTest {
+public class AppRunnerTest {
 
-  private CLInterface clInterface;
+  private AppRunner appRunner;
   private Scanner input;
   private PrintStream output;
   private ByteArrayOutputStream out;
@@ -28,8 +28,8 @@ public class CLInterfaceTest {
 
   private void setUpForTest(String source, PrintStream output, ContactList contactList) {
     Scanner scanner = new Scanner(source);
-    CLInterface clInterface = new CLInterface(contactList, new IO(scanner, output));
-    clInterface.runApp();
+    AppRunner appRunner = new AppRunner(contactList, new IO(scanner, output));
+    appRunner.runApp();
   }
 
   @Test
