@@ -13,16 +13,16 @@ public class Delete implements Option {
     @Override
     public void execute() {
         if (contactList.isContactListEmpty()) {
-            io.printToConsole("No contacts to delete");
+            io.printText("No contacts to delete");
         } else {
-            io.printToConsole("Delete a contact");
+            io.printText("Delete a contact");
             DeleteContact deleteContact = new DeleteContact(contactList);
             int selectedContact = selectContactTo("delete");
             if (contactList.isNotAValidNumber(selectedContact)) {
-                io.printToConsole("Contact does not exist\nTry again");
+                io.printText("Contact does not exist\nTry again");
             } else {
                 deleteContact.delete(selectedContact);
-                io.printToConsole("Deleted");
+                io.printText("Deleted");
             }
         }
     }
@@ -33,8 +33,8 @@ public class Delete implements Option {
     }
 
     private int selectContactTo(String action) {
-        io.printToConsole("Which contact would you like to " + action + "?" + System.lineSeparator() + "Please select number.");
-        io.printToConsole(contactList.listContacts());
+        io.printText("Which contact would you like to " + action + "?" + System.lineSeparator() + "Please select number.");
+        io.printText(contactList.listContacts());
         return Integer.parseInt(io.getUserInput());
     }
 

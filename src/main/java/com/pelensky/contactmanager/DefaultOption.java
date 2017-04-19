@@ -10,7 +10,7 @@ public class DefaultOption implements Option {
 
     @Override
     public void execute() {
-        io.printToConsole("Invalid selection");
+        io.printText("Invalid selection");
     }
 
     @Override

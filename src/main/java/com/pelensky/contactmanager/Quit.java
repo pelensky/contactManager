@@ -13,7 +13,7 @@ public class Quit implements Option {
 
     public void execute() {
         clInterface.setAppRunning(false);
-        io.printToConsole("Contact Manager Quitting");
+        io.printText("Contact Manager Quitting");
     }
 
     @Override

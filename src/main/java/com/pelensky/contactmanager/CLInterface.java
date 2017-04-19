@@ -1,13 +1,11 @@
 package com.pelensky.contactmanager;
 
-import java.io.*;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
 
 class CLInterface {
 
-    private Boolean appRunning = true;
+  private Boolean appRunning = true;
   private ContactList contactList;
   private IO io;
 
@@ -18,21 +16,19 @@ class CLInterface {
   }
 
   void runApp() {
-    io.printToConsole("Contact Manager");
+    io.printText("Contact Manager");
     while (appRunning) {
-      io.printToConsole(appInstructions());
+      io.printText(appInstructions());
       makeSelection();
     }
   }
 
-    private void makeSelection() {
-        Option option = findOption(io.getUserInput().toLowerCase());
-        option.execute();
-    }
+  private void makeSelection() {
+    Option option = findOption(io.getUserInput().toLowerCase());
+    option.execute();
+  }
 
-
-
-    private List<Option> listOfOptions() {
+  private List<Option> listOfOptions() {
     return Arrays.asList(
         new Add(io, contactList),
         new Delete(io, contactList),
@@ -55,11 +51,19 @@ class CLInterface {
   }
 
   private String appInstructions() {
-      String line = "----------------------------------------";
-      return line + System.lineSeparator() + "Type `add` to add a new contact" + System.lineSeparator() + "Type `show` to display all contacts" + System.lineSeparator() + "Type `edit` to edit a contact" + System.lineSeparator() + "Type `delete` to delete a contact" + System.lineSeparator() + "Type `quit` to quit" + System.lineSeparator() + line;
+    String line = "----------------------------------------";
+    return line
+        + System.lineSeparator()
+        + "Type `add` to add a new contact"
+        + System.lineSeparator()
+        + "Type `show` to display all contacts"
+        + System.lineSeparator()
+        + "Type `edit` to edit a contact"
+        + System.lineSeparator()
+        + "Type `delete` to delete a contact"
+        + System.lineSeparator()
+        + "Type `quit` to quit"
+        + System.lineSeparator()
+        + line;
   }
-
-
-
-
 }

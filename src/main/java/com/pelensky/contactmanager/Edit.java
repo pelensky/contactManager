@@ -13,13 +13,13 @@ public class Edit implements Option {
     @Override
     public void execute() {
         if (contactList.isContactListEmpty()) {
-            io.printToConsole("No contacts to edit");
+            io.printText("No contacts to edit");
         } else {
-            io.printToConsole("Edit a contact");
+            io.printText("Edit a contact");
             EditContact editContact = new EditContact(contactList);
             int selectedContact = selectContactTo("edit");
             if (contactList.isNotAValidNumber(selectedContact)) {
-                io.printToConsole("Contact does not exist" + System.lineSeparator() + "Try again");
+                io.printText("Contact does not exist" + System.lineSeparator() + "Try again");
             } else {
                 int selectField = selectFieldToUpdate(selectedContact, editContact);
                 updateField(editContact, selectField);
@@ -34,23 +34,23 @@ public class Edit implements Option {
 
 
     private int selectContactTo(String action) {
-        io.printToConsole("Which contact would you like to " + action + "?" + System.lineSeparator() + "Please select number.");
-        io.printToConsole(contactList.listContacts());
+        io.printText("Which contact would you like to " + action + "?" + System.lineSeparator() + "Please select number.");
+        io.printText(contactList.listContacts());
         return Integer.parseInt(io.getUserInput());
     }
 
     private int selectFieldToUpdate(int selection, EditContact editContact) {
-        io.printToConsole("Which field would you like to edit?" + System.lineSeparator() + "Please select number.");
-        io.printToConsole(editContact.showSelectionNumbers(selection));
+        io.printText("Which field would you like to edit?" + System.lineSeparator() + "Please select number.");
+        io.printText(editContact.showSelectionNumbers(selection));
         int selectField = Integer.parseInt(io.getUserInput());
-        io.printToConsole("You have selected " + editContact.selectField(selectField));
+        io.printText("You have selected " + editContact.selectField(selectField));
         return selectField;
     }
 
     private void updateField(EditContact editContact, int selectField) {
-        io.printToConsole("What would you like to change it to?");
+        io.printText("What would you like to change it to?");
         String contactUpdate = io.input.nextLine().trim();
         editContact.updateContact(selectField, contactUpdate);
-        io.printToConsole("Updated");
+        io.printText("Updated");
     }
 }

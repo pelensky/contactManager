@@ -12,7 +12,7 @@ public class Add implements Option {
 
     @Override
     public void execute() {
-        io.printToConsole("Add a new contact");
+        io.printText("Add a new contact");
         Contact newContact =
                 new Contact(
                         addContactInfo("First Name: "),
@@ -22,7 +22,7 @@ public class Add implements Option {
                         addContactInfo("Postcode: "),
                         addContactInfo("Phone number: "));
         contactList.addContact(newContact);
-        io.printToConsole(
+        io.printText(
                 newContact.getFirstName()
                         + " "
                         + newContact.getLastName()
@@ -36,7 +36,7 @@ public class Add implements Option {
 
 
     private String addContactInfo(String text) {
-        io.printToConsole(text);
+        io.printText(text);
         return io.getUserInput();
     }
  }

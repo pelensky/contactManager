@@ -13,10 +13,10 @@ public class Show implements Option {
     @Override
     public void execute() {
         if (contactList.isContactListEmpty()) {
-            io.printToConsole("No contacts to show");
+            io.printText("No contacts to show");
         } else {
-            io.printToConsole("Show all contacts");
-            io.printToConsole(contactList.listContacts());
+            io.printText("Show all contacts");
+            io.printText(contactList.listContacts());
         }
     }
 
