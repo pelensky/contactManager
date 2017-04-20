@@ -38,9 +38,9 @@ class AppRunner {
   }
 
   private Option findOption(String selection) {
-    for (int i = 0; i < listOfOptions().size(); i++) {
-      if (listOfOptions().get(i).canRespondTo(selection.toLowerCase())) {
-        return listOfOptions().get(i);
+    for (Option o:listOfOptions()) {
+      if (o.canRespondTo(selection.toLowerCase())) {
+        return o;
       }
     }
     return new DefaultOption(io);
@@ -52,18 +52,11 @@ class AppRunner {
 
   private String appInstructions() {
     String line = "----------------------------------------";
-    return line
-        + System.lineSeparator()
-        + "Type `add` to add a new contact"
-        + System.lineSeparator()
-        + "Type `show` to display all contacts"
-        + System.lineSeparator()
-        + "Type `edit` to edit a contact"
-        + System.lineSeparator()
-        + "Type `delete` to delete a contact"
-        + System.lineSeparator()
-        + "Type `quit` to quit"
-        + System.lineSeparator()
-        + line;
+    StringBuilder instructions = new StringBuilder();
+    for (Option o:listOfOptions()){
+      instructions.append(System.lineSeparator()).append(o.instruction());
+    }
+    return line + instructions + System.lineSeparator() + line;
   }
+
 }

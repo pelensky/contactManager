@@ -11,15 +11,19 @@ public class Edit extends Commands implements Option {
     this.contactList = contactList;
   }
 
+  public String instruction() {
+    return "Type `edit` to edit a contact";
+  }
+
   @Override
   public void execute() {
-    if (isContactListEmpty()) {
+    if (this.contactList.isContactListEmpty()) {
       io.displayText("No contacts to edit");
     } else {
       io.displayText("Edit a contact");
       EditContact editContact = new EditContact(contactList);
       int selectedContact = selectContactTo("edit");
-      if (isNotAValidNumber(selectedContact)) {
+      if (this.contactList.isNotAValidNumber(selectedContact)) {
         io.displayText("Contact does not exist");
       } else {
         int selectField = selectFieldToUpdate(selectedContact, editContact);

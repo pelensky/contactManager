@@ -10,6 +10,10 @@ public class Quit implements Option {
         this.appRunner = appRunner;
     }
 
+    public String instruction() {
+      return "Type `quit` to quit";
+    }
+
 
     public void execute() {
         appRunner.setAppNotRunning();

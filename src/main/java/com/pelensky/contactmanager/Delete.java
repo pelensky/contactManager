@@ -11,15 +11,19 @@ public class Delete extends Commands implements Option {
     this.contactList = contactList;
   }
 
+  public String instruction() {
+    return "Type `delete` to delete a contact";
+  }
+
   @Override
   public void execute() {
-    if (isContactListEmpty()) {
+    if (this.contactList.isContactListEmpty()) {
       io.displayText("No contacts to delete");
     } else {
       io.displayText("Delete a contact");
       DeleteContact deleteContact = new DeleteContact(contactList);
       int selectedContact = selectContactTo("delete");
-      if (isNotAValidNumber(selectedContact)) {
+      if (this.contactList.isNotAValidNumber(selectedContact)) {
         io.displayText("Contact does not exist\nTry again");
       } else {
         delete(deleteContact, selectedContact);
