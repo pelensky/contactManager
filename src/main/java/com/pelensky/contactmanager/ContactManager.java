@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class ContactManager {
 
   public static void main(String[] args) {
-    CLInterface clInterface = new CLInterface(new Scanner(System.in), new PrintStream(System.out), new ContactList());
-    clInterface.runApp();
+    AppRunner appRunner = new AppRunner(new ContactList(), new IO(new Scanner(System.in), new PrintStream(System.out)));
+    appRunner.runApp();
   }
 }
