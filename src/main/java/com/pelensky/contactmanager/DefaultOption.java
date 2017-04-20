@@ -17,4 +17,9 @@ public class DefaultOption implements Option {
     public boolean canRespondTo(String text) {
         return text.equals("default");
     }
+
+    @Override
+    public String instruction() {
+        return null;
+    }
 }

@@ -9,14 +9,6 @@ class Commands {
         this.contactList = contactList;
     }
 
-      boolean isContactListEmpty() {
-        return contactList.isContactListEmpty();
-    }
-
-    boolean isNotAValidNumber(int selectedContact) {
-        return contactList.isNotAValidNumber(selectedContact);
-    }
-
     int selectContactTo(String text) {
         io.displayText(
                 "Which contact would you like to" + text + "?"

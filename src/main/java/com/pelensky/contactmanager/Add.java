@@ -10,6 +10,10 @@ public class Add implements Option {
         this.contactList = contactList;
     }
 
+    public String instruction() {
+      return "Type `add` to add a new contact";
+    }
+
     @Override
     public void execute() {
         io.displayText("Add a new contact");

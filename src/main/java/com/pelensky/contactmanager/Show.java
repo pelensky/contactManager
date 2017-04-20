@@ -10,6 +10,10 @@ public class Show implements Option {
     this.contactList = contactList;
   }
 
+  public String instruction() {
+    return "Type `show` to display all contacts";
+  }
+
   @Override
   public void execute() {
     if (isContactListEmpty()) {
