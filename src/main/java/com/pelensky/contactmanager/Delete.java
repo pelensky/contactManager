@@ -14,16 +14,16 @@ public class Delete extends Commands implements Option {
   @Override
   public void execute() {
     if (isContactListEmpty()) {
-      io.printText("No contacts to delete");
+      io.displayText("No contacts to delete");
     } else {
-      io.printText("Delete a contact");
+      io.displayText("Delete a contact");
       DeleteContact deleteContact = new DeleteContact(contactList);
       int selectedContact = selectContactTo("delete");
       if (isNotAValidNumber(selectedContact)) {
-        io.printText("Contact does not exist\nTry again");
+        io.displayText("Contact does not exist\nTry again");
       } else {
         delete(deleteContact, selectedContact);
-        io.printText("Deleted");
+        io.displayText("Deleted");
       }
     }
   }

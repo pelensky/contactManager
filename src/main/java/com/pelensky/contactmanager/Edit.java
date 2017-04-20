@@ -14,13 +14,13 @@ public class Edit extends Commands implements Option {
   @Override
   public void execute() {
     if (isContactListEmpty()) {
-      io.printText("No contacts to edit");
+      io.displayText("No contacts to edit");
     } else {
-      io.printText("Edit a contact");
+      io.displayText("Edit a contact");
       EditContact editContact = new EditContact(contactList);
       int selectedContact = selectContactTo("edit");
       if (isNotAValidNumber(selectedContact)) {
-        io.printText("Contact does not exist" + System.lineSeparator() + "Try again");
+        io.displayText("Contact does not exist");
       } else {
         int selectField = selectFieldToUpdate(selectedContact, editContact);
         updateField(editContact, selectField);
@@ -34,18 +34,18 @@ public class Edit extends Commands implements Option {
   }
 
   private int selectFieldToUpdate(int selection, EditContact editContact) {
-    io.printText(
+    io.displayText(
         "Which field would you like to edit?" + System.lineSeparator() + "Please select number.");
-    io.printText(editContact.showSelectionNumbers(selection));
+    io.displayText(editContact.showSelectionNumbers(selection));
     int selectField = Integer.parseInt(io.getUserInput());
-    io.printText("You have selected " + editContact.selectField(selectField));
+    io.displayText("You have selected " + editContact.selectField(selectField));
     return selectField;
   }
 
   private void updateField(EditContact editContact, int selectField) {
-    io.printText("What would you like to change it to?");
+    io.displayText("What would you like to change it to?");
     String contactUpdate = io.getUserInput();
     editContact.updateContact(selectField, contactUpdate);
-    io.printText("Updated");
+    io.displayText("Updated");
   }
 }

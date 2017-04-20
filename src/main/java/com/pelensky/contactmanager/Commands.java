@@ -18,11 +18,11 @@ class Commands {
     }
 
     int selectContactTo(String text) {
-        io.printText(
+        io.displayText(
                 "Which contact would you like to" + text + "?"
                         + System.lineSeparator()
                         + "Please select number.");
-        io.printText(contactList.listContacts());
+        io.displayText(contactList.listContacts());
         return Integer.parseInt(io.getUserInput());
     }
 }

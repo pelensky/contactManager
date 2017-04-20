@@ -16,9 +16,9 @@ class AppRunner {
   }
 
   void runApp() {
-    io.printText("Contact Manager");
+    io.displayText("Contact Manager");
     while (appRunning) {
-      io.printText(appInstructions());
+      io.displayText(appInstructions());
       makeSelection();
     }
   }

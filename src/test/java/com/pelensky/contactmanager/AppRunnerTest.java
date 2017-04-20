@@ -91,7 +91,7 @@ public class AppRunnerTest {
         "add\nDan\nPelensky\n1 Commercial Street\nLondon\nE16LT\n07000 000 000\nedit\n2\nquit\n",
         output,
         contactList);
-    assertThat(out.toString(), containsString("Contact does not exist\nTry again"));
+    assertThat(out.toString(), containsString("Contact does not exist"));
   }
 
   @Test
@@ -116,6 +116,15 @@ public class AppRunnerTest {
         output,
         contactList);
     assertThat(out.toString(), containsString("Contact does not exist\nTry again"));
+  }
+
+  @Test
+  public void userSelectsDefault() {
+    setUpAndRun(
+            "default\nquit\n",
+            output,
+            contactList);
+    assertThat(out.toString(), containsString("Invalid selection"));
   }
 
   @Test

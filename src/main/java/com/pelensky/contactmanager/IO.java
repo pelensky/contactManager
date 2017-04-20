@@ -17,7 +17,7 @@ public class IO {
     return input.nextLine().trim();
   }
 
-  void printText(String text) {
+  void displayText(String text) {
     output.println(text);
   }
 }
