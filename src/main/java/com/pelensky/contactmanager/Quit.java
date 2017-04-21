@@ -11,7 +11,7 @@ public class Quit implements Option {
     }
 
     public String instruction() {
-      return "Type `quit` to quit";
+      return "5) Quit";
     }
 
 
@@ -22,6 +22,6 @@ public class Quit implements Option {
 
     @Override
     public boolean canRespondTo(String text) {
-        return text.equals("quit");
+        return text.equals("5");
     }
 }

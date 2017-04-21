@@ -11,7 +11,7 @@ public class Add implements Option {
     }
 
     public String instruction() {
-      return "Type `add` to add a new contact";
+      return "1) Add a new contact";
     }
 
     @Override
@@ -35,7 +35,7 @@ public class Add implements Option {
 
     @Override
     public boolean canRespondTo(String text) {
-        return text.equals("add");
+        return text.equals("1");
     }
 
 

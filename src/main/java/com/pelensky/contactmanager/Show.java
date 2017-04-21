@@ -11,7 +11,7 @@ public class Show implements Option {
   }
 
   public String instruction() {
-    return "Type `show` to display all contacts";
+    return "2) Show all contacts";
   }
 
   @Override
@@ -26,7 +26,7 @@ public class Show implements Option {
 
   @Override
   public boolean canRespondTo(String text) {
-    return text.equals("show");
+    return text.equals("2");
   }
 
   private boolean isContactListEmpty() {

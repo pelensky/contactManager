@@ -12,7 +12,7 @@ public class Edit extends Commands implements Option {
   }
 
   public String instruction() {
-    return "Type `edit` to edit a contact";
+    return "3) Edit a contact";
   }
 
   @Override
@@ -34,7 +34,7 @@ public class Edit extends Commands implements Option {
 
   @Override
   public boolean canRespondTo(String text) {
-    return text.equals("edit");
+    return text.equals("3");
   }
 
   private int selectFieldToUpdate(int selection, EditContact editContact) {
