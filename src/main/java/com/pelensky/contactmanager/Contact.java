@@ -1,5 +1,7 @@
 package com.pelensky.contactmanager;
 
+import java.util.Comparator;
+
 class Contact {
 
   private String firstName;
@@ -24,7 +26,7 @@ class Contact {
     this.phoneNumber = phoneNumber;
   }
 
-  String getFirstName() {
+   String getFirstName() {
     return firstName;
   }
 
@@ -71,4 +73,12 @@ class Contact {
   void setPhoneNumber(String phoneNumber) {
     this.phoneNumber = phoneNumber;
   }
+
+  static Comparator<Contact> contactComparator = (c1, c2) -> {
+    String contact1 = c1.getLastName().toUpperCase();
+    String contact2 = c2.getLastName().toUpperCase();
+    return contact1.compareTo(contact2);
+  };
+
+
 }

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 class ManipulateContacts {
 
     ContactList contactList;
+    ArrayList<Contact> sortedContacts;
 
     ManipulateContacts(ContactList contactList){
         this.contactList = contactList;
@@ -17,6 +18,7 @@ class ManipulateContacts {
 
     String listContacts() {
       StringBuilder formattedContact = new StringBuilder();
+      sortContacts();
       for (int i = 0; i < contactList.countContacts(); i++) {
         formattedContact.append(formatContact(i)).append(System.lineSeparator());
       }
@@ -46,6 +48,10 @@ class ManipulateContacts {
 
     private ArrayList<Contact> getContacts() {
         return contactList.getContacts();
+    }
+
+    private void sortContacts() {
+        getContacts().sort(Contact.contactComparator);
     }
 
 }
