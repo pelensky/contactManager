@@ -16,7 +16,7 @@ class Commands {
                 "Which contact would you like to" + text + "?"
                         + System.lineSeparator()
                         + "Please select number.");
-        io.displayText(manipulateContacts.listContacts());
+        io.displayText(manipulateContacts.listContacts(contactList.getContacts()));
         return Integer.parseInt(io.getUserInput());
     }
 }

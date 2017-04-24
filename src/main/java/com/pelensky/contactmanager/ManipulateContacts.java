@@ -1,11 +1,11 @@
 package com.pelensky.contactmanager;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 class ManipulateContacts {
 
     ContactList contactList;
-    ArrayList<Contact> sortedContacts;
 
     ManipulateContacts(ContactList contactList){
         this.contactList = contactList;
@@ -16,17 +16,17 @@ class ManipulateContacts {
     }
 
 
-    String listContacts() {
+    String listContacts(ArrayList<Contact> listOfContacts) {
       StringBuilder formattedContact = new StringBuilder();
-      sortContacts();
-      for (int i = 0; i < contactList.countContacts(); i++) {
-        formattedContact.append(formatContact(i)).append(System.lineSeparator());
+      sortContacts(listOfContacts);
+      for (int i = 0; i < listOfContacts.size(); i++) {
+        formattedContact.append(formatContact(i, listOfContacts)).append(System.lineSeparator());
       }
       return formattedContact.toString().trim();
     }
 
-    private String formatContact(int number) {
-      Contact contact = contactList.getContacts().get(number);
+    private String formatContact(int number, ArrayList<Contact> listOfContacts) {
+      Contact contact = listOfContacts.get(number);
       return (Integer.toString(number + 1)
               + ") "
               + contact.getFirstName()
@@ -50,8 +50,8 @@ class ManipulateContacts {
         return contactList.getContacts();
     }
 
-    private void sortContacts() {
-        getContacts().sort(Contact.contactComparator);
+    private void sortContacts(ArrayList<Contact> listOfContacts) {
+        listOfContacts.sort(Contact.contactComparator);
     }
 
 }

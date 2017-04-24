@@ -34,7 +34,7 @@ class AppRunner {
         return Arrays.asList(
                 new Add(io, contactList),
                 new Search(io, contactList, manipulateContacts),
-                new Show(io, manipulateContacts),
+                new Show(io, contactList, manipulateContacts),
                 new Edit(io, contactList, manipulateContacts),
                 new Delete(io, contactList, manipulateContacts),
                 new Quit(io, this));
