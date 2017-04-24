@@ -1,5 +1,6 @@
 package com.pelensky.contactmanager;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -23,8 +24,15 @@ class Search implements Option {
         } else {
             io.displayText("Search for contact");
             String search = io.getUserInput().toUpperCase();
-            ArrayList<Contact> filteredByFirstName = contactList.getContacts().stream().filter(contact -> contact.getFirstName().toUpperCase().equals(search)).collect(Collectors.toCollection(ArrayList::new));
-            io.displayText(String.valueOf(manipulateContacts.listContacts(filteredByFirstName)));
+            ArrayList<Contact> filteredContacts = contactList.getContacts().stream().filter(contact -> contact.getFirstName().toUpperCase().equals(search)).collect(Collectors.toCollection(ArrayList::new));
+            ArrayList<Contact> filteredByLastName = contactList.getContacts().stream().filter(contact -> contact.getLastName().toUpperCase().equals(search)).collect(Collectors.toCollection(ArrayList::new));
+            filteredContacts.removeAll(filteredByLastName);
+            filteredContacts.addAll(filteredByLastName);
+            if (filteredContacts.isEmpty()) {
+                io.displayText("No match");
+            } else {
+                io.displayText(String.valueOf(manipulateContacts.listContacts(filteredContacts)));
+            }
         }
     }
 
