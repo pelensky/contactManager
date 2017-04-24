@@ -4,10 +4,12 @@ public class Show implements Option {
 
   private IO io;
   private ContactList contactList;
+  private DisplayContacts displayContacts;
 
-  Show(IO io, ContactList contactList) {
+  Show(IO io, ContactList contactList, DisplayContacts displayContacts) {
     this.io = io;
     this.contactList = contactList;
+    this.displayContacts = displayContacts;
   }
 
   public String instruction() {
@@ -34,6 +36,6 @@ public class Show implements Option {
   }
 
   private String listContacts(){
-      return contactList.listContacts();
+      return displayContacts.listContacts();
   }
 }

@@ -4,11 +4,13 @@ public class Edit extends Commands implements Option {
 
   private IO io;
   private ContactList contactList;
+  private DisplayContacts displayContacts;
 
-  Edit(IO io, ContactList contactList) {
-    super(io, contactList);
+  Edit(IO io, ContactList contactList, DisplayContacts displayContacts) {
+    super(io, contactList, displayContacts);
     this.io = io;
     this.contactList = contactList;
+    this.displayContacts = displayContacts;
   }
 
   public String instruction() {

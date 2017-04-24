@@ -5,13 +5,13 @@ public class Add implements Option {
     private IO io;
     ContactList contactList;
 
-    Add(IO io, ContactList contactList){
+    Add(IO io, ContactList contactList) {
         this.io = io;
         this.contactList = contactList;
     }
 
     public String instruction() {
-      return "1) Add a new contact";
+        return "1) Add a new contact";
     }
 
     @Override
@@ -47,4 +47,4 @@ public class Add implements Option {
     private void addContact(Contact newContact) {
         contactList.addContact((newContact));
     }
- }
+}

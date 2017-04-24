@@ -11,6 +11,7 @@ public class ContactListTest {
 
   private ContactList contactList;
   private Contact danPelensky;
+  private DisplayContacts displayContacts;
 
   @Before
   public void setUp() {
@@ -18,6 +19,7 @@ public class ContactListTest {
     danPelensky =
         new Contact("Dan", "Pelensky", "1 Commercial Street", "London", "E16LT", "07000 000 000");
     contactList.addContact(danPelensky);
+    displayContacts = new DisplayContacts(contactList);
   }
 
   @Test
@@ -27,14 +29,14 @@ public class ContactListTest {
 
   @Test
   public void showFormattedContact() {
-    assertEquals("1) Dan Pelensky\n1 Commercial Street\nLondon E16LT\n07000 000 000", contactList.listContacts());
+    assertEquals("1) Dan Pelensky\n1 Commercial Street\nLondon E16LT\n07000 000 000", displayContacts.listContacts());
   }
 
   @Test
   public void showASecondContact() {
     Contact timmyPelensky = new Contact("Timmy", "Pelensky", "2 Commercial Street", "London", "E11AG", "07111 111 111");
     contactList.addContact(timmyPelensky);
-    assertThat(contactList.listContacts(), containsString("1) Dan Pelensky\n1 Commercial Street\nLondon E16LT\n07000 000 000\n2) Timmy Pelensky\n2 Commercial Street\nLondon E11AG\n07111 111 111"));
+    assertThat(displayContacts.listContacts(), containsString("1) Dan Pelensky\n1 Commercial Street\nLondon E16LT\n07000 000 000\n2) Timmy Pelensky\n2 Commercial Street\nLondon E11AG\n07111 111 111"));
   }
 
   @Test
