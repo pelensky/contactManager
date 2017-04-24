@@ -24,7 +24,7 @@ class Search implements Option {
             io.displayText("Search for contact");
             String search = io.getUserInput().toUpperCase();
             ArrayList<Contact> filteredByFirstName = contactList.getContacts().stream().filter(contact -> contact.getFirstName().toUpperCase().equals(search)).collect(Collectors.toCollection(ArrayList::new));
-            io.displayText(String.valueOf(filteredByFirstName));
+            io.displayText(String.valueOf(manipulateContacts.listContacts(filteredByFirstName)));
         }
     }
 
