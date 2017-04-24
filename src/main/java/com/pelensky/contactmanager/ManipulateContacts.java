@@ -1,11 +1,17 @@
 package com.pelensky.contactmanager;
 
-class DisplayContacts {
+import java.util.ArrayList;
+
+class ManipulateContacts {
 
     ContactList contactList;
 
-    DisplayContacts(ContactList contactList){
+    ManipulateContacts(ContactList contactList){
         this.contactList = contactList;
+    }
+
+    boolean isNotAValidNumber(int selectedContact) {
+      return (selectedContact > contactList.countContacts()) || (selectedContact < 1);
     }
 
 
@@ -33,4 +39,13 @@ class DisplayContacts {
               + "\n"
               + contact.getPhoneNumber());
     }
+
+    boolean isContactListEmpty() {
+        return getContacts().isEmpty();
+    }
+
+    private ArrayList<Contact> getContacts() {
+        return contactList.getContacts();
+    }
+
 }

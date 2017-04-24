@@ -18,11 +18,4 @@ class ContactList {
     return contacts.size();
   }
 
-  boolean isContactListEmpty() {
-    return getContacts().isEmpty();
-  }
-
-  boolean isNotAValidNumber(int selectedContact) {
-    return (selectedContact > countContacts()) || (selectedContact < 1);
-  }
 }

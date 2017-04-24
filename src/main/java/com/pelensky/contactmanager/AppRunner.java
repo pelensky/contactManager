@@ -8,13 +8,13 @@ class AppRunner {
     private Boolean appRunning = true;
     private ContactList contactList;
     IO io;
-    private DisplayContacts displayContacts;
+    private ManipulateContacts manipulateContacts;
 
-    AppRunner(ContactList contactList, IO io, DisplayContacts displayContacts) {
+    AppRunner(ContactList contactList, IO io, ManipulateContacts manipulateContacts) {
         this.contactList = contactList;
         this.appRunning = true;
         this.io = io;
-        this.displayContacts = displayContacts;
+        this.manipulateContacts = manipulateContacts;
     }
 
     void runApp() {
@@ -33,9 +33,9 @@ class AppRunner {
     private List<Option> listOfOptions() {
         return Arrays.asList(
                 new Add(io, contactList),
-                new Show(io, contactList, displayContacts),
-                new Edit(io, contactList, displayContacts),
-                new Delete(io, contactList, displayContacts),
+                new Show(io, manipulateContacts),
+                new Edit(io, contactList, manipulateContacts),
+                new Delete(io, contactList, manipulateContacts),
                 new Quit(io, this));
     }
 

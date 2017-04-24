@@ -3,13 +3,11 @@ package com.pelensky.contactmanager;
 public class Show implements Option {
 
   private IO io;
-  private ContactList contactList;
-  private DisplayContacts displayContacts;
+  private ManipulateContacts manipulateContacts;
 
-  Show(IO io, ContactList contactList, DisplayContacts displayContacts) {
+  Show(IO io, ManipulateContacts manipulateContacts) {
     this.io = io;
-    this.contactList = contactList;
-    this.displayContacts = displayContacts;
+    this.manipulateContacts = manipulateContacts;
   }
 
   public String instruction() {
@@ -32,10 +30,10 @@ public class Show implements Option {
   }
 
   private boolean isContactListEmpty() {
-    return contactList.isContactListEmpty();
+    return manipulateContacts.isContactListEmpty();
   }
 
   private String listContacts(){
-      return displayContacts.listContacts();
+      return manipulateContacts.listContacts();
   }
 }

@@ -4,13 +4,13 @@ public class Edit extends Commands implements Option {
 
   private IO io;
   private ContactList contactList;
-  private DisplayContacts displayContacts;
+  private ManipulateContacts manipulateContacts;
 
-  Edit(IO io, ContactList contactList, DisplayContacts displayContacts) {
-    super(io, contactList, displayContacts);
+  Edit(IO io, ContactList contactList, ManipulateContacts manipulateContacts) {
+    super(io, contactList, manipulateContacts);
     this.io = io;
     this.contactList = contactList;
-    this.displayContacts = displayContacts;
+    this.manipulateContacts = manipulateContacts;
   }
 
   public String instruction() {
@@ -19,13 +19,13 @@ public class Edit extends Commands implements Option {
 
   @Override
   public void execute() {
-    if (this.contactList.isContactListEmpty()) {
+    if (manipulateContacts.isContactListEmpty()) {
       io.displayText("No contacts to edit");
     } else {
       io.displayText("Edit a contact");
       EditContact editContact = new EditContact(contactList);
       int selectedContact = selectContactTo("edit");
-      if (this.contactList.isNotAValidNumber(selectedContact)) {
+      if (manipulateContacts.isNotAValidNumber(selectedContact)) {
         io.displayText("Contact does not exist");
       } else {
         int selectField = selectFieldToUpdate(selectedContact, editContact);
