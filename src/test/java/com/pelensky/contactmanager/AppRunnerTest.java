@@ -31,26 +31,26 @@ public class AppRunnerTest {
 
   @Test
   public void welcomesUser() {
-    setUpAndRun("5", output, contactList);
+    setUpAndRun("6", output, contactList);
     assertThat(out.toString(), containsString("Contact Manager"));
   }
 
   @Test
   public void quitsAppWhenUserTypesQuit() {
-    setUpAndRun("5", output, contactList);
+    setUpAndRun("6", output, contactList);
     assertThat(out.toString(), containsString("Contact Manager Quitting"));
   }
 
   @Test
   public void askUserAgainIfInvalidSelection() {
-    setUpAndRun("asdfg\n5", output, contactList);
+    setUpAndRun("asdfg\n6", output, contactList);
     assertThat(out.toString(), containsString("Invalid selection\n"));
   }
 
   @Test
   public void userAddsANewContact() {
     setUpAndRun(
-        "1\nDan\nPelensky\n1 Commercial Street\nLondon\nE16LT\n07000 000 000\n5\n",
+        "1\nDan\nPelensky\n1 Commercial Street\nLondon\nE16LT\n07000 000 000\n6\n",
         output,
         contactList);
     assertThat(out.toString(), containsString("Dan Pelensky has been added as a contact."));
@@ -59,7 +59,7 @@ public class AppRunnerTest {
   @Test
   public void userListsContacts() {
     setUpAndRun(
-        "1\nDan\nPelensky\n1 Commercial Street\nLondon\nE16LT\n07000 000 000\n2\n5\n",
+        "1\nDan\nPelensky\n1 Commercial Street\nLondon\nE16LT\n07000 000 000\n3\n6\n",
         output,
         contactList);
     assertThat(
@@ -69,14 +69,14 @@ public class AppRunnerTest {
 
   @Test
   public void userTriesToListContacts() {
-    setUpAndRun("2\n5\n", output, contactList);
+    setUpAndRun("3\n6\n", output, contactList);
     assertThat(out.toString(), containsString("No contacts to show"));
   }
 
   @Test
   public void userEditsContact() {
     setUpAndRun(
-        "1\nDan\nPelensky\n1 Commercial Street\nLondon\nE16LT\n07000 000 000\n3\n1\n2\nTheMan\n2\n5\n",
+        "1\nDan\nPelensky\n1 Commercial Street\nLondon\nE16LT\n07000 000 000\n4\n1\n2\nTheMan\n3\n6\n",
         output,
         contactList);
     assertThat(
@@ -87,7 +87,7 @@ public class AppRunnerTest {
   @Test
   public void userTriesToEditContact() {
     setUpAndRun(
-        "1\nDan\nPelensky\n1 Commercial Street\nLondon\nE16LT\n07000 000 000\n3\n2\n5\n",
+        "1\nDan\nPelensky\n1 Commercial Street\nLondon\nE16LT\n07000 000 000\n4\n2\n6\n",
         output,
         contactList);
     assertThat(out.toString(), containsString("Contact does not exist"));
@@ -95,14 +95,14 @@ public class AppRunnerTest {
 
   @Test
   public void userTriesToEditContactsWhenThereAreNone() {
-    setUpAndRun("3\n5\n", output, contactList);
+    setUpAndRun("4\n6\n", output, contactList);
     assertThat(out.toString(), containsString("No contacts to edit"));
   }
 
   @Test
   public void userDeletesContact() {
     setUpAndRun(
-        "1\nDan\nPelensky\n1 Commercial Street\nLondon\nE16LT\n07000 000 000\n1\nTimmy\nPelensky\n2 Commercial Street\nLondon\nE11AG\n07111 111 111\n4\n2\n5\n",
+        "1\nDan\nPelensky\n1 Commercial Street\nLondon\nE16LT\n07000 000 000\n5\n1\n6\n",
         output,
         contactList);
     assertThat(out.toString(), containsString("Deleted"));
@@ -111,7 +111,7 @@ public class AppRunnerTest {
   @Test
   public void userTriesToDeleteContact() {
     setUpAndRun(
-        "1\nDan\nPelensky\n1 Commercial Street\nLondon\nE16LT\n07000 000 000\n4\n2\n5\n",
+        "1\nDan\nPelensky\n1 Commercial Street\nLondon\nE16LT\n07000 000 000\n5\n2\n6\n",
         output,
         contactList);
     assertThat(out.toString(), containsString("Contact does not exist\nTry again"));
@@ -120,7 +120,7 @@ public class AppRunnerTest {
   @Test
   public void userSelectsDefault() {
     setUpAndRun(
-            "default\n5\n",
+            "default\n6\n",
             output,
             contactList);
     assertThat(out.toString(), containsString("Invalid selection"));
@@ -128,7 +128,16 @@ public class AppRunnerTest {
 
   @Test
   public void userTriesToDeleteContactWhenThereAreNone() {
-    setUpAndRun("4\n5\n", output, contactList);
+    setUpAndRun("5\n6\n", output, contactList);
     assertThat(out.toString(), containsString("No contacts to delete"));
+  }
+
+  @Test
+  public void userSearchesForContact() {
+    setUpAndRun(
+            "1\nDan\nPelensky\n1 Commercial Street\nLondon\nE16LT\n07000 000 000\n2\nPelensky\n6\n",
+            output,
+            contactList);
+    assertThat(out.toString(), containsString("Found 1 Contact"));
   }
 }

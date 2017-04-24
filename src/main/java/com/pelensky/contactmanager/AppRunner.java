@@ -33,6 +33,7 @@ class AppRunner {
     private List<Option> listOfOptions() {
         return Arrays.asList(
                 new Add(io, contactList),
+                new Search(io, contactList, manipulateContacts),
                 new Show(io, manipulateContacts),
                 new Edit(io, contactList, manipulateContacts),
                 new Delete(io, contactList, manipulateContacts),
