@@ -18,7 +18,7 @@ class ManipulateContacts {
     String listContacts() {
       StringBuilder formattedContact = new StringBuilder();
       for (int i = 0; i < contactList.countContacts(); i++) {
-        formattedContact.append(formatContact(i)).append("\n");
+        formattedContact.append(formatContact(i)).append(System.lineSeparator());
       }
       return formattedContact.toString().trim();
     }
@@ -30,13 +30,13 @@ class ManipulateContacts {
               + contact.getFirstName()
               + " "
               + contact.getLastName()
-              + "\n"
+              + System.lineSeparator()
               + contact.getAddress()
-              + "\n"
+              + System.lineSeparator()
               + contact.getCity()
               + " "
               + contact.getPostCode()
-              + "\n"
+              + System.lineSeparator()
               + contact.getPhoneNumber());
     }
 
