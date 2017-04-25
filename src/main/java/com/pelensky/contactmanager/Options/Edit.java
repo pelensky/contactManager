@@ -7,28 +7,28 @@ public class Edit extends Commands implements Option {
 
   private IO io;
   private ContactList contactList;
-  private ManipulateContacts manipulateContacts;
+  private DisplayContacts displayContacts;
 
-  public Edit(IO io, ContactList contactList, ManipulateContacts manipulateContacts) {
-    super(io, contactList, manipulateContacts);
+  public Edit(IO io, ContactList contactList, DisplayContacts displayContacts) {
+    super(io, contactList, displayContacts);
     this.io = io;
     this.contactList = contactList;
-    this.manipulateContacts = manipulateContacts;
+    this.displayContacts = displayContacts;
   }
 
   public String instruction() {
-    return "4) Edit a contact";
+    return "3) Edit a contact";
   }
 
   @Override
   public void execute() {
-    if (manipulateContacts.isContactListEmpty()) {
+    if (displayContacts.isContactListEmpty()) {
       io.displayText("No contacts to edit");
     } else {
       io.displayText("Edit a contact");
       EditContact editContact = new EditContact(contactList);
       int selectedContact = selectContactTo("edit");
-      if (manipulateContacts.isNotAValidNumber(selectedContact)) {
+      if (displayContacts.isNotAValidNumber(selectedContact)) {
         io.displayText("Contact does not exist");
       } else {
         selectFieldToUpdate(selectedContact, editContact);
@@ -39,7 +39,7 @@ public class Edit extends Commands implements Option {
 
   @Override
   public boolean canRespondTo(String text) {
-    return text.equals("4");
+    return text.equals("3");
   }
 
   private void selectFieldToUpdate(int selection, EditContact editContact) {

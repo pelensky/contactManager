@@ -6,13 +6,13 @@ public class Delete extends Commands implements Option {
 
   private IO io;
   private ContactList contactList;
-  private ManipulateContacts manipulateContacts;
+  private DisplayContacts displayContacts;
 
-  public Delete(IO io, ContactList contactList, ManipulateContacts manipulateContacts) {
-    super(io, contactList, manipulateContacts);
+  public Delete(IO io, ContactList contactList, DisplayContacts displayContacts) {
+    super(io, contactList, displayContacts);
     this.io = io;
     this.contactList = contactList;
-    this.manipulateContacts = manipulateContacts;
+    this.displayContacts = displayContacts;
   }
 
   public String instruction() {
@@ -21,13 +21,13 @@ public class Delete extends Commands implements Option {
 
   @Override
   public void execute() {
-    if (manipulateContacts.isContactListEmpty()) {
+    if (displayContacts.isContactListEmpty()) {
       io.displayText("No contacts to delete");
     } else {
       io.displayText("Delete a contact");
       DeleteContact deleteContact = new DeleteContact(contactList);
       int selectedContact = selectContactTo("delete");
-      if (manipulateContacts.isNotAValidNumber(selectedContact)) {
+      if (displayContacts.isNotAValidNumber(selectedContact)) {
         io.displayText("Contact does not exist\nTry again");
       } else {
         delete(deleteContact, selectedContact);

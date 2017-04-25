@@ -2,13 +2,13 @@ package com.pelensky.contactmanager;
 
 public class Commands {
     private IO io;
-    ContactList contactList;
-    private ManipulateContacts manipulateContacts;
+    private ContactList contactList;
+    private DisplayContacts displayContacts;
 
-    public Commands(IO io, ContactList contactList, ManipulateContacts manipulateContacts) {
+    public Commands(IO io, ContactList contactList, DisplayContacts displayContacts) {
         this.io = io;
         this.contactList = contactList;
-        this.manipulateContacts = manipulateContacts;
+        this.displayContacts = displayContacts;
     }
 
     protected int selectContactTo(String text) {
@@ -16,7 +16,7 @@ public class Commands {
                 "Which contact would you like to " + text + "?"
                         + System.lineSeparator()
                         + "Please select number.");
-        io.displayText(manipulateContacts.listContacts(contactList.getContacts()));
+        io.displayText(displayContacts.listContacts(contactList.getContacts()));
         return Integer.parseInt(io.getUserInput());
     }
 }

@@ -1,20 +1,26 @@
 package com.pelensky.contactmanager;
 
+import com.pelensky.contactmanager.Find.FindOption;
+import com.pelensky.contactmanager.Find.Search;
+import com.pelensky.contactmanager.Find.Show;
+
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 
-public class ManipulateContacts {
+public class DisplayContacts {
 
-    ContactList contactList;
+    private ContactList contactList;
+    FindOption findOption;
 
-    ManipulateContacts(ContactList contactList){
+    DisplayContacts(ContactList contactList){
         this.contactList = contactList;
     }
 
     public boolean isNotAValidNumber(int selectedContact) {
       return (selectedContact > contactList.countContacts()) || (selectedContact < 1);
     }
-
 
     public String listContacts(ArrayList<Contact> listOfContacts) {
       StringBuilder formattedContact = new StringBuilder();
@@ -61,4 +67,6 @@ public class ManipulateContacts {
         filteredContacts.addAll(filteredByLastName);
         return filteredContacts;
     }
+
+
 }
