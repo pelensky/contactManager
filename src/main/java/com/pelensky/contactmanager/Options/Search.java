@@ -1,14 +1,20 @@
-package com.pelensky.contactmanager;
+package com.pelensky.contactmanager.Options;
+
+import com.pelensky.contactmanager.Contact;
+import com.pelensky.contactmanager.ContactList;
+import com.pelensky.contactmanager.IO;
+import com.pelensky.contactmanager.ManipulateContacts;
+import com.pelensky.contactmanager.Options.Option;
 
 import java.util.ArrayList;
 
-class Search implements Option {
+public class Search implements Option {
 
-    IO io;
-    ContactList contactList;
+    private IO io;
+    private ContactList contactList;
     private ManipulateContacts manipulateContacts;
 
-    Search(IO io, ContactList contactList, ManipulateContacts manipulateContacts) {
+    public Search(IO io, ContactList contactList, ManipulateContacts manipulateContacts) {
         this.io = io;
         this.contactList = contactList;
         this.manipulateContacts = manipulateContacts;

@@ -3,7 +3,6 @@ package com.pelensky.contactmanager.Options;
 import com.pelensky.contactmanager.Contact;
 import com.pelensky.contactmanager.ContactList;
 import com.pelensky.contactmanager.IO;
-import com.pelensky.contactmanager.Option;
 
 public class Add implements Option {
 

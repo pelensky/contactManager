@@ -1,4 +1,9 @@
-package com.pelensky.contactmanager;
+package com.pelensky.contactmanager.Options;
+
+import com.pelensky.contactmanager.ContactList;
+import com.pelensky.contactmanager.IO;
+import com.pelensky.contactmanager.ManipulateContacts;
+import com.pelensky.contactmanager.Options.Option;
 
 public class Show implements Option {
 
@@ -6,7 +11,7 @@ public class Show implements Option {
   private ContactList contactList;
   private ManipulateContacts manipulateContacts;
 
-  Show(IO io, ContactList contactList, ManipulateContacts manipulateContacts) {
+  public Show(IO io, ContactList contactList, ManipulateContacts manipulateContacts) {
     this.io = io;
     this.contactList = contactList;
     this.manipulateContacts = manipulateContacts;

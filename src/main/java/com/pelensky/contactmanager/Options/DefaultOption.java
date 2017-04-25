@@ -1,7 +1,6 @@
 package com.pelensky.contactmanager.Options;
 
 import com.pelensky.contactmanager.IO;
-import com.pelensky.contactmanager.Option;
 
 public class DefaultOption implements Option {
 

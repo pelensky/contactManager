@@ -1,14 +1,11 @@
 package com.pelensky.contactmanager;
 
-import com.pelensky.contactmanager.Options.Add;
-import com.pelensky.contactmanager.Options.DefaultOption;
-import com.pelensky.contactmanager.Options.Delete;
-import com.pelensky.contactmanager.Options.Edit;
+import com.pelensky.contactmanager.Options.*;
 
 import java.util.Arrays;
 import java.util.List;
 
-class AppRunner {
+public class AppRunner {
 
     private Boolean appRunning = true;
     private ContactList contactList;
@@ -54,7 +51,7 @@ class AppRunner {
         return new DefaultOption(io);
     }
 
-    void setAppNotRunning() {
+    public void setAppNotRunning() {
         this.appRunning = false;
     }
 

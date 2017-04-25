@@ -16,7 +16,7 @@ public class ManipulateContacts {
     }
 
 
-    String listContacts(ArrayList<Contact> listOfContacts) {
+    public String listContacts(ArrayList<Contact> listOfContacts) {
       StringBuilder formattedContact = new StringBuilder();
       sortContacts(listOfContacts);
       for (int i = 0; i < listOfContacts.size(); i++) {
@@ -54,7 +54,7 @@ public class ManipulateContacts {
         listOfContacts.sort(Contact.contactComparator);
     }
 
-    ArrayList<Contact> filterContacts(String search) {
+    public ArrayList<Contact> filterContacts(String search) {
         ArrayList<Contact> filteredContacts = contactList.getContacts().stream().filter(contact -> contact.getFirstName().toUpperCase().equals(search)).collect(Collectors.toCollection(ArrayList::new));
         ArrayList<Contact> filteredByLastName = contactList.getContacts().stream().filter(contact -> contact.getLastName().toUpperCase().equals(search)).collect(Collectors.toCollection(ArrayList::new));
         filteredContacts.removeAll(filteredByLastName);

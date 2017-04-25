@@ -1,4 +1,4 @@
-package com.pelensky.contactmanager;
+package com.pelensky.contactmanager.Options;
 
 public interface Option {
     void execute();

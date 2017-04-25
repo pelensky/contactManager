@@ -6,7 +6,7 @@ public class ContactList {
 
   private ArrayList<Contact> contacts = new ArrayList<>();
 
-  ArrayList<Contact> getContacts() {
+  public ArrayList<Contact> getContacts() {
     return contacts;
   }
 
