@@ -31,6 +31,7 @@ public class Search implements Option {
             if (filteredContacts.isEmpty()) {
                 io.displayText("No match");
             } else {
+                io.displayText(String.valueOf(filteredContacts.size()) + " Contact(s) Found");
                 io.displayText(String.valueOf(manipulateContacts.listContacts(filteredContacts)));
             }
         }

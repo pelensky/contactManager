@@ -138,6 +138,6 @@ public class AppRunnerTest {
             "1\nDan\nPelensky\n1 Commercial Street\nLondon\nE16LT\n07000 000 000\n2\nPelensky\n6\n",
             output,
             contactList);
-    assertThat(out.toString(), containsString("Found 1 Contact"));
+    assertThat(out.toString(), containsString("1 Contact(s) Found"));
   }
 }
