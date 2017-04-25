@@ -3,6 +3,9 @@ package com.pelensky.contactmanager.Edit;
 import com.pelensky.contactmanager.Contact;
 import com.pelensky.contactmanager.ContactList;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class EditContact {
 
   private ContactList contactList;
@@ -41,45 +44,29 @@ public class EditContact {
     return formatDisplay();
   }
 
-  public String selectField(int number) {
-    switch (number) {
-      case 1:
-        return contact.getFirstName();
-      case 2:
-        return contact.getLastName();
-      case 3:
-        return contact.getAddress();
-      case 4:
-        return contact.getCity();
-      case 5:
-        return contact.getPostCode();
-      case 6:
-        return contact.getPhoneNumber();
-      default:
-        return "Invalid selection";
-    }
+  public String editField(int number, String text) {
+    EditOption editOptions = findEditOption(number);
+    return editOptions.execute(text);
   }
 
-  public void updateContact(int number, String updatedField) {
-    switch (number) {
-      case 1:
-        contact.setFirstName(updatedField);
-        break;
-      case 2:
-        contact.setLastName(updatedField);
-        break;
-      case 3:
-        contact.setAddress(updatedField);
-        break;
-      case 4:
-        contact.setCity(updatedField);
-        break;
-      case 5:
-        contact.setPostCode(updatedField);
-        break;
-      case 6:
-        contact.setPhoneNumber(updatedField);
-        break;
-    }
+  private List<EditOption> listOfEditOptions() {
+    return Arrays.asList(
+            new FirstName(contact),
+            new LastName(contact),
+            new Address(contact),
+            new City(contact),
+            new PostCode(contact),
+            new PhoneNumber(contact));
   }
+
+  private EditOption findEditOption(int number){
+    for (EditOption editOption : listOfEditOptions()){
+      if (editOption.canRespondTo(number)) {
+        return editOption;
+      }
+    }
+    return new DefaultEditOption();
+  }
+
+
 }

@@ -31,8 +31,8 @@ public class Edit extends Commands implements Option {
       if (manipulateContacts.isNotAValidNumber(selectedContact)) {
         io.displayText("Contact does not exist");
       } else {
-        int selectField = selectFieldToUpdate(selectedContact, editContact);
-        updateField(editContact, selectField);
+        selectFieldToUpdate(selectedContact, editContact);
+
       }
     }
   }
@@ -42,19 +42,14 @@ public class Edit extends Commands implements Option {
     return text.equals("4");
   }
 
-  private int selectFieldToUpdate(int selection, EditContact editContact) {
+  private void selectFieldToUpdate(int selection, EditContact editContact) {
     io.displayText(
         "Which field would you like to edit?" + System.lineSeparator() + "Please select number.");
     io.displayText(editContact.showSelectionNumbers(selection));
     int selectField = Integer.parseInt(io.getUserInput());
-    io.displayText("You have selected " + editContact.selectField(selectField));
-    return selectField;
-  }
-
-  private void updateField(EditContact editContact, int selectField) {
     io.displayText("What would you like to change it to?");
     String contactUpdate = io.getUserInput();
-    editContact.updateContact(selectField, contactUpdate);
-    io.displayText("Updated");
+    io.displayText(editContact.editField(selectField, contactUpdate));
   }
+
 }
