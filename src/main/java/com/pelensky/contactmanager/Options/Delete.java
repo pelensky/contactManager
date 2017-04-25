@@ -16,7 +16,7 @@ public class Delete extends Commands implements Option {
   }
 
   public String instruction() {
-    return "5) Delete a contact";
+    return "4) Delete a contact";
   }
 
   @Override
@@ -40,7 +40,7 @@ public class Delete extends Commands implements Option {
   @Override
   public boolean canRespondTo(String text)
   {
-    return text.equals("5");
+    return text.equals("4");
   }
 
   private void delete(DeleteContact deleteContact, int selectedContact) {

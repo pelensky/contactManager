@@ -102,7 +102,7 @@ public class AppRunnerTest {
   @Test
   public void userDeletesContact() {
     setUpAndRun(
-        "1\nDan\nPelensky\n1 Commercial Street\nLondon\nE16LT\n07000 000 000\n5\n1\n6\n",
+        "1\nDan\nPelensky\n1 Commercial Street\nLondon\nE16LT\n07000 000 000\n4\n1\n6\n",
         output,
         contactList);
     assertThat(out.toString(), containsString("Deleted"));
@@ -111,7 +111,7 @@ public class AppRunnerTest {
   @Test
   public void userTriesToDeleteContact() {
     setUpAndRun(
-        "1\nDan\nPelensky\n1 Commercial Street\nLondon\nE16LT\n07000 000 000\n5\n2\n6\n",
+        "1\nDan\nPelensky\n1 Commercial Street\nLondon\nE16LT\n07000 000 000\n4\n2\n6\n",
         output,
         contactList);
     assertThat(out.toString(), containsString("Contact does not exist\nTry again"));
@@ -128,7 +128,7 @@ public class AppRunnerTest {
 
   @Test
   public void userTriesToDeleteContactWhenThereAreNone() {
-    setUpAndRun("5\n6\n", output, contactList);
+    setUpAndRun("4\n6\n", output, contactList);
     assertThat(out.toString(), containsString("No contacts to delete"));
   }
 
