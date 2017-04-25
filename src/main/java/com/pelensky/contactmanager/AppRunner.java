@@ -3,6 +3,7 @@ package com.pelensky.contactmanager;
 import com.pelensky.contactmanager.Options.Add;
 import com.pelensky.contactmanager.Options.DefaultOption;
 import com.pelensky.contactmanager.Options.Delete;
+import com.pelensky.contactmanager.Options.Edit;
 
 import java.util.Arrays;
 import java.util.List;

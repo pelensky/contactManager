@@ -1,11 +1,11 @@
 package com.pelensky.contactmanager;
 
-class EditContact {
+public class EditContact {
 
   private ContactList contactList;
   private Contact contact;
 
-  EditContact(ContactList contactList) {
+  public EditContact(ContactList contactList) {
     this.contactList = contactList;
   }
 
@@ -33,12 +33,12 @@ class EditContact {
         + contact.getPhoneNumber();
   }
 
-  String showSelectionNumbers(int number) {
+  public String showSelectionNumbers(int number) {
     contact = getContact(number);
     return formatDisplay();
   }
 
-  String selectField(int number) {
+  public String selectField(int number) {
     switch (number) {
       case 1:
         return contact.getFirstName();
@@ -57,7 +57,7 @@ class EditContact {
     }
   }
 
-  void updateContact(int number, String updatedField) {
+  public void updateContact(int number, String updatedField) {
     switch (number) {
       case 1:
         contact.setFirstName(updatedField);
