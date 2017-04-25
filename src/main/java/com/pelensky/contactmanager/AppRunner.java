@@ -1,9 +1,11 @@
 package com.pelensky.contactmanager;
 
+import com.pelensky.contactmanager.Options.Add;
+
 import java.util.Arrays;
 import java.util.List;
 
-class AppRunner {
+public class AppRunner {
 
     private Boolean appRunning = true;
     private ContactList contactList;

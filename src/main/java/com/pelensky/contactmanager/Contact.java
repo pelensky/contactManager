@@ -2,7 +2,7 @@ package com.pelensky.contactmanager;
 
 import java.util.Comparator;
 
-class Contact {
+public class Contact {
 
   private String firstName;
   private String lastName;
@@ -11,13 +11,13 @@ class Contact {
   private String postCode;
   private String phoneNumber;
 
-  Contact(
-      String firstName,
-      String lastName,
-      String address,
-      String city,
-      String postCode,
-      String phoneNumber) {
+  public Contact(
+          String firstName,
+          String lastName,
+          String address,
+          String city,
+          String postCode,
+          String phoneNumber) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.address = address;
@@ -26,27 +26,27 @@ class Contact {
     this.phoneNumber = phoneNumber;
   }
 
-   String getFirstName() {
+   public String getFirstName() {
     return firstName;
   }
 
-  String getLastName() {
+  public String getLastName() {
     return lastName;
   }
 
-  String getAddress() {
+  public String getAddress() {
     return address;
   }
 
-  String getCity() {
+  public String getCity() {
     return city;
   }
 
-  String getPostCode() {
+  public String getPostCode() {
     return postCode;
   }
 
-  String getPhoneNumber() {
+  public String getPhoneNumber() {
     return phoneNumber;
   }
 

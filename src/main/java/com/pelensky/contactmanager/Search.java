@@ -1,7 +1,6 @@
 package com.pelensky.contactmanager;
 
 import java.util.ArrayList;
-import java.util.stream.Collectors;
 
 class Search implements Option {
 

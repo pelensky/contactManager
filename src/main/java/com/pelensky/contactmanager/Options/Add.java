@@ -1,11 +1,16 @@
-package com.pelensky.contactmanager;
+package com.pelensky.contactmanager.Options;
+
+import com.pelensky.contactmanager.Contact;
+import com.pelensky.contactmanager.ContactList;
+import com.pelensky.contactmanager.IO;
+import com.pelensky.contactmanager.Option;
 
 public class Add implements Option {
 
     private IO io;
-    ContactList contactList;
+    private ContactList contactList;
 
-    Add(IO io, ContactList contactList) {
+    public Add(IO io, ContactList contactList) {
         this.io = io;
         this.contactList = contactList;
     }

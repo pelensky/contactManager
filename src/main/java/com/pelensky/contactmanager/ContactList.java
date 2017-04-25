@@ -2,7 +2,7 @@ package com.pelensky.contactmanager;
 
 import java.util.ArrayList;
 
-class ContactList {
+public class ContactList {
 
   private ArrayList<Contact> contacts = new ArrayList<>();
 
@@ -10,7 +10,7 @@ class ContactList {
     return contacts;
   }
 
-  void addContact(Contact contact) {
+  public void addContact(Contact contact) {
     contacts.add(contact);
   }
 
