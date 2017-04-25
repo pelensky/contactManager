@@ -1,4 +1,6 @@
-package com.pelensky.contactmanager;
+package com.pelensky.contactmanager.Options;
+
+import com.pelensky.contactmanager.*;
 
 public class Delete extends Commands implements Option {
 
@@ -6,7 +8,7 @@ public class Delete extends Commands implements Option {
   private ContactList contactList;
   private ManipulateContacts manipulateContacts;
 
-  Delete(IO io, ContactList contactList, ManipulateContacts manipulateContacts) {
+  public Delete(IO io, ContactList contactList, ManipulateContacts manipulateContacts) {
     super(io, contactList, manipulateContacts);
     this.io = io;
     this.contactList = contactList;

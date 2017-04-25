@@ -1,15 +1,17 @@
 package com.pelensky.contactmanager;
 
 import com.pelensky.contactmanager.Options.Add;
+import com.pelensky.contactmanager.Options.DefaultOption;
+import com.pelensky.contactmanager.Options.Delete;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class AppRunner {
+class AppRunner {
 
     private Boolean appRunning = true;
     private ContactList contactList;
-    IO io;
+    private IO io;
     private ManipulateContacts manipulateContacts;
 
     AppRunner(ContactList contactList, IO io, ManipulateContacts manipulateContacts) {

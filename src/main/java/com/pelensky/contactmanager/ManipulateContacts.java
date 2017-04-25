@@ -3,7 +3,7 @@ package com.pelensky.contactmanager;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
-class ManipulateContacts {
+public class ManipulateContacts {
 
     ContactList contactList;
 
@@ -11,7 +11,7 @@ class ManipulateContacts {
         this.contactList = contactList;
     }
 
-    boolean isNotAValidNumber(int selectedContact) {
+    public boolean isNotAValidNumber(int selectedContact) {
       return (selectedContact > contactList.countContacts()) || (selectedContact < 1);
     }
 
@@ -42,7 +42,7 @@ class ManipulateContacts {
               + contact.getPhoneNumber());
     }
 
-    boolean isContactListEmpty() {
+    public boolean isContactListEmpty() {
         return getContacts().isEmpty();
     }
 
