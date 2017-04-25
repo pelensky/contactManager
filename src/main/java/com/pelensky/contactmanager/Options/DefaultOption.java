@@ -1,10 +1,12 @@
-package com.pelensky.contactmanager;
+package com.pelensky.contactmanager.Options;
+
+import com.pelensky.contactmanager.IO;
 
 public class DefaultOption implements Option {
 
     private IO io;
 
-    DefaultOption(IO io){
+    public DefaultOption(IO io){
         this.io = io;
     }
 

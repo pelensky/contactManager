@@ -1,5 +1,6 @@
 package com.pelensky.contactmanager;
 
+import com.pelensky.contactmanager.Edit.EditContact;
 import org.junit.Before;
 import org.junit.Test;
 

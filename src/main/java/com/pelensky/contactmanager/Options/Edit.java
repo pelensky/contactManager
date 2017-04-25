@@ -1,29 +1,34 @@
-package com.pelensky.contactmanager;
+package com.pelensky.contactmanager.Options;
+
+import com.pelensky.contactmanager.*;
+import com.pelensky.contactmanager.Edit.EditContact;
 
 public class Edit extends Commands implements Option {
 
   private IO io;
   private ContactList contactList;
+  private ManipulateContacts manipulateContacts;
 
-  Edit(IO io, ContactList contactList) {
-    super(io, contactList);
+  public Edit(IO io, ContactList contactList, ManipulateContacts manipulateContacts) {
+    super(io, contactList, manipulateContacts);
     this.io = io;
     this.contactList = contactList;
+    this.manipulateContacts = manipulateContacts;
   }
 
   public String instruction() {
-    return "Type `edit` to edit a contact";
+    return "4) Edit a contact";
   }
 
   @Override
   public void execute() {
-    if (this.contactList.isContactListEmpty()) {
+    if (manipulateContacts.isContactListEmpty()) {
       io.displayText("No contacts to edit");
     } else {
       io.displayText("Edit a contact");
       EditContact editContact = new EditContact(contactList);
       int selectedContact = selectContactTo("edit");
-      if (this.contactList.isNotAValidNumber(selectedContact)) {
+      if (manipulateContacts.isNotAValidNumber(selectedContact)) {
         io.displayText("Contact does not exist");
       } else {
         int selectField = selectFieldToUpdate(selectedContact, editContact);
@@ -34,7 +39,7 @@ public class Edit extends Commands implements Option {
 
   @Override
   public boolean canRespondTo(String text) {
-    return text.equals("edit");
+    return text.equals("4");
   }
 
   private int selectFieldToUpdate(int selection, EditContact editContact) {

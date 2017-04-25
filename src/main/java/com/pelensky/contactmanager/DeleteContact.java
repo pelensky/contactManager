@@ -1,14 +1,14 @@
 package com.pelensky.contactmanager;
 
-class DeleteContact {
+public class DeleteContact {
 
     ContactList contactList;
 
-    DeleteContact(ContactList contactList) {
+    public DeleteContact(ContactList contactList) {
         this.contactList = contactList;
     }
 
-    void delete(int number) {
+    public void delete(int number) {
         contactList.getContacts().remove(number - 1);
     }
 }

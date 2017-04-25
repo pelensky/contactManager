@@ -1,17 +1,21 @@
-package com.pelensky.contactmanager;
+package com.pelensky.contactmanager.Options;
+
+import com.pelensky.contactmanager.Contact;
+import com.pelensky.contactmanager.ContactList;
+import com.pelensky.contactmanager.IO;
 
 public class Add implements Option {
 
     private IO io;
-    ContactList contactList;
+    private ContactList contactList;
 
-    Add(IO io, ContactList contactList){
+    public Add(IO io, ContactList contactList) {
         this.io = io;
         this.contactList = contactList;
     }
 
     public String instruction() {
-      return "Type `add` to add a new contact";
+        return "1) Add a new contact";
     }
 
     @Override
@@ -35,7 +39,7 @@ public class Add implements Option {
 
     @Override
     public boolean canRespondTo(String text) {
-        return text.equals("add");
+        return text.equals("1");
     }
 
 
@@ -47,4 +51,4 @@ public class Add implements Option {
     private void addContact(Contact newContact) {
         contactList.addContact((newContact));
     }
- }
+}

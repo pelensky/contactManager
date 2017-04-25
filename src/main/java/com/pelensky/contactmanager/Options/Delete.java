@@ -1,29 +1,33 @@
-package com.pelensky.contactmanager;
+package com.pelensky.contactmanager.Options;
+
+import com.pelensky.contactmanager.*;
 
 public class Delete extends Commands implements Option {
 
   private IO io;
   private ContactList contactList;
+  private ManipulateContacts manipulateContacts;
 
-  Delete(IO io, ContactList contactList) {
-    super(io, contactList);
+  public Delete(IO io, ContactList contactList, ManipulateContacts manipulateContacts) {
+    super(io, contactList, manipulateContacts);
     this.io = io;
     this.contactList = contactList;
+    this.manipulateContacts = manipulateContacts;
   }
 
   public String instruction() {
-    return "Type `delete` to delete a contact";
+    return "5) Delete a contact";
   }
 
   @Override
   public void execute() {
-    if (this.contactList.isContactListEmpty()) {
+    if (manipulateContacts.isContactListEmpty()) {
       io.displayText("No contacts to delete");
     } else {
       io.displayText("Delete a contact");
       DeleteContact deleteContact = new DeleteContact(contactList);
       int selectedContact = selectContactTo("delete");
-      if (this.contactList.isNotAValidNumber(selectedContact)) {
+      if (manipulateContacts.isNotAValidNumber(selectedContact)) {
         io.displayText("Contact does not exist\nTry again");
       } else {
         delete(deleteContact, selectedContact);
@@ -32,9 +36,11 @@ public class Delete extends Commands implements Option {
     }
   }
 
+
   @Override
-  public boolean canRespondTo(String text) {
-    return text.equals("delete");
+  public boolean canRespondTo(String text)
+  {
+    return text.equals("5");
   }
 
   private void delete(DeleteContact deleteContact, int selectedContact) {
