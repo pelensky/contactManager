@@ -140,4 +140,23 @@ public class AppRunnerTest {
             contactList);
     assertThat(out.toString(), containsString("1 Contact(s) Found"));
   }
+
+
+  @Test
+  public void userSearchesForContactThatDoesntExist() {
+    setUpAndRun(
+            "2\nPelensky\n6\n",
+            output,
+            contactList);
+    assertThat(out.toString(), containsString("No contacts"));
+  }
+
+  @Test
+  public void userSearchesForContactNotInList() {
+    setUpAndRun(
+            "1\nDan\nPelensky\n1 Commercial Street\nLondon\nE16LT\n07000 000 000\n2\nTimmy\n6\n",
+            output,
+            contactList);
+    assertThat(out.toString(), containsString("No match"));
+  }
 }
