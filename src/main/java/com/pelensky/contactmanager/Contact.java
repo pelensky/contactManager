@@ -50,27 +50,27 @@ public class Contact {
     return phoneNumber;
   }
 
-  void setFirstName(String firstName) {
+  public void setFirstName(String firstName) {
     this.firstName = firstName;
   }
 
-  void setLastName(String lastName) {
+  public void setLastName(String lastName) {
     this.lastName = lastName;
   }
 
-  void setAddress(String address) {
+  public void setAddress(String address) {
     this.address = address;
   }
 
-  void setCity(String city) {
+  public void setCity(String city) {
     this.city = city;
   }
 
-  void setPostCode(String postCode) {
+  public void setPostCode(String postCode) {
     this.postCode = postCode;
   }
 
-  void setPhoneNumber(String phoneNumber) {
+  public void setPhoneNumber(String phoneNumber) {
     this.phoneNumber = phoneNumber;
   }
 

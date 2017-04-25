@@ -1,4 +1,7 @@
-package com.pelensky.contactmanager;
+package com.pelensky.contactmanager.Edit;
+
+import com.pelensky.contactmanager.Contact;
+import com.pelensky.contactmanager.ContactList;
 
 public class EditContact {
 
