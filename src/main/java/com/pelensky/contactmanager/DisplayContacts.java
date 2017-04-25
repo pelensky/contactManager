@@ -1,18 +1,11 @@
 package com.pelensky.contactmanager;
 
-import com.pelensky.contactmanager.Find.FindOption;
-import com.pelensky.contactmanager.Find.Search;
-import com.pelensky.contactmanager.Find.Show;
-
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.stream.Collectors;
 
 public class DisplayContacts {
 
     private ContactList contactList;
-    FindOption findOption;
 
     DisplayContacts(ContactList contactList){
         this.contactList = contactList;
