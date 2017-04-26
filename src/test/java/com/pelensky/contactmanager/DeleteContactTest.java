@@ -22,7 +22,7 @@ public class DeleteContactTest {
 
     @Test
     public void deleteContact() {
-        contactList.deleteContact(2);
+        contactList.deleteContact(timmyPelensky);
        assertFalse(contactList.getContacts().contains(timmyPelensky));
     }
 

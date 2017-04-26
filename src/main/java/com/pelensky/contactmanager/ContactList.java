@@ -6,7 +6,7 @@ public class ContactList {
 
   private ArrayList<Contact> contacts = new ArrayList<>();
 
-  public ArrayList<Contact> getContacts() {
+  ArrayList<Contact> getContacts() {
     return contacts;
   }
 
@@ -14,8 +14,8 @@ public class ContactList {
     contacts.add(contact);
   }
 
-  public void deleteContact(int number) {
-    getContacts().remove(number - 1);
+  public void deleteContact(Contact contact) {
+    getContacts().remove(contact);
   }
 
   int countContacts() {
