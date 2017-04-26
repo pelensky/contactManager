@@ -6,14 +6,12 @@ import com.pelensky.contactmanager.EditContact;
 public class Edit extends Commands implements Option {
 
   private IO io;
-  private ContactList contactList;
   private DisplayContacts displayContacts;
   private EditContact editContact;
 
   public Edit(IO io, ContactList contactList, DisplayContacts displayContacts) {
     super(io, displayContacts);
     this.io = io;
-    this.contactList = contactList;
     this.displayContacts = displayContacts;
     this.editContact = new EditContact(contactList);
   }
@@ -62,5 +60,4 @@ public class Edit extends Commands implements Option {
   private boolean isContactListEmpty() {
     return displayContacts.isContactListEmpty();
   }
-
 }
