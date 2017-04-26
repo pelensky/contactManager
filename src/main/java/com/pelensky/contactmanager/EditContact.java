@@ -1,7 +1,5 @@
 package com.pelensky.contactmanager;
 
-import com.pelensky.contactmanager.Contact;
-import com.pelensky.contactmanager.ContactList;
 import com.pelensky.contactmanager.Edit.*;
 
 import java.util.Arrays;
@@ -16,7 +14,7 @@ public class EditContact {
         this.contactList = contactList;
     }
 
-    public String formatContactForSelection() {
+    private String formatContactForSelection() {
         return "1)"
                 + contact.getFirstName()
                 + System.lineSeparator()
@@ -36,7 +34,7 @@ public class EditContact {
                 + contact.getPhoneNumber();
     }
 
-    public String showSelectionNumbers(Contact contact) {
+    public String showNumbersToEditOnContact(Contact contact) {
         this.contact = contact;
        return formatContactForSelection();
     }

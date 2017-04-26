@@ -30,8 +30,7 @@ public class Edit extends Commands implements Option {
       io.displayText("Edit a contact");
       int selection = find.getChoiceForSearch();
       Contact selectedContact = find.findForManipulation(selection);
-      showSelectionNumbers(selectedContact);
-      selectFieldToUpdate(Integer.parseInt(io.getUserInput()));
+      selectFieldToUpdate(selectedContact);
     }
   }
 
@@ -40,10 +39,10 @@ public class Edit extends Commands implements Option {
     return text.equals("3");
   }
 
-  private void selectFieldToUpdate(int selection) {
+  private void selectFieldToUpdate(Contact contact) {
     io.displayText(
         "Which field would you like to edit?");
-    io.displayText(editContact.formatContactForSelection());
+    io.displayText(editContact.showNumbersToEditOnContact(contact));
     updateField(Integer.parseInt(io.getUserInput()));
   }
 
@@ -51,10 +50,6 @@ public class Edit extends Commands implements Option {
     io.displayText("What would you like to change it to?");
     String contactUpdate = io.getUserInput();
     io.displayText(editContact.editField(selectField, contactUpdate));
-  }
-
-  private void showSelectionNumbers(Contact selection) {
-    editContact.showSelectionNumbers(selection);
   }
 
   private boolean isContactListEmpty() {

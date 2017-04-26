@@ -6,7 +6,7 @@ import com.pelensky.contactmanager.DisplayContacts;
 
 import java.util.ArrayList;
 
-public class Search implements FindOption  {
+public class Search implements FindOption {
 
     private IO io;
     private DisplayContacts displayContacts;
@@ -21,19 +21,13 @@ public class Search implements FindOption  {
         if (isContactListEmpty()) {
             io.displayText("No contacts");
         } else {
-            io.displayText("Search for contact");
-            ArrayList<Contact> filteredContacts = searchForContacts();
+            ArrayList<Contact> filteredContacts = findContacts();
             if (filteredContacts.isEmpty()) {
                 io.displayText("No match");
             } else {
-                foundContacts(filteredContacts);
+                printFoundContacts(filteredContacts);
             }
         }
-    }
-
-    private void foundContacts(ArrayList<Contact> filteredContacts) {
-        io.displayText(String.valueOf(filteredContacts.size()) + " Contact(s) Found");
-        io.displayText(String.valueOf(displayContacts.listContacts(filteredContacts)));
     }
 
     @Override
@@ -42,25 +36,36 @@ public class Search implements FindOption  {
     }
 
     @Override
-    public Contact executeForManipulation(){
-       io.displayText("Search for contact");
-       ArrayList<Contact> filteredContacts = searchForContacts();
-       if (filteredContacts.isEmpty()) {
-           io.displayText("No match");
-           return null;
-       } else {
-           if (filteredContacts.size() > 1) {
-               foundContacts(filteredContacts);
-               return filteredContacts.get(0);
-           }
-       } return null;
+    public Contact executeForManipulation() {
+        ArrayList<Contact> filteredContacts = findContacts();
+        if (filteredContacts.isEmpty()) {
+            io.displayText("No match");
+            return null;
+        } else {
+            io.displayText("Select Contact");
+            printFoundContacts(filteredContacts);
+            int selection = Integer.parseInt(io.getUserInput());
+            return filteredContacts.get(selection - 1);
+        }
     }
+
+    private ArrayList<Contact> findContacts() {
+        io.displayText("Search for contact");
+        return searchForContacts();
+    }
+
 
     private ArrayList<Contact> searchForContacts() {
         return displayContacts.filterContacts(io.getUserInput().toUpperCase());
+    }
+
+    private void printFoundContacts(ArrayList<Contact> filteredContacts) {
+        io.displayText(String.valueOf(filteredContacts.size()) + " Contact(s) Found");
+        io.displayText(String.valueOf(displayContacts.listContacts(filteredContacts)));
     }
 
     private boolean isContactListEmpty() {
         return displayContacts.isContactListEmpty();
     }
 }
+
