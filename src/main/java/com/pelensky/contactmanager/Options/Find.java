@@ -4,7 +4,6 @@ import com.pelensky.contactmanager.Contact;
 import com.pelensky.contactmanager.ContactList;
 import com.pelensky.contactmanager.DisplayContacts;
 import com.pelensky.contactmanager.Find.*;
-import com.pelensky.contactmanager.Find.DefaultFindOption;
 import com.pelensky.contactmanager.IO;
 
 import java.util.Arrays;
@@ -52,11 +51,13 @@ public class Find implements Option {
 
     private void findForView(int number) {
         FindOption findOption = chooseFindOption(number);
+        assert findOption != null;
         findOption.executeForView();
     }
 
     Contact findForManipulation(int number) {
         FindOption findOption = chooseFindOption(number);
+        assert findOption != null;
         return findOption.executeForManipulation();
     }
 
@@ -73,7 +74,7 @@ public class Find implements Option {
                 return findOption;
             }
         }
-        return new DefaultFindOption();
+        return null;
     }
 }
 
