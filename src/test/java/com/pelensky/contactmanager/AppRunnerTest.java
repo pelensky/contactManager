@@ -132,11 +132,10 @@ public class AppRunnerTest {
     assertThat(out.toString(), containsString("1 Contact(s) Found"));
   }
 
-
   @Test
   public void userSearchesForContactThatDoesntExist() {
     setUpAndRun(
-            "2\nPelensky\n5\n",
+            "2\n5\n",
             output,
             contactList);
     assertThat(out.toString(), containsString("No contacts"));
@@ -150,5 +149,7 @@ public class AppRunnerTest {
             contactList);
     assertThat(out.toString(), containsString("No match"));
   }
+
+
 
 }

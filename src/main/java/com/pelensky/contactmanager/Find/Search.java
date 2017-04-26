@@ -18,9 +18,6 @@ public class Search implements FindOption {
 
     @Override
     public void executeForView() {
-        if (isContactListEmpty()) {
-            io.displayText("No contacts");
-        } else {
             ArrayList<Contact> filteredContacts = findContacts();
             if (filteredContacts.isEmpty()) {
                 io.displayText("No match");
@@ -28,7 +25,6 @@ public class Search implements FindOption {
                 printFoundContacts(filteredContacts);
             }
         }
-    }
 
     @Override
     public boolean canRespondTo(int number) {
