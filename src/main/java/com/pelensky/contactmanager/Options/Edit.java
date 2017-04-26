@@ -8,12 +8,14 @@ public class Edit extends Commands implements Option {
   private IO io;
   private ContactList contactList;
   private DisplayContacts displayContacts;
+  private EditContact editContact;
 
   public Edit(IO io, ContactList contactList, DisplayContacts displayContacts) {
     super(io, displayContacts);
     this.io = io;
     this.contactList = contactList;
     this.displayContacts = displayContacts;
+    this.editContact = new EditContact(contactList);
   }
 
   public String instruction() {
@@ -22,17 +24,15 @@ public class Edit extends Commands implements Option {
 
   @Override
   public void execute() {
-    if (displayContacts.isContactListEmpty()) {
+    if (isContactListEmpty()) {
       io.displayText("No contacts to edit");
     } else {
       io.displayText("Edit a contact");
-      EditContact editContact = new EditContact(contactList);
       int selectedContact = selectContactTo("edit");
       if (displayContacts.isNotAValidNumber(selectedContact)) {
         io.displayText("Contact does not exist");
       } else {
-        selectFieldToUpdate(selectedContact, editContact);
-
+        selectFieldToUpdate(selectedContact);
       }
     }
   }
@@ -42,14 +42,25 @@ public class Edit extends Commands implements Option {
     return text.equals("3");
   }
 
-  private void selectFieldToUpdate(int selection, EditContact editContact) {
+  private void selectFieldToUpdate(int selection) {
     io.displayText(
-        "Which field would you like to edit?" + System.lineSeparator() + "Please select number.");
-    io.displayText(editContact.showSelectionNumbers(selection));
-    int selectField = Integer.parseInt(io.getUserInput());
+        "Which field would you like to edit?");
+    io.displayText(showSelectionNumbers(selection));
+    updateField(Integer.parseInt(io.getUserInput()));
+  }
+
+  private void updateField(int selectField) {
     io.displayText("What would you like to change it to?");
     String contactUpdate = io.getUserInput();
     io.displayText(editContact.editField(selectField, contactUpdate));
+  }
+
+  private String showSelectionNumbers(int selection) {
+    return editContact.showSelectionNumbers(selection);
+  }
+
+  private boolean isContactListEmpty() {
+    return displayContacts.isContactListEmpty();
   }
 
 }
