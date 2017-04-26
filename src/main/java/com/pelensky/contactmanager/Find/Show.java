@@ -31,7 +31,9 @@ public class Show implements FindOption {
 
   @Override
   public Contact executeForManipulation(){
-    return null;
+    io.displayText("Show all contacts");
+    io.displayText(listContacts());
+    return displayContacts.getContacts().get(0);
   }
 
   private boolean isContactListEmpty() {

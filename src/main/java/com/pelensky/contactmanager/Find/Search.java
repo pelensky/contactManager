@@ -26,10 +26,14 @@ public class Search implements FindOption  {
             if (filteredContacts.isEmpty()) {
                 io.displayText("No match");
             } else {
-                io.displayText(String.valueOf(filteredContacts.size()) + " Contact(s) Found");
-                io.displayText(String.valueOf(displayContacts.listContacts(filteredContacts)));
+                foundContacts(filteredContacts);
             }
         }
+    }
+
+    private void foundContacts(ArrayList<Contact> filteredContacts) {
+        io.displayText(String.valueOf(filteredContacts.size()) + " Contact(s) Found");
+        io.displayText(String.valueOf(displayContacts.listContacts(filteredContacts)));
     }
 
     @Override
@@ -39,14 +43,20 @@ public class Search implements FindOption  {
 
     @Override
     public Contact executeForManipulation(){
-        return null;
+       io.displayText("Search for contact");
+       ArrayList<Contact> filteredContacts = searchForContacts();
+       if (filteredContacts.isEmpty()) {
+           io.displayText("No match");
+           return null;
+       } else {
+           foundContacts(filteredContacts);
+           return filteredContacts.get(0);
+       }
     }
 
     private ArrayList<Contact> searchForContacts() {
         return displayContacts.filterContacts(io.getUserInput().toUpperCase());
     }
-
-
 
     private boolean isContactListEmpty() {
         return displayContacts.isContactListEmpty();

@@ -7,12 +7,14 @@ public class Delete extends Commands implements Option {
   private IO io;
   private ContactList contactList;
   private DisplayContacts displayContacts;
+  private Find find;
 
-  public Delete(IO io, ContactList contactList, DisplayContacts displayContacts) {
+  public Delete(IO io, ContactList contactList, DisplayContacts displayContacts, Find find) {
     super(io, displayContacts);
     this.io = io;
     this.contactList = contactList;
     this.displayContacts = displayContacts;
+    this.find = find;
   }
 
   public String instruction() {

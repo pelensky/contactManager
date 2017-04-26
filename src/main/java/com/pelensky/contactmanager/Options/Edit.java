@@ -8,11 +8,13 @@ public class Edit extends Commands implements Option {
   private IO io;
   private DisplayContacts displayContacts;
   private EditContact editContact;
+  private Find find;
 
-  public Edit(IO io, ContactList contactList, DisplayContacts displayContacts) {
+  public Edit(IO io, ContactList contactList, DisplayContacts displayContacts, Find find) {
     super(io, displayContacts);
     this.io = io;
     this.displayContacts = displayContacts;
+    this.find = find;
     this.editContact = new EditContact(contactList);
   }
 

@@ -33,11 +33,12 @@ public class AppRunner {
     }
 
     private List<Option> listOfOptions() {
+        Find find = new Find(io, contactList, displayContacts);
         return Arrays.asList(
                 new Add(io, contactList),
-                new Find(io, contactList, displayContacts),
-                new Edit(io, contactList, displayContacts),
-                new Delete(io, contactList, displayContacts),
+                find,
+                new Edit(io, contactList, displayContacts, find),
+                new Delete(io, contactList, displayContacts, find),
                 new Quit(io, this));
     }
 
