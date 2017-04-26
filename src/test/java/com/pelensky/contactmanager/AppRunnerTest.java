@@ -162,10 +162,10 @@ public class AppRunnerTest {
   @Test
   public void userSelectsWrongOptionWhenEditing() {
     setUpAndRun(
-            "1\nDan\nPelensky\n1 Commercial Street\nLondon\nE16LT\n07000 000 000\n3\n1\nDan\n2\n5\n",
+            "1\nDan\nPelensky\n1 Commercial Street\nLondon\nE16LT\n07000 000 000\n3\n1\nDan\n1\n10\n10\n5",
             output,
             contactList);
-    assertThat(out.toString(), containsString("Invalid selection"));
+    assertThat(out.toString(), containsString("Invalid Selection"));
   }
 
   @Test
@@ -176,7 +176,6 @@ public class AppRunnerTest {
             contactList);
     assertThat(out.toString(), containsString("First name set to Daniel"));
   }
-
 
 
 }

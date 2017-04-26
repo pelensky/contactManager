@@ -11,6 +11,7 @@ public class Edit implements Option {
   private Find find;
 
   public Edit(IO io, ContactList contactList, DisplayContacts displayContacts, Find find) {
+
     this.io = io;
     this.displayContacts = displayContacts;
     this.find = find;
