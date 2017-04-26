@@ -30,7 +30,11 @@ public class Edit extends Commands implements Option {
       io.displayText("Edit a contact");
       int selection = find.getChoiceForSearch();
       Contact selectedContact = find.findForManipulation(selection);
+      if (selectedContact != null) {
       selectFieldToUpdate(selectedContact);
+    } else {
+        io.displayText("Try again");
+      }
     }
   }
 

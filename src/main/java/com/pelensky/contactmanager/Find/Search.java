@@ -45,7 +45,12 @@ public class Search implements FindOption {
             io.displayText("Select Contact");
             printFoundContacts(filteredContacts);
             int selection = Integer.parseInt(io.getUserInput());
+            if (selection > filteredContacts.size()){
+                io.displayText("Invalid selection");
+                return null;
+            } else {
             return filteredContacts.get(selection - 1);
+        }
         }
     }
 

@@ -29,9 +29,13 @@ public class Delete extends Commands implements Option {
       io.displayText("Delete a contact");
       int selection = find.getChoiceForSearch();
       Contact selectedContact = find.findForManipulation(selection);
-      delete(selectedContact);
-      io.displayText("Deleted");
+      if (selectedContact != null) {
+        delete(selectedContact);
+        io.displayText("Deleted");
+      } else {
+        io.displayText("Try again");
       }
+    }
     }
 
 

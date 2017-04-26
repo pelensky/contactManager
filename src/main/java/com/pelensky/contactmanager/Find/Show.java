@@ -34,12 +34,14 @@ public class Show implements FindOption {
   @Override
   public Contact executeForManipulation() {
     io.displayText(listContacts());
-    if (getContacts().size() > 1) {
-      io.displayText("Select Contact");
-      return getContacts().get(selectContact() - 1);
+    io.displayText("Select Contact");
+    int selection = selectContact();
+    if (selection > getContacts().size()){
+      io.displayText("Invalid selection");
+      return null;
     } else {
-      return getContacts().get(0);
-    }
+      return getContacts().get(selection - 1);
+  }
   }
 
   private boolean isContactListEmpty() {

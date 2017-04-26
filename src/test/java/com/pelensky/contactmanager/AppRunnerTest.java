@@ -76,7 +76,7 @@ public class AppRunnerTest {
   @Test
   public void userEditsContact() {
     setUpAndRun(
-        "1\nDan\nPelensky\n1 Commercial Street\nLondon\nE16LT\n07000 000 000\n3\n2\n2\nTheMan\n2\n2\n5\n",
+        "1\nDan\nPelensky\n1 Commercial Street\nLondon\nE16LT\n07000 000 000\n3\n2\n1\n2\nTheMan\n2\n2\n5\n",
         output,
         contactList);
     assertThat(
@@ -93,7 +93,7 @@ public class AppRunnerTest {
   @Test
   public void userDeletesContact() {
     setUpAndRun(
-        "1\nDan\nPelensky\n1 Commercial Street\nLondon\nE16LT\n07000 000 000\n4\n1\n5\n",
+        "1\nDan\nPelensky\n1 Commercial Street\nLondon\nE16LT\n07000 000 000\n4\n2\n1\n5\n",
         output,
         contactList);
     assertThat(out.toString(), containsString("Deleted"));
@@ -102,10 +102,10 @@ public class AppRunnerTest {
   @Test
   public void userTriesToDeleteContact() {
     setUpAndRun(
-        "1\nDan\nPelensky\n1 Commercial Street\nLondon\nE16LT\n07000 000 000\n4\n2\n5\n",
+        "1\nDan\nPelensky\n1 Commercial Street\nLondon\nE16LT\n07000 000 000\n4\n2\n2\n5\n",
         output,
         contactList);
-    assertThat(out.toString(), containsString("Contact does not exist\nTry again"));
+    assertThat(out.toString(), containsString("Invalid selection"));
   }
 
   @Test
