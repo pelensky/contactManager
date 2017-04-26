@@ -1,4 +1,4 @@
-package com.pelensky.contactmanager;
+package com.pelensky.contactmanager.CommandLineApp;
 
 import java.io.PrintStream;
 import java.util.Scanner;

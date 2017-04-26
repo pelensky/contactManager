@@ -1,9 +1,6 @@
-package com.pelensky.contactmanager.App;
+package com.pelensky.contactmanager.CommandLineApp;
 
-import com.pelensky.contactmanager.AppRunner;
-import com.pelensky.contactmanager.ContactList;
-import com.pelensky.contactmanager.DisplayContacts;
-import com.pelensky.contactmanager.IO;
+import com.pelensky.contactmanager.DomainModels.ContactList;
 
 import java.io.PrintStream;
 import java.util.Scanner;

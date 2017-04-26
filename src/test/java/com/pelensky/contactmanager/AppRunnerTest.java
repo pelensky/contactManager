@@ -1,5 +1,8 @@
 package com.pelensky.contactmanager;
 
+import com.pelensky.contactmanager.CommandLineApp.AppRunner;
+import com.pelensky.contactmanager.CommandLineApp.IO;
+import com.pelensky.contactmanager.DomainModels.ContactList;
 import org.junit.Before;
 import org.junit.Test;
 

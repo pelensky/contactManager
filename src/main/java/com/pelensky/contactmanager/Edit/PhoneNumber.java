@@ -1,6 +1,6 @@
 package com.pelensky.contactmanager.Edit;
 
-import com.pelensky.contactmanager.Contact;
+import com.pelensky.contactmanager.DomainModels.Contact;
 
 public class PhoneNumber implements EditOption{
 

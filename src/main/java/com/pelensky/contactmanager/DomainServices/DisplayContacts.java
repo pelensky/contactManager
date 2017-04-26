@@ -1,4 +1,7 @@
-package com.pelensky.contactmanager;
+package com.pelensky.contactmanager.DomainServices;
+
+import com.pelensky.contactmanager.DomainModels.Contact;
+import com.pelensky.contactmanager.DomainModels.ContactList;
 
 import java.util.ArrayList;
 import java.util.stream.Collectors;
@@ -9,10 +12,6 @@ public class DisplayContacts {
 
     public DisplayContacts(ContactList contactList){
         this.contactList = contactList;
-    }
-
-    public boolean isNotAValidNumber(int selectedContact) {
-      return (selectedContact > contactList.countContacts()) || (selectedContact < 1);
     }
 
     public String listContacts(ArrayList<Contact> listOfContacts) {
@@ -53,9 +52,9 @@ public class DisplayContacts {
         listOfContacts.sort(Contact.contactComparator);
     }
 
-    public ArrayList<Contact> filterContacts(String search) {
-        ArrayList<Contact> filteredContacts = contactList.getContacts().stream().filter(contact -> contact.getFirstName().toUpperCase().equals(search)).collect(Collectors.toCollection(ArrayList::new));
-        ArrayList<Contact> filteredByLastName = contactList.getContacts().stream().filter(contact -> contact.getLastName().toUpperCase().equals(search)).collect(Collectors.toCollection(ArrayList::new));
+    public ArrayList<Contact> filterContacts(String filter) {
+        ArrayList<Contact> filteredContacts = contactList.getContacts().stream().filter(contact -> contact.getFirstName().toUpperCase().equals(filter)).collect(Collectors.toCollection(ArrayList::new));
+        ArrayList<Contact> filteredByLastName = contactList.getContacts().stream().filter(contact -> contact.getLastName().toUpperCase().equals(filter)).collect(Collectors.toCollection(ArrayList::new));
         filteredContacts.removeAll(filteredByLastName);
         filteredContacts.addAll(filteredByLastName);
         return filteredContacts;

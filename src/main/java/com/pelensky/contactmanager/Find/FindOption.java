@@ -1,6 +1,6 @@
 package com.pelensky.contactmanager.Find;
 
-import com.pelensky.contactmanager.Contact;
+import com.pelensky.contactmanager.DomainModels.Contact;
 
 public interface FindOption {
     void executeForView();

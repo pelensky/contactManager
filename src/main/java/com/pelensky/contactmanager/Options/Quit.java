@@ -1,8 +1,7 @@
 package com.pelensky.contactmanager.Options;
 
-import com.pelensky.contactmanager.AppRunner;
-import com.pelensky.contactmanager.IO;
-import com.pelensky.contactmanager.Options.Option;
+import com.pelensky.contactmanager.CommandLineApp.AppRunner;
+import com.pelensky.contactmanager.CommandLineApp.IO;
 
 public class Quit implements Option {
 

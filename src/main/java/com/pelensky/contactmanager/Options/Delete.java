@@ -1,6 +1,9 @@
 package com.pelensky.contactmanager.Options;
 
-import com.pelensky.contactmanager.*;
+import com.pelensky.contactmanager.CommandLineApp.IO;
+import com.pelensky.contactmanager.DomainModels.Contact;
+import com.pelensky.contactmanager.DomainModels.ContactList;
+import com.pelensky.contactmanager.DomainServices.DisplayContacts;
 
 public class Delete implements Option {
 

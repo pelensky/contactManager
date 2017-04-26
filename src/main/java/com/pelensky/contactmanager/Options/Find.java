@@ -1,10 +1,10 @@
 package com.pelensky.contactmanager.Options;
 
-import com.pelensky.contactmanager.Contact;
-import com.pelensky.contactmanager.ContactList;
-import com.pelensky.contactmanager.DisplayContacts;
+import com.pelensky.contactmanager.DomainModels.Contact;
+import com.pelensky.contactmanager.DomainModels.ContactList;
+import com.pelensky.contactmanager.DomainServices.DisplayContacts;
 import com.pelensky.contactmanager.Find.*;
-import com.pelensky.contactmanager.IO;
+import com.pelensky.contactmanager.CommandLineApp.IO;
 
 import java.util.Arrays;
 import java.util.List;

@@ -1,5 +1,7 @@
-package com.pelensky.contactmanager;
+package com.pelensky.contactmanager.CommandLineApp;
 
+import com.pelensky.contactmanager.DomainModels.ContactList;
+import com.pelensky.contactmanager.DomainServices.DisplayContacts;
 import com.pelensky.contactmanager.Options.*;
 
 import java.util.Arrays;
@@ -62,5 +64,4 @@ public class AppRunner {
         }
         return line + instructions + System.lineSeparator() + line;
     }
-
 }

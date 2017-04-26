@@ -1,6 +1,7 @@
-package com.pelensky.contactmanager;
+package com.pelensky.contactmanager.DomainServices;
 
 import com.pelensky.contactmanager.Edit.*;
+import com.pelensky.contactmanager.DomainModels.Contact;
 
 import java.util.Arrays;
 import java.util.List;

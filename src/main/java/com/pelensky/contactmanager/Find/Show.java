@@ -1,62 +1,71 @@
 package com.pelensky.contactmanager.Find;
 
-import com.pelensky.contactmanager.Contact;
-import com.pelensky.contactmanager.IO;
-import com.pelensky.contactmanager.DisplayContacts;
+import com.pelensky.contactmanager.DomainModels.Contact;
+import com.pelensky.contactmanager.CommandLineApp.IO;
+import com.pelensky.contactmanager.DomainServices.DisplayContacts;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 
 public class Show implements FindOption {
 
-  private IO io;
-  private DisplayContacts displayContacts;
+    private IO io;
+    private DisplayContacts displayContacts;
 
-  public Show(IO io, DisplayContacts displayContacts) {
-    this.io = io;
-    this.displayContacts = displayContacts;
-  }
-
-  @Override
-  public void executeForView() {
-    if (isContactListEmpty()) {
-      io.displayText("No contacts to show");
-    } else {
-      io.displayText("Show all contacts");
-      io.displayText(listContacts());
+    public Show(IO io, DisplayContacts displayContacts) {
+        this.io = io;
+        this.displayContacts = displayContacts;
     }
-  }
 
-  @Override
-  public boolean canRespondTo(int number) {
-    return number == 2;
-  }
+    @Override
+    public void executeForView() {
+        if (isContactListEmpty()) {
+            io.displayText("No contacts to show");
+        } else {
+            io.displayText("Show all contacts");
+            io.displayText(listContacts());
+        }
+    }
 
-  @Override
-  public Contact executeForManipulation() {
-    io.displayText(listContacts());
-    io.displayText("Select Contact");
-    int selection = selectContact();
-    if (selection > getContacts().size()){
-      io.displayText("Invalid selection");
-      return null;
-    } else {
-      return getContacts().get(selection - 1);
-  }
-  }
+    @Override
+    public boolean canRespondTo(int number) {
+        return number == 2;
+    }
 
-  private boolean isContactListEmpty() {
-    return displayContacts.isContactListEmpty();
-  }
+    @Override
+    public Contact executeForManipulation() {
+        io.displayText(listContacts());
+        io.displayText("Select Contact");
+        int selection = selectContact();
+        return getContact(selection);
+    }
 
-  private String listContacts(){
-      return displayContacts.listContacts(getContacts());
-  }
+    private Contact getContact(int selection) {
+        if (selection > getContacts().size()) {
+            io.displayText("Invalid selection");
+            return null;
+        } else {
+            return getSelectedContact(selection);
+        }
+    }
 
-  private ArrayList<Contact> getContacts() {
-    return displayContacts.getContacts();
-  }
+    private Contact getSelectedContact(int selection) {
+        return getContacts().get(selection - 1);
+    }
 
-  private int selectContact() {
-   return Integer.parseInt(io.getUserInput());
-  }
+    private boolean isContactListEmpty() {
+        return displayContacts.isContactListEmpty();
+    }
+
+    private String listContacts() {
+        return displayContacts.listContacts(getContacts());
+    }
+
+    private ArrayList<Contact> getContacts() {
+        return displayContacts.getContacts();
+    }
+
+    private int selectContact() {
+        return Integer.parseInt(io.getUserInput());
+    }
 }

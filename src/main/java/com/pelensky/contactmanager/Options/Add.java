@@ -1,8 +1,8 @@
 package com.pelensky.contactmanager.Options;
 
-import com.pelensky.contactmanager.Contact;
-import com.pelensky.contactmanager.ContactList;
-import com.pelensky.contactmanager.IO;
+import com.pelensky.contactmanager.DomainModels.Contact;
+import com.pelensky.contactmanager.DomainModels.ContactList;
+import com.pelensky.contactmanager.CommandLineApp.IO;
 
 public class Add implements Option {
 

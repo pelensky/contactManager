@@ -1,4 +1,4 @@
-package com.pelensky.contactmanager;
+package com.pelensky.contactmanager.DomainModels;
 
 import java.util.Comparator;
 
@@ -34,19 +34,19 @@ public class Contact {
         return lastName;
     }
 
-    String getAddress() {
+    public String getAddress() {
         return address;
     }
 
-    String getCity() {
+    public String getCity() {
         return city;
     }
 
-    String getPostCode() {
+    public String getPostCode() {
         return postCode;
     }
 
-    String getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
@@ -74,7 +74,7 @@ public class Contact {
         this.phoneNumber = phoneNumber;
     }
 
-    static Comparator<Contact> contactComparator = (c1, c2) -> {
+    public static Comparator<Contact> contactComparator = (c1, c2) -> {
         String contact1 = c1.getLastName().toUpperCase();
         String contact2 = c2.getLastName().toUpperCase();
         return contact1.compareTo(contact2);
