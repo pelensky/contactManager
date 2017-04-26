@@ -1,6 +1,6 @@
 package com.pelensky.contactmanager.Find;
 
-import com.pelensky.contactmanager.ContactList;
+import com.pelensky.contactmanager.Contact;
 import com.pelensky.contactmanager.IO;
 import com.pelensky.contactmanager.DisplayContacts;
 
@@ -15,7 +15,7 @@ public class Show implements FindOption {
   }
 
   @Override
-  public void execute() {
+  public void executeForView() {
     if (isContactListEmpty()) {
       io.displayText("No contacts to show");
     } else {
@@ -27,6 +27,11 @@ public class Show implements FindOption {
   @Override
   public boolean canRespondTo(int number) {
     return number == 2;
+  }
+
+  @Override
+  public Contact executeForManipulation(){
+    return null;
   }
 
   private boolean isContactListEmpty() {

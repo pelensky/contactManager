@@ -1,13 +1,20 @@
 package com.pelensky.contactmanager.Find;
 
-public class DefaultFindOption implements FindOption{
+import com.pelensky.contactmanager.Contact;
+
+public class DefaultFindOption implements FindOption {
 
     @Override
-    public void execute() {}
+    public void executeForView() {}
 
     @Override
     public boolean canRespondTo(int number) {
         return false;
+    }
+
+    @Override
+    public Contact executeForManipulation() {
+        return null;
     }
 
 }

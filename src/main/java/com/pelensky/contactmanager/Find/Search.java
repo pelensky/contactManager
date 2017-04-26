@@ -17,7 +17,7 @@ public class Search implements FindOption  {
     }
 
     @Override
-    public void execute() {
+    public void executeForView() {
         if (isContactListEmpty()) {
             io.displayText("No contacts");
         } else {
@@ -32,15 +32,21 @@ public class Search implements FindOption  {
         }
     }
 
+    @Override
+    public boolean canRespondTo(int number) {
+        return number == 1;
+    }
+
+    @Override
+    public Contact executeForManipulation(){
+        return null;
+    }
+
     private ArrayList<Contact> searchForContacts() {
         return displayContacts.filterContacts(io.getUserInput().toUpperCase());
     }
 
 
-    @Override
-    public boolean canRespondTo(int number) {
-        return number == 1;
-    }
 
     private boolean isContactListEmpty() {
         return displayContacts.isContactListEmpty();
