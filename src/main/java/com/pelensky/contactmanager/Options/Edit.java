@@ -26,23 +26,34 @@ public class Edit implements Option {
   @Override
   public void execute() {
     if (isContactListEmpty()) {
-      io.displayText("No contacts to edit");
+      noContacts();
     } else {
-      io.displayText("Edit a contact");
-      int selection = find.getChoiceForSearch();
-      Contact selectedContact = find.findForManipulation(selection);
-      editContact = new EditContact(selectedContact);
-      if (selectedContact != null) {
-      selectFieldToUpdate(selectedContact);
-    } else {
-        io.displayText("Try again");
-      }
+      editContactIfValid(getContactToEdit());
     }
   }
 
   @Override
   public boolean canRespondTo(String text) {
     return text.equals("3");
+  }
+
+  private Contact getContactToEdit() {
+    io.displayText("Edit a contact");
+    int selection = find.getChoiceForSearch();
+    return find.findForManipulation(selection);
+  }
+
+  private void editContactIfValid(Contact selectedContact) {
+    editContact = new EditContact(selectedContact);
+    if (selectedContact != null) {
+    selectFieldToUpdate(selectedContact);
+  } else {
+      io.displayText("Try again");
+    }
+  }
+
+  private void noContacts() {
+    io.displayText("No contacts to edit");
   }
 
   private void selectFieldToUpdate(Contact contact) {

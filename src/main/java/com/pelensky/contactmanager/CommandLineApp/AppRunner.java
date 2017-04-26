@@ -39,7 +39,7 @@ public class AppRunner {
                 new Add(io, contactList),
                 find,
                 new Edit(io, displayContacts, find),
-                new Delete(io, contactList, displayContacts, find),
+                new Delete(io, contactList, find),
                 new Quit(io, this));
     }
 
