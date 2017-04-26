@@ -1,8 +1,7 @@
 package com.pelensky.contactmanager.Options;
 
 import com.pelensky.contactmanager.DomainModels.Contact;
-import com.pelensky.contactmanager.DomainModels.ContactList;
-import com.pelensky.contactmanager.DomainServices.DisplayContacts;
+import com.pelensky.contactmanager.DomainServices.ManipulateContacts;
 import com.pelensky.contactmanager.Find.*;
 import com.pelensky.contactmanager.CommandLineApp.IO;
 
@@ -12,13 +11,11 @@ import java.util.List;
 public class Find implements Option {
 
     private IO io;
-    private ContactList contactList;
-    private DisplayContacts displayContacts;
+    private ManipulateContacts manipulateContacts;
 
-    public Find(IO io, ContactList contactList, DisplayContacts displayContacts) {
+    public Find(IO io, ManipulateContacts manipulateContacts) {
         this.io = io;
-        this.contactList = contactList;
-        this.displayContacts = displayContacts;
+        this.manipulateContacts = manipulateContacts;
     }
     @Override
     public void execute() {
@@ -41,7 +38,7 @@ public class Find implements Option {
     }
 
     private boolean isContactListEmpty() {
-        return displayContacts.isContactListEmpty();
+        return manipulateContacts.isContactListEmpty();
     }
 
     int getChoiceForSearch() {
@@ -63,8 +60,8 @@ public class Find implements Option {
 
     private List<FindOption> listOfFindOptions(){
         return Arrays.asList(
-                new Search(io, displayContacts),
-                new Show(io,  displayContacts)
+                new Search(io, manipulateContacts),
+                new Show(io, manipulateContacts)
         );
     }
 

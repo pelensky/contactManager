@@ -1,21 +1,21 @@
 package com.pelensky.contactmanager.Options;
 
 import com.pelensky.contactmanager.CommandLineApp.IO;
-import com.pelensky.contactmanager.DomainServices.DisplayContacts;
+import com.pelensky.contactmanager.DomainServices.ManipulateContacts;
 import com.pelensky.contactmanager.DomainServices.EditContact;
 import com.pelensky.contactmanager.DomainModels.Contact;
 
 public class Edit implements Option {
 
   private IO io;
-  private DisplayContacts displayContacts;
+  private ManipulateContacts manipulateContacts;
   private EditContact editContact;
   private Find find;
 
-  public Edit(IO io, DisplayContacts displayContacts, Find find) {
+  public Edit(IO io, ManipulateContacts manipulateContacts, Find find) {
 
     this.io = io;
-    this.displayContacts = displayContacts;
+    this.manipulateContacts = manipulateContacts;
     this.find = find;
   }
 
@@ -70,6 +70,6 @@ public class Edit implements Option {
   }
 
   private boolean isContactListEmpty() {
-    return displayContacts.isContactListEmpty();
+    return manipulateContacts.isContactListEmpty();
   }
 }

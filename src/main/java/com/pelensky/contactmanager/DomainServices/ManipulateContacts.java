@@ -6,11 +6,11 @@ import com.pelensky.contactmanager.DomainModels.ContactList;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
-public class DisplayContacts {
+public class ManipulateContacts {
 
     private ContactList contactList;
 
-    public DisplayContacts(ContactList contactList){
+    public ManipulateContacts(ContactList contactList){
         this.contactList = contactList;
     }
 

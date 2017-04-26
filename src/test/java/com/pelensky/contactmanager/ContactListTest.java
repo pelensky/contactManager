@@ -2,7 +2,7 @@ package com.pelensky.contactmanager;
 
 import com.pelensky.contactmanager.DomainModels.Contact;
 import com.pelensky.contactmanager.DomainModels.ContactList;
-import com.pelensky.contactmanager.DomainServices.DisplayContacts;
+import com.pelensky.contactmanager.DomainServices.ManipulateContacts;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -14,7 +14,7 @@ public class ContactListTest {
 
   private ContactList contactList;
   private Contact danPelensky;
-  private DisplayContacts displayContacts;
+  private ManipulateContacts manipulateContacts;
 
   @Before
   public void setUp() {
@@ -22,7 +22,7 @@ public class ContactListTest {
     danPelensky =
         new Contact("Dan", "Pelensky", "1 Commercial Street", "London", "E16LT", "07000 000 000");
     contactList.addContact(danPelensky);
-    displayContacts = new DisplayContacts(contactList);
+    manipulateContacts = new ManipulateContacts(contactList);
   }
 
   @Test
@@ -32,14 +32,14 @@ public class ContactListTest {
 
   @Test
   public void showFormattedContact() {
-    assertEquals("1) Dan Pelensky\n1 Commercial Street\nLondon E16LT\n07000 000 000", displayContacts.listContacts(contactList.getContacts()));
+    assertEquals("1) Dan Pelensky\n1 Commercial Street\nLondon E16LT\n07000 000 000", manipulateContacts.listContacts(contactList.getContacts()));
   }
 
   @Test
   public void showASecondContact() {
     Contact timmyPelensky = new Contact("Timmy", "Pelensky", "2 Commercial Street", "London", "E11AG", "07111 111 111");
     contactList.addContact(timmyPelensky);
-    assertThat(displayContacts.listContacts(contactList.getContacts()), containsString("1) Dan Pelensky\n1 Commercial Street\nLondon E16LT\n07000 000 000\n2) Timmy Pelensky\n2 Commercial Street\nLondon E11AG\n07111 111 111"));
+    assertThat(manipulateContacts.listContacts(contactList.getContacts()), containsString("1) Dan Pelensky\n1 Commercial Street\nLondon E16LT\n07000 000 000\n2) Timmy Pelensky\n2 Commercial Street\nLondon E11AG\n07111 111 111"));
   }
 
   @Test

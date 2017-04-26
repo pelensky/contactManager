@@ -2,19 +2,18 @@ package com.pelensky.contactmanager.Find;
 
 import com.pelensky.contactmanager.DomainModels.Contact;
 import com.pelensky.contactmanager.CommandLineApp.IO;
-import com.pelensky.contactmanager.DomainServices.DisplayContacts;
-import org.jetbrains.annotations.Nullable;
+import com.pelensky.contactmanager.DomainServices.ManipulateContacts;
 
 import java.util.ArrayList;
 
 public class Show implements FindOption {
 
     private IO io;
-    private DisplayContacts displayContacts;
+    private ManipulateContacts manipulateContacts;
 
-    public Show(IO io, DisplayContacts displayContacts) {
+    public Show(IO io, ManipulateContacts manipulateContacts) {
         this.io = io;
-        this.displayContacts = displayContacts;
+        this.manipulateContacts = manipulateContacts;
     }
 
     @Override
@@ -54,15 +53,15 @@ public class Show implements FindOption {
     }
 
     private boolean isContactListEmpty() {
-        return displayContacts.isContactListEmpty();
+        return manipulateContacts.isContactListEmpty();
     }
 
     private String listContacts() {
-        return displayContacts.listContacts(getContacts());
+        return manipulateContacts.listContacts(getContacts());
     }
 
     private ArrayList<Contact> getContacts() {
-        return displayContacts.getContacts();
+        return manipulateContacts.getContacts();
     }
 
     private int selectContact() {

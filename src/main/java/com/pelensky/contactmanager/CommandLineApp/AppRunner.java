@@ -1,7 +1,7 @@
 package com.pelensky.contactmanager.CommandLineApp;
 
 import com.pelensky.contactmanager.DomainModels.ContactList;
-import com.pelensky.contactmanager.DomainServices.DisplayContacts;
+import com.pelensky.contactmanager.DomainServices.ManipulateContacts;
 import com.pelensky.contactmanager.Options.*;
 
 import java.util.Arrays;
@@ -33,12 +33,12 @@ public class AppRunner {
     }
 
     private List<Option> listOfOptions() {
-        DisplayContacts displayContacts = new DisplayContacts(contactList);
-        Find find = new Find(io, contactList, displayContacts);
+        ManipulateContacts manipulateContacts = new ManipulateContacts(contactList);
+        Find find = new Find(io, manipulateContacts);
         return Arrays.asList(
                 new Add(io, contactList),
                 find,
-                new Edit(io, displayContacts, find),
+                new Edit(io, manipulateContacts, find),
                 new Delete(io, contactList, find),
                 new Quit(io, this));
     }

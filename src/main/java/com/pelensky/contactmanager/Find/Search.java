@@ -2,18 +2,18 @@ package com.pelensky.contactmanager.Find;
 
 import com.pelensky.contactmanager.DomainModels.Contact;
 import com.pelensky.contactmanager.CommandLineApp.IO;
-import com.pelensky.contactmanager.DomainServices.DisplayContacts;
+import com.pelensky.contactmanager.DomainServices.ManipulateContacts;
 
 import java.util.ArrayList;
 
 public class Search implements FindOption {
 
     private IO io;
-    private DisplayContacts displayContacts;
+    private ManipulateContacts manipulateContacts;
 
-    public Search(IO io, DisplayContacts displayContacts) {
+    public Search(IO io, ManipulateContacts manipulateContacts) {
         this.io = io;
-        this.displayContacts = displayContacts;
+        this.manipulateContacts = manipulateContacts;
     }
 
     @Override
@@ -77,12 +77,12 @@ public class Search implements FindOption {
 
 
     private ArrayList<Contact> searchForContacts() {
-        return displayContacts.filterContacts(io.getUserInput().toUpperCase());
+        return manipulateContacts.filterContacts(io.getUserInput().toUpperCase());
     }
 
     private void printFoundContacts(ArrayList<Contact> filteredContacts) {
         io.displayText(String.valueOf(filteredContacts.size()) + " Contact(s) Found");
-        io.displayText(String.valueOf(displayContacts.listContacts(filteredContacts)));
+        io.displayText(String.valueOf(manipulateContacts.listContacts(filteredContacts)));
     }
 
 }
