@@ -10,13 +10,11 @@ public class AppRunner {
     private Boolean appRunning = true;
     private ContactList contactList;
     private IO io;
-    private DisplayContacts displayContacts;
 
-    public AppRunner(ContactList contactList, IO io, DisplayContacts displayContacts) {
+    public AppRunner(ContactList contactList, IO io) {
         this.contactList = contactList;
         this.appRunning = true;
         this.io = io;
-        this.displayContacts = displayContacts;
     }
 
     public void runApp() {
@@ -33,6 +31,7 @@ public class AppRunner {
     }
 
     private List<Option> listOfOptions() {
+        DisplayContacts displayContacts = new DisplayContacts(contactList);
         Find find = new Find(io, contactList, displayContacts);
         return Arrays.asList(
                 new Add(io, contactList),

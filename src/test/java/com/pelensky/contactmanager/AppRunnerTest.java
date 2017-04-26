@@ -25,7 +25,7 @@ public class AppRunnerTest {
 
   private void setUpAndRun(String source, PrintStream output, ContactList contactList) {
     Scanner scanner = new Scanner(source);
-    AppRunner appRunner = new AppRunner(contactList, new IO(scanner, output), new DisplayContacts(contactList));
+    AppRunner appRunner = new AppRunner(contactList, new IO(scanner, output));
     appRunner.runApp();
   }
 
