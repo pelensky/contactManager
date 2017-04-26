@@ -150,6 +150,33 @@ public class AppRunnerTest {
     assertThat(out.toString(), containsString("No match"));
   }
 
+  @Test
+  public void userTriesToEditContactNotInList() {
+    setUpAndRun(
+            "1\nDan\nPelensky\n1 Commercial Street\nLondon\nE16LT\n07000 000 000\n3\n1\nTimmy\n5\n",
+            output,
+            contactList);
+    assertThat(out.toString(), containsString("No match"));
+  }
+
+  @Test
+  public void userSelectsWrongOptionWhenEditing() {
+    setUpAndRun(
+            "1\nDan\nPelensky\n1 Commercial Street\nLondon\nE16LT\n07000 000 000\n3\n1\nDan\n2\n5\n",
+            output,
+            contactList);
+    assertThat(out.toString(), containsString("Invalid selection"));
+  }
+
+  @Test
+  public void userSearchesForContactToEdit() {
+    setUpAndRun(
+            "1\nDan\nPelensky\n1 Commercial Street\nLondon\nE16LT\n07000 000 000\n3\n1\nDan\n1\n1\nDaniel\n5\n",
+            output,
+            contactList);
+    assertThat(out.toString(), containsString("First name set to Daniel"));
+  }
+
 
 
 }

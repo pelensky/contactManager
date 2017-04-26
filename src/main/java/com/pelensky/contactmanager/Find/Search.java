@@ -65,8 +65,5 @@ public class Search implements FindOption {
         io.displayText(String.valueOf(displayContacts.listContacts(filteredContacts)));
     }
 
-    private boolean isContactListEmpty() {
-        return displayContacts.isContactListEmpty();
-    }
 }
 
