@@ -28,12 +28,10 @@ public class Edit extends Commands implements Option {
       io.displayText("No contacts to edit");
     } else {
       io.displayText("Edit a contact");
-      int selectedContact = selectContactTo("edit");
-      if (displayContacts.isNotAValidNumber(selectedContact)) {
-        io.displayText("Contact does not exist");
-      } else {
-        selectFieldToUpdate(selectedContact);
-      }
+      int selection = find.getChoiceForSearch();
+      Contact selectedContact = find.findForManipulation(selection);
+      showSelectionNumbers(selectedContact);
+      selectFieldToUpdate(Integer.parseInt(io.getUserInput()));
     }
   }
 
@@ -45,7 +43,7 @@ public class Edit extends Commands implements Option {
   private void selectFieldToUpdate(int selection) {
     io.displayText(
         "Which field would you like to edit?");
-    io.displayText(showSelectionNumbers(selection));
+    io.displayText(editContact.formatContactForSelection());
     updateField(Integer.parseInt(io.getUserInput()));
   }
 
@@ -55,8 +53,8 @@ public class Edit extends Commands implements Option {
     io.displayText(editContact.editField(selectField, contactUpdate));
   }
 
-  private String showSelectionNumbers(int selection) {
-    return editContact.showSelectionNumbers(selection);
+  private void showSelectionNumbers(Contact selection) {
+    editContact.showSelectionNumbers(selection);
   }
 
   private boolean isContactListEmpty() {

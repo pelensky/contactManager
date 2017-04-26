@@ -1,5 +1,6 @@
 package com.pelensky.contactmanager.Options;
 
+import com.pelensky.contactmanager.Contact;
 import com.pelensky.contactmanager.ContactList;
 import com.pelensky.contactmanager.DisplayContacts;
 import com.pelensky.contactmanager.Find.*;
@@ -44,7 +45,7 @@ public class Find implements Option {
         return displayContacts.isContactListEmpty();
     }
 
-    private int getChoiceForSearch() {
+    int getChoiceForSearch() {
         io.displayText("1) Search for contact" + System.lineSeparator() + "2) Show all contacts");
         return Integer.parseInt(io.getUserInput());
     }
@@ -52,6 +53,11 @@ public class Find implements Option {
     private void findForView(int number) {
         FindOption findOption = chooseFindOption(number);
         findOption.executeForView();
+    }
+
+    Contact findForManipulation(int number) {
+        FindOption findOption = chooseFindOption(number);
+        return findOption.executeForManipulation();
     }
 
     private List<FindOption> listOfFindOptions(){

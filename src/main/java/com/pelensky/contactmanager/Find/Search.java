@@ -49,9 +49,11 @@ public class Search implements FindOption  {
            io.displayText("No match");
            return null;
        } else {
-           foundContacts(filteredContacts);
-           return filteredContacts.get(0);
-       }
+           if (filteredContacts.size() > 1) {
+               foundContacts(filteredContacts);
+               return filteredContacts.get(0);
+           }
+       } return null;
     }
 
     private ArrayList<Contact> searchForContacts() {

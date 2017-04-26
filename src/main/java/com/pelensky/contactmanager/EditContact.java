@@ -16,11 +16,7 @@ public class EditContact {
         this.contactList = contactList;
     }
 
-    private Contact getContact(int number) {
-        return contactList.getContacts().get(number - 1);
-    }
-
-    private String formatContactForSelection() {
+    public String formatContactForSelection() {
         return "1)"
                 + contact.getFirstName()
                 + System.lineSeparator()
@@ -40,9 +36,9 @@ public class EditContact {
                 + contact.getPhoneNumber();
     }
 
-    public String showSelectionNumbers(int number) {
-        contact = getContact(number);
-        return formatContactForSelection();
+    public String showSelectionNumbers(Contact contact) {
+        this.contact = contact;
+       return formatContactForSelection();
     }
 
     public String editField(int number, String text) {

@@ -4,6 +4,8 @@ import com.pelensky.contactmanager.Contact;
 import com.pelensky.contactmanager.IO;
 import com.pelensky.contactmanager.DisplayContacts;
 
+import java.util.ArrayList;
+
 public class Show implements FindOption {
 
   private IO io;
@@ -30,10 +32,14 @@ public class Show implements FindOption {
   }
 
   @Override
-  public Contact executeForManipulation(){
-    io.displayText("Show all contacts");
+  public Contact executeForManipulation() {
     io.displayText(listContacts());
-    return displayContacts.getContacts().get(0);
+    if (getContacts().size() > 1) {
+      io.displayText("Select Contact");
+      return getContacts().get(selectContact() - 1);
+    } else {
+      return getContacts().get(0);
+    }
   }
 
   private boolean isContactListEmpty() {
@@ -41,6 +47,14 @@ public class Show implements FindOption {
   }
 
   private String listContacts(){
-      return displayContacts.listContacts(displayContacts.getContacts());
+      return displayContacts.listContacts(getContacts());
+  }
+
+  private ArrayList<Contact> getContacts() {
+    return displayContacts.getContacts();
+  }
+
+  private int selectContact() {
+   return Integer.parseInt(io.getUserInput());
   }
 }
