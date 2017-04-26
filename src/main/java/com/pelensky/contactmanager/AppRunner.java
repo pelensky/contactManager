@@ -37,7 +37,7 @@ public class AppRunner {
         return Arrays.asList(
                 new Add(io, contactList),
                 find,
-                new Edit(io, contactList, displayContacts, find),
+                new Edit(io, displayContacts, find),
                 new Delete(io, contactList, displayContacts, find),
                 new Quit(io, this));
     }

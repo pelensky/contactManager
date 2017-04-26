@@ -7,11 +7,10 @@ import java.util.List;
 
 public class EditContact {
 
-    private ContactList contactList;
     private Contact contact;
 
-    public EditContact(ContactList contactList) {
-        this.contactList = contactList;
+    public EditContact(Contact contact) {
+        this.contact = contact;
     }
 
     private String formatContactForSelection() {

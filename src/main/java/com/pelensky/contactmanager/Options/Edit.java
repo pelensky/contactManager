@@ -10,12 +10,11 @@ public class Edit implements Option {
   private EditContact editContact;
   private Find find;
 
-  public Edit(IO io, ContactList contactList, DisplayContacts displayContacts, Find find) {
+  public Edit(IO io, DisplayContacts displayContacts, Find find) {
 
     this.io = io;
     this.displayContacts = displayContacts;
     this.find = find;
-    this.editContact = new EditContact(contactList);
   }
 
   public String instruction() {
@@ -30,6 +29,7 @@ public class Edit implements Option {
       io.displayText("Edit a contact");
       int selection = find.getChoiceForSearch();
       Contact selectedContact = find.findForManipulation(selection);
+      editContact = new EditContact(selectedContact);
       if (selectedContact != null) {
       selectFieldToUpdate(selectedContact);
     } else {
