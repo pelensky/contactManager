@@ -1,22 +1,23 @@
-package com.pelensky.contactmanager;
+package com.pelensky.contactmanager.Options;
 
-public class Commands {
+import com.pelensky.contactmanager.DisplayContacts;
+import com.pelensky.contactmanager.IO;
+
+class Commands {
     private IO io;
-    private ContactList contactList;
     private DisplayContacts displayContacts;
 
-    public Commands(IO io, ContactList contactList, DisplayContacts displayContacts) {
+    Commands(IO io, DisplayContacts displayContacts) {
         this.io = io;
-        this.contactList = contactList;
         this.displayContacts = displayContacts;
     }
 
-    protected int selectContactTo(String text) {
+    int selectContactTo(String text) {
         io.displayText(
                 "Which contact would you like to " + text + "?"
                         + System.lineSeparator()
                         + "Please select number.");
-        io.displayText(displayContacts.listContacts(contactList.getContacts()));
+        io.displayText(displayContacts.listContacts(displayContacts.getContacts()));
         return Integer.parseInt(io.getUserInput());
     }
 }

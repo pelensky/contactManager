@@ -22,7 +22,7 @@ public class Search implements FindOption  {
             io.displayText("No contacts");
         } else {
             io.displayText("Search for contact");
-            ArrayList<Contact> filteredContacts = displayContacts.filterContacts(io.getUserInput().toUpperCase());
+            ArrayList<Contact> filteredContacts = searchForContacts();
             if (filteredContacts.isEmpty()) {
                 io.displayText("No match");
             } else {
@@ -30,6 +30,10 @@ public class Search implements FindOption  {
                 io.displayText(String.valueOf(displayContacts.listContacts(filteredContacts)));
             }
         }
+    }
+
+    private ArrayList<Contact> searchForContacts() {
+        return displayContacts.filterContacts(io.getUserInput().toUpperCase());
     }
 
 

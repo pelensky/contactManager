@@ -45,7 +45,7 @@ public class DisplayContacts {
         return getContacts().isEmpty();
     }
 
-    private ArrayList<Contact> getContacts() {
+    public ArrayList<Contact> getContacts() {
         return contactList.getContacts();
     }
 

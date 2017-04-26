@@ -10,7 +10,7 @@ public class Edit extends Commands implements Option {
   private DisplayContacts displayContacts;
 
   public Edit(IO io, ContactList contactList, DisplayContacts displayContacts) {
-    super(io, contactList, displayContacts);
+    super(io, displayContacts);
     this.io = io;
     this.contactList = contactList;
     this.displayContacts = displayContacts;

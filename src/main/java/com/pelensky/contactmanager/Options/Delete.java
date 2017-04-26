@@ -9,7 +9,7 @@ public class Delete extends Commands implements Option {
   private DisplayContacts displayContacts;
 
   public Delete(IO io, ContactList contactList, DisplayContacts displayContacts) {
-    super(io, contactList, displayContacts);
+    super(io, displayContacts);
     this.io = io;
     this.contactList = contactList;
     this.displayContacts = displayContacts;

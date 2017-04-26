@@ -54,7 +54,7 @@ public class Find implements Option {
     private List<FindOption> listOfFindOptions(){
         return Arrays.asList(
                 new Search(io, displayContacts),
-                new Show(io, contactList, displayContacts)
+                new Show(io,  displayContacts)
         );
     }
 

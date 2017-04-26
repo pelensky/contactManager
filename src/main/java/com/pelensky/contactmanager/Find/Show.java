@@ -7,12 +7,10 @@ import com.pelensky.contactmanager.DisplayContacts;
 public class Show implements FindOption {
 
   private IO io;
-  private ContactList contactList;
   private DisplayContacts displayContacts;
 
-  public Show(IO io, ContactList contactList, DisplayContacts displayContacts) {
+  public Show(IO io, DisplayContacts displayContacts) {
     this.io = io;
-    this.contactList = contactList;
     this.displayContacts = displayContacts;
   }
 
@@ -36,6 +34,6 @@ public class Show implements FindOption {
   }
 
   private String listContacts(){
-      return displayContacts.listContacts(contactList.getContacts());
+      return displayContacts.listContacts(displayContacts.getContacts());
   }
 }
