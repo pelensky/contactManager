@@ -6,7 +6,7 @@ public class PostCode implements EditOption{
 
     private Contact contact;
 
-    PostCode(Contact contact) {
+    public PostCode(Contact contact) {
         this.contact = contact;
     }
 

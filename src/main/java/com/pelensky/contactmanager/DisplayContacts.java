@@ -7,7 +7,7 @@ public class DisplayContacts {
 
     private ContactList contactList;
 
-    DisplayContacts(ContactList contactList){
+    public DisplayContacts(ContactList contactList){
         this.contactList = contactList;
     }
 
@@ -60,6 +60,4 @@ public class DisplayContacts {
         filteredContacts.addAll(filteredByLastName);
         return filteredContacts;
     }
-
-
 }

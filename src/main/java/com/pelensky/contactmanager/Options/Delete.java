@@ -22,15 +22,14 @@ public class Delete extends Commands implements Option {
   @Override
   public void execute() {
     if (displayContacts.isContactListEmpty()) {
-      io.displayText("No contacts to delete");
+      io.displayText("No contacts to deleteContact");
     } else {
       io.displayText("Delete a contact");
-      DeleteContact deleteContact = new DeleteContact(contactList);
-      int selectedContact = selectContactTo("delete");
+      int selectedContact = selectContactTo("deleteContact");
       if (displayContacts.isNotAValidNumber(selectedContact)) {
         io.displayText("Contact does not exist\nTry again");
       } else {
-        delete(deleteContact, selectedContact);
+        delete(selectedContact);
         io.displayText("Deleted");
       }
     }
@@ -43,7 +42,7 @@ public class Delete extends Commands implements Option {
     return text.equals("4");
   }
 
-  private void delete(DeleteContact deleteContact, int selectedContact) {
-    deleteContact.delete(selectedContact);
+  private void delete(int selectedContact) {
+    contactList.deleteContact(selectedContact);
   }
 }

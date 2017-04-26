@@ -6,7 +6,7 @@ public class PhoneNumber implements EditOption{
 
     private Contact contact;
 
-    PhoneNumber(Contact contact) {
+    public PhoneNumber(Contact contact) {
         this.contact = contact;
     }
 

@@ -6,7 +6,7 @@ public class Address implements EditOption{
 
     private Contact contact;
 
-    Address(Contact contact) {
+    public Address(Contact contact) {
         this.contact = contact;
     }
 

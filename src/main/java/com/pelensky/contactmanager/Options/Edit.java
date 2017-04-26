@@ -1,7 +1,7 @@
 package com.pelensky.contactmanager.Options;
 
 import com.pelensky.contactmanager.*;
-import com.pelensky.contactmanager.Edit.EditContact;
+import com.pelensky.contactmanager.EditContact;
 
 public class Edit extends Commands implements Option {
 

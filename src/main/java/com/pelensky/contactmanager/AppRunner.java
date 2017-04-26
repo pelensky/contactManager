@@ -1,7 +1,5 @@
 package com.pelensky.contactmanager;
 
-import com.pelensky.contactmanager.Find.Search;
-import com.pelensky.contactmanager.Find.Show;
 import com.pelensky.contactmanager.Options.*;
 
 import java.util.Arrays;
@@ -14,14 +12,14 @@ public class AppRunner {
     private IO io;
     private DisplayContacts displayContacts;
 
-    AppRunner(ContactList contactList, IO io, DisplayContacts displayContacts) {
+    public AppRunner(ContactList contactList, IO io, DisplayContacts displayContacts) {
         this.contactList = contactList;
         this.appRunning = true;
         this.io = io;
         this.displayContacts = displayContacts;
     }
 
-    void runApp() {
+    public void runApp() {
         io.displayText("Contact Manager");
         while (appRunning) {
             io.displayText(appInstructions());

@@ -22,8 +22,7 @@ public class Search implements FindOption  {
             io.displayText("No contacts");
         } else {
             io.displayText("Search for contact");
-            String search = io.getUserInput().toUpperCase();
-            ArrayList<Contact> filteredContacts = displayContacts.filterContacts(search);
+            ArrayList<Contact> filteredContacts = displayContacts.filterContacts(io.getUserInput().toUpperCase());
             if (filteredContacts.isEmpty()) {
                 io.displayText("No match");
             } else {

@@ -14,6 +14,10 @@ public class ContactList {
     contacts.add(contact);
   }
 
+  public void deleteContact(int number) {
+    getContacts().remove(number - 1);
+  }
+
   int countContacts() {
     return contacts.size();
   }

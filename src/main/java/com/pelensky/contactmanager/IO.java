@@ -8,7 +8,7 @@ public class IO {
   private Scanner input;
   private PrintStream output;
 
-  IO(Scanner input, PrintStream output) {
+  public IO(Scanner input, PrintStream output) {
     this.input = input;
     this.output = output;
   }

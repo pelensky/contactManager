@@ -6,7 +6,6 @@ import org.junit.Test;
 import static org.junit.Assert.assertFalse;
 
 public class DeleteContactTest {
-    private DeleteContact deleteContact;
     private ContactList contactList;
     private Contact danPelensky;
     private Contact timmyPelensky;
@@ -19,13 +18,12 @@ public class DeleteContactTest {
         timmyPelensky = new Contact("Timmy", "Pelensky", "2 Commercial Street", "London", "E16LT", "07111 111 111");
         contactList.addContact(danPelensky);
         contactList.addContact((timmyPelensky));
-        deleteContact = new DeleteContact(contactList);
     }
 
     @Test
     public void deleteContact() {
-        deleteContact.delete(2);
-       assertFalse(deleteContact.contactList.getContacts().contains(timmyPelensky));
+        contactList.deleteContact(2);
+       assertFalse(contactList.getContacts().contains(timmyPelensky));
     }
 
 

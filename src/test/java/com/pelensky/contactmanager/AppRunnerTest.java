@@ -129,7 +129,7 @@ public class AppRunnerTest {
   @Test
   public void userTriesToDeleteContactWhenThereAreNone() {
     setUpAndRun("4\n5\n", output, contactList);
-    assertThat(out.toString(), containsString("No contacts to delete"));
+    assertThat(out.toString(), containsString("No contacts to deleteContact"));
   }
 
   @Test
@@ -159,4 +159,5 @@ public class AppRunnerTest {
             contactList);
     assertThat(out.toString(), containsString("No match"));
   }
+
 }

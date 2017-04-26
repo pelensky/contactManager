@@ -6,7 +6,7 @@ public class FirstName implements EditOption{
 
     private Contact contact;
 
-    FirstName(Contact contact) {
+    public FirstName(Contact contact) {
         this.contact = contact;
     }
 

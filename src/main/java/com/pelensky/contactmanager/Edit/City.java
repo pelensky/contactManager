@@ -6,7 +6,7 @@ public class City implements EditOption{
 
     private Contact contact;
 
-    City(Contact contact) {
+    public City(Contact contact) {
         this.contact = contact;
     }
 
