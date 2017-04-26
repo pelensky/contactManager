@@ -3,7 +3,7 @@ package com.pelensky.contactmanager.Options;
 import com.pelensky.contactmanager.*;
 import com.pelensky.contactmanager.EditContact;
 
-public class Edit extends Commands implements Option {
+public class Edit implements Option {
 
   private IO io;
   private DisplayContacts displayContacts;
@@ -11,7 +11,6 @@ public class Edit extends Commands implements Option {
   private Find find;
 
   public Edit(IO io, ContactList contactList, DisplayContacts displayContacts, Find find) {
-    super(io, displayContacts);
     this.io = io;
     this.displayContacts = displayContacts;
     this.find = find;

@@ -2,7 +2,7 @@ package com.pelensky.contactmanager.Options;
 
 import com.pelensky.contactmanager.*;
 
-public class Delete extends Commands implements Option {
+public class Delete implements Option {
 
   private IO io;
   private ContactList contactList;
@@ -10,7 +10,6 @@ public class Delete extends Commands implements Option {
   private Find find;
 
   public Delete(IO io, ContactList contactList, DisplayContacts displayContacts, Find find) {
-    super(io, displayContacts);
     this.io = io;
     this.contactList = contactList;
     this.displayContacts = displayContacts;
