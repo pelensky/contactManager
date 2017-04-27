@@ -19,7 +19,7 @@ public class EditContactTest {
     danPelensky =
         new Contact("Dan", "Pelensky", "1 Commercial Street", "London", "E16LT", "07000 000 000");
     contactList.addContact(danPelensky);
-    editContact = new Edit(IdanPelensky);
+    editContact = new Edit(danPelensky);
   }
 
   @Test

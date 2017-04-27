@@ -71,7 +71,7 @@ public class Edit implements Option {
     List<EditOption> contacts = listOfEditOptions();
     StringBuilder instructions = new StringBuilder();
     for (int i = 0; i < contacts.size(); i++){
-      instructions.append(i).append(")").append(contacts.get(i).get()).append(System.lineSeparator());
+      instructions.append(i).append(")").append(contacts.get(i)).append(System.lineSeparator());
     }
     return instructions.toString();
   }
