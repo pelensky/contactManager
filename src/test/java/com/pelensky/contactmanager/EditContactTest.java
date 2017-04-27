@@ -2,16 +2,16 @@ package com.pelensky.contactmanager;
 
 import com.pelensky.contactmanager.DomainModels.Contact;
 import com.pelensky.contactmanager.DomainModels.ContactList;
-import com.pelensky.contactmanager.DomainServices.EditContact;
+import com.pelensky.contactmanager.Options.Edit;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
 public class EditContactTest {
-  private EditContact editContact;
   private ContactList contactList;
   private Contact danPelensky;
+  private Edit editContact;
 
   @Before
   public void setUp() {
@@ -19,7 +19,7 @@ public class EditContactTest {
     danPelensky =
         new Contact("Dan", "Pelensky", "1 Commercial Street", "London", "E16LT", "07000 000 000");
     contactList.addContact(danPelensky);
-    editContact = new EditContact(danPelensky);
+    editContact = new Edit(IdanPelensky);
   }
 
   @Test

@@ -15,7 +15,7 @@ public class Add implements Option {
     }
 
     public String instruction() {
-        return "1) Add a new contact";
+        return "Add a new contact";
     }
 
     @Override
@@ -35,11 +35,6 @@ public class Add implements Option {
                         + " "
                         + newContact.getLastName()
                         + " has been added as a contact.");
-    }
-
-    @Override
-    public boolean canRespondTo(String text) {
-        return text.equals("1");
     }
 
 

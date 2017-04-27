@@ -18,7 +18,7 @@ public class Delete implements Option {
 
     @Override
     public String instruction() {
-        return "4) Delete a contact";
+        return "Delete a contact";
     }
 
     @Override
@@ -29,11 +29,6 @@ public class Delete implements Option {
             Contact selectedContact = getContactToDelete();
             checkIfContactCanBeDeleted(selectedContact);
         }
-    }
-
-    @Override
-    public boolean canRespondTo(String text) {
-        return text.equals("4");
     }
 
     private void checkIfContactCanBeDeleted(Contact selectedContact) {

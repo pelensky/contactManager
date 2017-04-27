@@ -28,7 +28,8 @@ public class AppRunner {
     }
 
     private void makeSelection() {
-        Option option = findOption(io.getUserInput());
+        int choice = Integer.parseInt(io.getUserInput());
+        Option option = listOfOptions().get(choice - 1);
         option.execute();
     }
 
@@ -43,15 +44,6 @@ public class AppRunner {
                 new Quit(io, this));
     }
 
-    private Option findOption(String selection) {
-        for (Option o : listOfOptions()) {
-            if (o.canRespondTo(selection.toLowerCase())) {
-                return o;
-            }
-        }
-        return new DefaultOption(io);
-    }
-
     public void setAppNotRunning() {
         this.appRunning = false;
     }
@@ -59,9 +51,14 @@ public class AppRunner {
     private String appInstructions() {
         String line = "----------------------------------------";
         StringBuilder instructions = new StringBuilder();
+        instructions.append(System.lineSeparator());
+        int currentIndex = 1;
         for (Option o : listOfOptions()) {
-            instructions.append(System.lineSeparator()).append(o.instruction());
+            instructions.append(currentIndex).append(") ");
+            instructions.append(o.instruction());
+            instructions.append(System.lineSeparator());
+            currentIndex++;
         }
-        return line + instructions + System.lineSeparator() + line;
+        return line + instructions + line;
     }
 }

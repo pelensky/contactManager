@@ -14,7 +14,7 @@ public class Quit implements Option {
     }
 
     public String instruction() {
-      return "5) Quit";
+      return "Quit";
     }
 
 
@@ -23,8 +23,4 @@ public class Quit implements Option {
         io.displayText("Contact Manager Quitting");
     }
 
-    @Override
-    public boolean canRespondTo(String text) {
-        return text.equals("5");
-    }
 }

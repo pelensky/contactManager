@@ -1,12 +1,14 @@
 package com.pelensky.contactmanager.Edit;
 
+import com.pelensky.contactmanager.CommandLineApp.IO;
 import com.pelensky.contactmanager.DomainModels.Contact;
 
-public class PostCode implements EditOption{
+public class PostCode extends EditOption{
 
     private Contact contact;
 
-    public PostCode(Contact contact) {
+    public PostCode(IO io, Contact contact) {
+        super(io);
         this.contact = contact;
     }
 
@@ -17,7 +19,7 @@ public class PostCode implements EditOption{
     }
 
     @Override
-    public boolean canRespondTo(int number) {
-        return number == 5;
+    public String get() {
+        return contact.getPostCode();
     }
 }

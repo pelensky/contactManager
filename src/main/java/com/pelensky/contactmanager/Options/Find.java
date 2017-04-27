@@ -23,18 +23,13 @@ public class Find implements Option {
             io.displayText("No contacts");
         } else {
             int number = getChoiceForSearch();
-            findForView(number);
+            findForManipulation(number);
         }
     }
 
     @Override
-    public boolean canRespondTo(String text) {
-        return text.equals("2");
-    }
-
-    @Override
     public String instruction() {
-        return "2) Find a contact";
+        return "Find a contact";
     }
 
     private boolean isContactListEmpty() {

@@ -1,12 +1,14 @@
 package com.pelensky.contactmanager.Edit;
 
+import com.pelensky.contactmanager.CommandLineApp.IO;
 import com.pelensky.contactmanager.DomainModels.Contact;
 
-public class Address implements EditOption{
+public class Address extends EditOption {
 
     private Contact contact;
 
-    public Address(Contact contact) {
+    public Address(IO io, Contact contact) {
+        super(io);
         this.contact = contact;
     }
 
@@ -17,7 +19,7 @@ public class Address implements EditOption{
     }
 
     @Override
-    public boolean canRespondTo(int number) {
-        return number == 3;
+    public String get() {
+        return contact.getAddress();
     }
 }
