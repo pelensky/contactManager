@@ -1,60 +1,75 @@
 package com.pelensky.contactmanager.Options;
 
-import com.pelensky.contactmanager.*;
-import com.pelensky.contactmanager.Edit.EditContact;
+import com.pelensky.contactmanager.CommandLineApp.IO;
+import com.pelensky.contactmanager.DomainServices.ManipulateContacts;
+import com.pelensky.contactmanager.DomainServices.EditContact;
+import com.pelensky.contactmanager.DomainModels.Contact;
 
-public class Edit extends Commands implements Option {
+public class Edit implements Option {
 
   private IO io;
-  private ContactList contactList;
   private ManipulateContacts manipulateContacts;
+  private EditContact editContact;
+  private Find find;
 
-  public Edit(IO io, ContactList contactList, ManipulateContacts manipulateContacts) {
-    super(io, contactList, manipulateContacts);
+  public Edit(IO io, ManipulateContacts manipulateContacts, Find find) {
+
     this.io = io;
-    this.contactList = contactList;
     this.manipulateContacts = manipulateContacts;
+    this.find = find;
   }
 
   public String instruction() {
-    return "4) Edit a contact";
+    return "3) Edit a contact";
   }
 
   @Override
   public void execute() {
-    if (manipulateContacts.isContactListEmpty()) {
-      io.displayText("No contacts to edit");
+    if (isContactListEmpty()) {
+      noContacts();
     } else {
-      io.displayText("Edit a contact");
-      EditContact editContact = new EditContact(contactList);
-      int selectedContact = selectContactTo("edit");
-      if (manipulateContacts.isNotAValidNumber(selectedContact)) {
-        io.displayText("Contact does not exist");
-      } else {
-        int selectField = selectFieldToUpdate(selectedContact, editContact);
-        updateField(editContact, selectField);
-      }
+      editContactIfValid(getContactToEdit());
     }
   }
 
   @Override
   public boolean canRespondTo(String text) {
-    return text.equals("4");
+    return text.equals("3");
   }
 
-  private int selectFieldToUpdate(int selection, EditContact editContact) {
+  private Contact getContactToEdit() {
+    io.displayText("Edit a contact");
+    int selection = find.getChoiceForSearch();
+    return find.findForManipulation(selection);
+  }
+
+  private void editContactIfValid(Contact selectedContact) {
+    editContact = new EditContact(selectedContact);
+    if (selectedContact != null) {
+    selectFieldToUpdate(selectedContact);
+  } else {
+      io.displayText("Try again");
+    }
+  }
+
+  private void noContacts() {
+    io.displayText("No contacts to edit");
+  }
+
+  private void selectFieldToUpdate(Contact contact) {
     io.displayText(
-        "Which field would you like to edit?" + System.lineSeparator() + "Please select number.");
-    io.displayText(editContact.showSelectionNumbers(selection));
-    int selectField = Integer.parseInt(io.getUserInput());
-    io.displayText("You have selected " + editContact.selectField(selectField));
-    return selectField;
+        "Which field would you like to edit?");
+    io.displayText(editContact.showNumbersToEditOnContact(contact));
+    updateField(Integer.parseInt(io.getUserInput()));
   }
 
-  private void updateField(EditContact editContact, int selectField) {
+  private void updateField(int selectField) {
     io.displayText("What would you like to change it to?");
     String contactUpdate = io.getUserInput();
-    editContact.updateContact(selectField, contactUpdate);
-    io.displayText("Updated");
+    io.displayText(editContact.editField(selectField, contactUpdate));
+  }
+
+  private boolean isContactListEmpty() {
+    return manipulateContacts.isContactListEmpty();
   }
 }

@@ -1,49 +1,69 @@
 package com.pelensky.contactmanager.Options;
 
-import com.pelensky.contactmanager.*;
+import com.pelensky.contactmanager.CommandLineApp.IO;
+import com.pelensky.contactmanager.DomainModels.Contact;
+import com.pelensky.contactmanager.DomainModels.ContactList;
 
-public class Delete extends Commands implements Option {
+public class Delete implements Option {
 
-  private IO io;
-  private ContactList contactList;
-  private ManipulateContacts manipulateContacts;
+    private IO io;
+    private ContactList contactList;
+    private Find find;
 
-  public Delete(IO io, ContactList contactList, ManipulateContacts manipulateContacts) {
-    super(io, contactList, manipulateContacts);
-    this.io = io;
-    this.contactList = contactList;
-    this.manipulateContacts = manipulateContacts;
-  }
-
-  public String instruction() {
-    return "5) Delete a contact";
-  }
-
-  @Override
-  public void execute() {
-    if (manipulateContacts.isContactListEmpty()) {
-      io.displayText("No contacts to delete");
-    } else {
-      io.displayText("Delete a contact");
-      DeleteContact deleteContact = new DeleteContact(contactList);
-      int selectedContact = selectContactTo("delete");
-      if (manipulateContacts.isNotAValidNumber(selectedContact)) {
-        io.displayText("Contact does not exist\nTry again");
-      } else {
-        delete(deleteContact, selectedContact);
-        io.displayText("Deleted");
-      }
+    public Delete(IO io, ContactList contactList, Find find) {
+        this.io = io;
+        this.contactList = contactList;
+        this.find = find;
     }
-  }
 
+    @Override
+    public String instruction() {
+        return "4) Delete a contact";
+    }
 
-  @Override
-  public boolean canRespondTo(String text)
-  {
-    return text.equals("5");
-  }
+    @Override
+    public void execute() {
+        if (isContactListEmpty()) {
+            noContacts();
+        } else {
+            Contact selectedContact = getContactToDelete();
+            checkIfContactCanBeDeleted(selectedContact);
+        }
+    }
 
-  private void delete(DeleteContact deleteContact, int selectedContact) {
-    deleteContact.delete(selectedContact);
-  }
+    @Override
+    public boolean canRespondTo(String text) {
+        return text.equals("4");
+    }
+
+    private void checkIfContactCanBeDeleted(Contact selectedContact) {
+        if (selectedContact != null) {
+            deleteSelectedContact(selectedContact);
+        } else {
+            io.displayText("Try again");
+        }
+    }
+
+    private void deleteSelectedContact(Contact selectedContact) {
+        delete(selectedContact);
+        io.displayText("Deleted");
+    }
+
+    private Contact getContactToDelete() {
+        io.displayText("Delete a contact");
+        int selection = find.getChoiceForSearch();
+        return find.findForManipulation(selection);
+    }
+
+    private void noContacts() {
+        io.displayText("No contacts to delete");
+    }
+
+    private void delete(Contact selectedContact) {
+        contactList.deleteContact(selectedContact);
+    }
+
+    private boolean isContactListEmpty() {
+        return contactList.countContacts() < 1;
+    }
 }

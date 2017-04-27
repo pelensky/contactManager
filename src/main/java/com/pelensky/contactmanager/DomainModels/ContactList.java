@@ -1,4 +1,4 @@
-package com.pelensky.contactmanager;
+package com.pelensky.contactmanager.DomainModels;
 
 import java.util.ArrayList;
 
@@ -14,7 +14,11 @@ public class ContactList {
     contacts.add(contact);
   }
 
-  int countContacts() {
+  public void deleteContact(Contact contact) {
+    getContacts().remove(contact);
+  }
+
+  public int countContacts() {
     return contacts.size();
   }
 

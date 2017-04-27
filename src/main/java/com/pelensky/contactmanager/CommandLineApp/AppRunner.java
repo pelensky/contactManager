@@ -1,5 +1,7 @@
-package com.pelensky.contactmanager;
+package com.pelensky.contactmanager.CommandLineApp;
 
+import com.pelensky.contactmanager.DomainModels.ContactList;
+import com.pelensky.contactmanager.DomainServices.ManipulateContacts;
 import com.pelensky.contactmanager.Options.*;
 
 import java.util.Arrays;
@@ -10,16 +12,14 @@ public class AppRunner {
     private Boolean appRunning = true;
     private ContactList contactList;
     private IO io;
-    private ManipulateContacts manipulateContacts;
 
-    AppRunner(ContactList contactList, IO io, ManipulateContacts manipulateContacts) {
+    public AppRunner(ContactList contactList, IO io) {
         this.contactList = contactList;
         this.appRunning = true;
         this.io = io;
-        this.manipulateContacts = manipulateContacts;
     }
 
-    void runApp() {
+    public void runApp() {
         io.displayText("Contact Manager");
         while (appRunning) {
             io.displayText(appInstructions());
@@ -33,12 +33,13 @@ public class AppRunner {
     }
 
     private List<Option> listOfOptions() {
+        ManipulateContacts manipulateContacts = new ManipulateContacts(contactList);
+        Find find = new Find(io, manipulateContacts);
         return Arrays.asList(
                 new Add(io, contactList),
-                new Search(io, contactList, manipulateContacts),
-                new Show(io, contactList, manipulateContacts),
-                new Edit(io, contactList, manipulateContacts),
-                new Delete(io, contactList, manipulateContacts),
+                find,
+                new Edit(io, manipulateContacts, find),
+                new Delete(io, contactList, find),
                 new Quit(io, this));
     }
 
@@ -63,5 +64,4 @@ public class AppRunner {
         }
         return line + instructions + System.lineSeparator() + line;
     }
-
 }

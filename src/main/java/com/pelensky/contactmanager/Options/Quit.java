@@ -1,8 +1,7 @@
 package com.pelensky.contactmanager.Options;
 
-import com.pelensky.contactmanager.AppRunner;
-import com.pelensky.contactmanager.IO;
-import com.pelensky.contactmanager.Options.Option;
+import com.pelensky.contactmanager.CommandLineApp.AppRunner;
+import com.pelensky.contactmanager.CommandLineApp.IO;
 
 public class Quit implements Option {
 
@@ -15,7 +14,7 @@ public class Quit implements Option {
     }
 
     public String instruction() {
-      return "6) Quit";
+      return "5) Quit";
     }
 
 
@@ -26,6 +25,6 @@ public class Quit implements Option {
 
     @Override
     public boolean canRespondTo(String text) {
-        return text.equals("6");
+        return text.equals("5");
     }
 }
