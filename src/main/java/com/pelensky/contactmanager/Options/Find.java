@@ -41,16 +41,10 @@ public class Find implements Option {
         return Integer.parseInt(io.getUserInput());
     }
 
-    private void findForView(int number) {
-        FindOption findOption = chooseFindOption(number);
-        assert findOption != null;
-        findOption.executeForView();
-    }
-
     Contact findForManipulation(int number) {
         FindOption findOption = chooseFindOption(number);
         assert findOption != null;
-        return findOption.executeForManipulation();
+        return findOption.execute();
     }
 
     private List<FindOption> listOfFindOptions(){

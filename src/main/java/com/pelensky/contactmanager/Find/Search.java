@@ -17,17 +17,7 @@ public class Search implements FindOption {
     }
 
     @Override
-    public void executeForView() {
-        ArrayList<Contact> filteredContacts = findContacts();
-        if (filteredContacts.isEmpty()) {
-            io.displayText("No match");
-        } else {
-            printFoundContacts(filteredContacts);
-        }
-    }
-
-    @Override
-    public Contact executeForManipulation() {
+    public Contact execute() {
         ArrayList<Contact> filteredContacts = findContacts();
         if (filteredContacts.isEmpty()) {
             return noContactsFound();

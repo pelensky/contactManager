@@ -17,22 +17,12 @@ public class Show implements FindOption {
     }
 
     @Override
-    public void executeForView() {
-        if (isContactListEmpty()) {
-            io.displayText("No contacts to show");
-        } else {
-            io.displayText("Show all contacts");
-            io.displayText(listContacts());
-        }
-    }
-
-    @Override
     public boolean canRespondTo(int number) {
         return number == 2;
     }
 
     @Override
-    public Contact executeForManipulation() {
+    public Contact execute() {
         io.displayText(listContacts());
         io.displayText("Select Contact");
         int selection = selectContact();
@@ -50,10 +40,6 @@ public class Show implements FindOption {
 
     private Contact getSelectedContact(int selection) {
         return getContacts().get(selection - 1);
-    }
-
-    private boolean isContactListEmpty() {
-        return manipulateContacts.isContactListEmpty();
     }
 
     private String listContacts() {
