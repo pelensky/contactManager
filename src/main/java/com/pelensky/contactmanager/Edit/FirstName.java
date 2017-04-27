@@ -19,7 +19,7 @@ public class FirstName extends EditOption {
     }
 
     @Override
-    public String get() {
+    public String instructions() {
         return contact.getFirstName();
     }
 }

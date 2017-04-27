@@ -22,4 +22,8 @@ public class ContactList {
     return contacts.size();
   }
 
+  public boolean isContactListEmpty(){
+    return contacts.isEmpty();
+  }
+
 }

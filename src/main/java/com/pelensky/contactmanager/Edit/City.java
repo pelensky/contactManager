@@ -19,7 +19,7 @@ public class City extends EditOption{
     }
 
     @Override
-    public String get() {
+    public String instructions() {
         return contact.getCity();
     }
 

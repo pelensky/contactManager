@@ -18,7 +18,7 @@ public class LastName extends EditOption{
         return "Last name set to " + text;
     }
     @Override
-    public String get() {
+    public String instructions() {
         return contact.getLastName();
     }
 

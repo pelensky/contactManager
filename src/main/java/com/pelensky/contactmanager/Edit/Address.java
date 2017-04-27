@@ -19,7 +19,7 @@ public class Address extends EditOption {
     }
 
     @Override
-    public String get() {
+    public String instructions() {
         return contact.getAddress();
     }
 }

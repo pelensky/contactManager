@@ -19,7 +19,7 @@ public class PhoneNumber extends EditOption {
     }
 
     @Override
-    public String get() {
+    public String instructions() {
         return contact.getPhoneNumber();
     }
 }

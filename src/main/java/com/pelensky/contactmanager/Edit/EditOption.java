@@ -13,14 +13,13 @@ public abstract class EditOption implements Option {
     public void execute(){
         io.displayText("What would you like to change it to?");
         io.displayText(execute(io.getUserInput()));
-
     }
 
     public String instruction(){
-        return get();
+        return instructions();
     }
 
     abstract String execute(String text);
-    public abstract String get();
+    public abstract String instructions();
 }
 

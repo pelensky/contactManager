@@ -13,7 +13,7 @@ public class DefaultEditOption extends EditOption{
     }
 
     @Override
-    public String get() {
+    public String instructions() {
         return null;
     }
 
