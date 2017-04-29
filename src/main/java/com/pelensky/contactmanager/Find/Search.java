@@ -71,7 +71,6 @@ public class Search implements FindOption {
     }
 
     private void printFoundContacts(ArrayList<Contact> filteredContacts) {
-        io.displayText(String.valueOf(filteredContacts.size()) + " Contact(s) Found");
         io.displayText(String.valueOf(manipulateContacts.listContacts(filteredContacts)));
     }
 

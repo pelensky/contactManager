@@ -23,8 +23,8 @@ public class Show implements FindOption {
 
     @Override
     public Contact execute() {
-        io.displayText(listContacts());
         io.displayText("Select Contact");
+        io.displayText(listContacts());
         int selection = selectContact();
         return getContact(selection);
     }
@@ -34,8 +34,13 @@ public class Show implements FindOption {
             io.displayText("Invalid selection");
             return null;
         } else {
+            io.displayText(displayFormattedContact(selection));
             return getSelectedContact(selection);
         }
+    }
+
+    private String displayFormattedContact(int selection) {
+        return manipulateContacts.displayFormattedContact(selection - 1, getContacts());
     }
 
     private Contact getSelectedContact(int selection) {

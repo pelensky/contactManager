@@ -10,34 +10,31 @@ public class ManipulateContacts {
 
     private ContactList contactList;
 
-    public ManipulateContacts(ContactList contactList){
+    public ManipulateContacts(ContactList contactList) {
         this.contactList = contactList;
     }
 
     public String listContacts(ArrayList<Contact> listOfContacts) {
-      StringBuilder formattedContact = new StringBuilder();
-      sortContacts(listOfContacts);
-      for (int i = 0; i < listOfContacts.size(); i++) {
-        formattedContact.append(formatContact(i, listOfContacts)).append(System.lineSeparator());
-      }
-      return formattedContact.toString().trim();
+        StringBuilder formattedContact = new StringBuilder();
+        sortContacts(listOfContacts);
+        for (int i = 0; i < listOfContacts.size(); i++) {
+            formattedContact.append(contactName(i, listOfContacts)).append(System.lineSeparator());
+        }
+        return formattedContact.toString().trim();
     }
 
-    private String formatContact(int number, ArrayList<Contact> listOfContacts) {
-      Contact contact = listOfContacts.get(number);
-      return (Integer.toString(number + 1)
-              + ") "
-              + contact.getFirstName()
-              + " "
-              + contact.getLastName()
-              + System.lineSeparator()
-              + contact.getAddress()
-              + System.lineSeparator()
-              + contact.getCity()
-              + " "
-              + contact.getPostCode()
-              + System.lineSeparator()
-              + contact.getPhoneNumber());
+    private String contactName(int number, ArrayList<Contact> listOfContacts) {
+        Contact contact = listOfContacts.get(number);
+        return (Integer.toString(number + 1)
+                + ") "
+                + contact.getFirstName()
+                + " "
+                + contact.getLastName());
+    }
+
+    public String displayFormattedContact(int number, ArrayList<Contact> listOfContacts) {
+        Contact contact = listOfContacts.get(number);
+        return contact.getFirstName() + " " + contact.getLastName() + System.lineSeparator() + contact.getAddress() + System.lineSeparator() + contact.getCity() + " " + contact.getPostCode() + System.lineSeparator() + contact.getPhoneNumber();
     }
 
     public boolean isContactListEmpty() {
