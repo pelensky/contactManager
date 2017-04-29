@@ -41,12 +41,17 @@ public class Search implements FindOption {
     }
 
     private Contact getContact(ArrayList<Contact> filteredContacts, int selection) {
+        io.displayText(displayFormattedContact(filteredContacts, selection));
         return filteredContacts.get(selection - 1);
     }
 
     private Contact invalidSelection() {
         io.displayText("Invalid selection");
         return null;
+    }
+
+    private String displayFormattedContact(ArrayList<Contact> filteredContacts, int selection) {
+        return manipulateContacts.displayFormattedContact(selection - 1, filteredContacts);
     }
 
     private int selectContact(ArrayList<Contact> filteredContacts) {
